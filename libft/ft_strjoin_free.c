@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/17 21:23:14 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/07/17 21:08:04 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/07/17 21:09:43 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	command_not_found(char *path)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(path);
-}
+	char			*str;
 
-void	malloc_error(void)
-{
-	ft_putendl("minishell: Malloc error");
-	exit (1);
+	str = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	if (!(str = (char*)malloc(sizeof(char) *
+		((ft_strlen(s1) + ft_strlen(s2) + 1)))))
+		return (NULL);
+	ft_bzero(str, ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = ft_strcat(str, s1);
+	str = ft_strcat(str, s2);
+	ft_strdel(&s1);
+	return (str);
 }

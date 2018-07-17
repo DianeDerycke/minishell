@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:54:55 by dideryck          #+#    #+#             */
-/*   Updated: 2018/06/25 14:58:37 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/07/17 21:09:47 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	ft_bzero(str, ft_strlen(s1) + ft_strlen(s2) + 1);
 	str = ft_strcat(str, s1);
 	str = ft_strcat(str, s2);
-	free(s1);
 	return (str);
 }

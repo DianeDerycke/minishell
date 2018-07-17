@@ -10,10 +10,13 @@
 #include <stdio.h>
 
 //SRC
-int		cmd_is_valid(char *path);
+char		*find_path(char *cmd, char **ms_env);
 
 //ERROR
 void	malloc_error(void);
 void	command_not_found(char *path);
+
+//UTILS
+char	*ms_getenv(char **ms_env);
 
 #endif

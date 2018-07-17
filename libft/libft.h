@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/16 14:09:50 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/17 21:19:14 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char *s1, char *s2);
+char				*ft_strjoin_free(char *s1, char *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 
@@ -125,4 +126,5 @@ void				ft_double_free(char **tab);
 size_t				ft_strlen_table(char **tab);
 char				*ft_strndup(const char *s, size_t len);
 void				ft_sort_integer_table(int *tab, int size);
+char				**ft_copy_array(char **src);
 #endif

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/17 21:23:14 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/07/17 21:23:10 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-void	command_not_found(char *path)
+char	*ms_getenv(char **ms_env)
 {
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(path);
-}
+	int		i;
 
-void	malloc_error(void)
-{
-	ft_putendl("minishell: Malloc error");
-	exit (1);
+	i = 0;
+	while (ms_env[i] && ft_strncmp("PATH=", ms_env[i], 5) != 0)
+		i++;
+	return (ms_env[i] + 5);
 }

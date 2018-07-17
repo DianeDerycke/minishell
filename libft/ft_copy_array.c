@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_copy_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/17 21:23:14 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/07/17 21:18:27 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/07/17 21:21:05 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	command_not_found(char *path)
+char	**ft_copy_array(char **src)
 {
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(path);
-}
+	int		i;
+	int		n;
+	char	**dst;
 
-void	malloc_error(void)
-{
-	ft_putendl("minishell: Malloc error");
-	exit (1);
+	i = 0;
+	n = 0;
+	dst = NULL;
+	if (!src)
+		return (NULL);
+	i = ft_strlen_table(src);
+	if (!(dst = malloc(sizeof(char *) * i)))
+		return (NULL);
+	while (n < i)
+	{
+		dst[n] = ft_strdup(src[n]);
+		n++;		
+	}
+	return (dst);
 }
