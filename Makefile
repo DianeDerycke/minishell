@@ -6,7 +6,7 @@
 #    By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/07/18 19:59:27 by DERYCKE          ###   ########.fr        #
+#    Updated: 2018/07/19 00:48:10 by DERYCKE          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFT = ./libft/
 LIBNAME = ./libft/libft.a
 
 SRC_PATH = ./src
-SRC_NAME = main.c parser.c error.c utils.c exec_cmd.c
+SRC_NAME = main.c parser.c error.c utils.c exec_cmd.c builtins.c echo.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ_PATH = ./obj

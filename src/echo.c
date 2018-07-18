@@ -6,12 +6,13 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 20:44:14 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/18 20:51:24 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/19 01:12:21 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-// void	ms_echo(char *str);
-
-
-
+void	ms_echo(char **array)
+{
+	(void)array;
+	printf("%s\n", "ECHO");
+}

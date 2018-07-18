@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/19 01:29:53 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/07/19 00:22:08 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/07/19 01:20:28 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-void		exec_cmd(char **ms_env, char **array, t_builtin *builtins)
+int 	find_builtin(char *cmd, t_builtin *builtins)
 {
-	pid_t	pid;
-	int		index;
-	int		status;
-	char	*path;
+	int 	i;
 
-	status = 0;
-	path = NULL;
-	if ((index = find_builtin(array[0], builtins)) >= 0)
-		return (builtins[index].function(array));
-	else if ((path = find_path(array[0], ms_env)))
+	i = 0;
+	if (!cmd)
+		return (-1);
+	while (builtins[i].name)
 	{
-		if (!(pid = fork()))
-			execve(path, array, ms_env);
-		else
-			waitpid(pid, &status, 0);
+		if (ft_strcmp(cmd, builtins[i].name) == 0)
+			return (i);
+		i++;
 	}
-	else if (!path)
-		command_not_found(array[0]);
+	return (-1);
+}
+
+void	init_builtins(t_builtin *builtin_tab)
+{
+	builtin_tab[0].name = ft_strdup("echo");
+	builtin_tab[0].function = ms_echo;
+	builtin_tab[1].name = NULL;
+	builtin_tab[1].function = NULL;
 }

@@ -11,15 +11,22 @@
 
 typedef struct 		s_builtin
 {
-	char			*built_name;
-	void			(*built_ft)(void *);
+	char			*name;
+	void			(*function)(char **);
 }					t_builtin;
 
 //parser.c
 char		*find_path(char *cmd, char **ms_env);
 
+//builtins.c
+void		init_builtins(t_builtin *builtin_tab);
+int 		find_builtin(char *str, t_builtin *builtins);
+
 //exec_cmd.c
-void		exec_cmd(char **ms_env, char **array);
+void		exec_cmd(char **ms_env, char **array, t_builtin *builtins);
+
+//echo.c
+void	ms_echo(char **array);
 
 
 //error.c
