@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 02:31:12 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/18 19:32:08 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/18 20:31:29 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -24,6 +24,9 @@ char		*find_path(char *cmd, char **ms_env)
 	i = 0;
 	if (!cmd)
 		return (NULL);
+	//add check for builtin
+
+	//check for binaries
 	if (stat(cmd, &buf) == 0 && (S_ISREG(buf.st_mode) && (buf.st_mode & S_IXUSR)))
 		return (ft_strdup(cmd));
 	dir_path = ms_getenv(ms_env);

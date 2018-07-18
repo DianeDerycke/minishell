@@ -9,6 +9,12 @@
 #include <signal.h>
 #include <stdio.h>
 
+typedef struct 		s_builtin
+{
+	char			*built_name;
+	void			(*built_ft)(void *);
+}					t_builtin;
+
 //parser.c
 char		*find_path(char *cmd, char **ms_env);
 
@@ -22,5 +28,4 @@ void		command_not_found(char *path);
 
 //utils.c
 char		*ms_getenv(char **ms_env);
-
 #endif
