@@ -9,14 +9,18 @@
 #include <signal.h>
 #include <stdio.h>
 
-//SRC
+//parser.c
 char		*find_path(char *cmd, char **ms_env);
 
-//ERROR
-void	malloc_error(void);
-void	command_not_found(char *path);
+//exec_cmd.c
+void		exec_cmd(char **ms_env, char **array);
 
-//UTILS
-char	*ms_getenv(char **ms_env);
+
+//error.c
+void		malloc_error(void);
+void		command_not_found(char *path);
+
+//utils.c
+char		*ms_getenv(char **ms_env);
 
 #endif
