@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 21:18:27 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/17 21:21:05 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/18 19:23:08 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -23,12 +23,13 @@ char	**ft_copy_array(char **src)
 	if (!src)
 		return (NULL);
 	i = ft_strlen_table(src);
-	if (!(dst = malloc(sizeof(char *) * i)))
+	if (!(dst = malloc(sizeof(char *) * (i + 1))))
 		return (NULL);
 	while (n < i)
 	{
 		dst[n] = ft_strdup(src[n]);
 		n++;		
 	}
+	dst[n] = NULL;
 	return (dst);
 }
