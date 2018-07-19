@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/17 21:19:14 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/19 02:21:44 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 # define RED   "\x1B[31m"
 # define GREEN   "\x1B[32m"
@@ -68,6 +69,7 @@ void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl(char const *s);
 void				ft_putendl_fd(char const *s, int fd);
+void				ft_print_array(char **array);
 
 size_t				ft_strlen(const char *s);
 int					ft_strcmp(const char *s1, const char *s2);

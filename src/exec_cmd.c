@@ -6,12 +6,12 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/19 01:29:53 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/19 23:41:53 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-void		exec_cmd(char **ms_env, char **array, t_builtin *builtins)
+void		exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins)
 {
 	pid_t	pid;
 	int		index;
@@ -20,15 +20,16 @@ void		exec_cmd(char **ms_env, char **array, t_builtin *builtins)
 
 	status = 0;
 	path = NULL;
-	if ((index = find_builtin(array[0], builtins)) >= 0)
-		return (builtins[index].function(array));
-	else if ((path = find_path(array[0], ms_env)))
+	if ((index = find_builtin(split_cmd[0], builtins)) >= 0)
+		builtins[index].function(split_cmd);
+	else if ((path = find_path(split_cmd[0], ms_env)))
 	{
 		if (!(pid = fork()))
-			execve(path, array, ms_env);
+			execve(path, split_cmd, ms_env);
 		else
 			waitpid(pid, &status, 0);
 	}
 	else if (!path)
-		command_not_found(array[0]);
+		command_not_found(split_cmd[0]);
+	//free name into builtins array
 }

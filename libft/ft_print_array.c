@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ft_print_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/18 20:44:14 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/19 01:56:13 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/07/19 02:20:39 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/07/19 02:21:23 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ms_echo(char **array)
+void	ft_print_array(char **array)
 {
 	int		i;
-	int		is_opt;
 
-	is_opt = 0;
-	i = 1;
-	while (array[i] && ((ft_strcmp(array[i], "-n") == 0)))
-	{
-		is_opt++;
-		i++;
-	}
+	i = 0;
 	while (array[i])
 	{
-		ft_putstr(array[i]);
-		array[i + 1] ? ft_putchar(' ') : 0;
+		printf("<%s>\n", array[i]);
 		i++;
 	}
-	if (!(is_opt))
-		ft_putchar('\n');
 }

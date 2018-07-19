@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 02:31:12 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/19 01:24:42 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/19 02:35:03 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -22,8 +22,10 @@ char		*find_path(char *cmd, char **ms_env)
 	int				i;
 
 	i = 0;
-	if ((!cmd) || (stat(cmd, &buf) == 0 && (S_ISREG(buf.st_mode) && (buf.st_mode & S_IXUSR))))
+	if (!cmd)
 		return (NULL);
+	if (stat(cmd, &buf) == 0 && (S_ISREG(buf.st_mode) && (buf.st_mode & S_IXUSR)))
+		return (ft_strdup(cmd));
 	dir_path = ms_getenv(ms_env);
 	path_array = ft_strsplit(dir_path, ':');
 	while (path_array[i])

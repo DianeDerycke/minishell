@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/19 01:32:54 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/19 23:38:50 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -16,12 +16,12 @@ int		main(void)
 	char			cmd[1024];
 	extern char 	**environ;
 	char			**ms_env;
-	char			**array;
+	char			**split_cmd;
 	int	 			bytes;
 	t_builtin		builtin_tab[6];
 
 	init_builtins(builtin_tab);
-	if (!(ms_env = ft_copy_array(environ)))
+	if (!(ms_env = ft_copy_split_cmd(environ)))
 		return (1);
 	while (1)
 	{
@@ -31,10 +31,12 @@ int		main(void)
 		cmd[bytes - 1] = '\0';
 		if (bytes == 1)
 			continue ;
-		if (!(array = ft_strsplit(cmd, ' ')))
+		if (!(split_cmd = ft_strsplit(cmd, ' ')))
 			return (1);
-		exec_cmd(ms_env, array, builtin_tab);
+		exec_cmd(ms_env, split_cmd, builtin_tab);
 	}
-	ft_double_free(array);
+	ft_double_free(split_cmd);
 	return (0);
 }
+
+//parsing quote
