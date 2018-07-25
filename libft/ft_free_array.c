@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_double_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
+/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 02:35:04 by dideryck          #+#    #+#             */
-/*   Updated: 2017/11/30 02:52:22 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/07/20 02:56:48 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_double_free(char **tab)
+void	ft_free_array(char **tab)
 {
 	int		i;
 

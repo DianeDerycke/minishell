@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/19 23:41:53 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/20 18:41:48 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -31,5 +31,4 @@ void		exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins)
 	}
 	else if (!path)
 		command_not_found(split_cmd[0]);
-	//free name into builtins array
 }

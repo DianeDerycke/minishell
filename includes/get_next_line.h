@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/20 00:15:50 by DERYCKE          ###   ########.fr       */
+/*   Created: 2017/12/15 16:18:12 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/07/20 22:16:55 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
 
-void	command_not_found(char *cmd)
-{
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(cmd);
-}
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 1
 
-void	malloc_error(void)
+# include "../libft/libft.h"
+# include <fcntl.h>
+
+typedef struct		s_pos
 {
-	ft_putendl("minishell: Malloc error");
-	exit (1);
-}
+	int					fd;
+	int					ret;
+	char				buffer[BUFF_SIZE + 1];
+	char				*rest;
+}					t_pos;
+
+int					get_next_line(const int fd, char **line);
+
+#endif

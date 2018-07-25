@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/19 02:21:44 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/07/20 02:59:20 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void				ft_clear_lst(t_dblist *lst);
 void				ft_pause(void);
 int					ft_is_space(char c);
 void				ft_swap(int *a, int *b);
-void				ft_double_free(char **tab);
+void				ft_free_array(char **tab);
 size_t				ft_strlen_table(char **tab);
 char				*ft_strndup(const char *s, size_t len);
 void				ft_sort_integer_table(int *tab, int size);
