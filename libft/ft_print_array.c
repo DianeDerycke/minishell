@@ -18,7 +18,7 @@ void	ft_print_array(char **array)
 	i = 0;
 	while (array[i])
 	{
-		printf("<%s>\n", array[i]);
+		ft_putendl(array[i]);
 		i++;
 	}
 }

@@ -27,10 +27,16 @@ int 	find_builtin(char *cmd, t_builtin *builtins)
 	return (-1);
 }
 
-void	init_builtins(t_builtin *builtin_tab)
+void	init_builtin_struct(t_builtin *builtin_tab)
 {
 	ft_strcpy(builtin_tab[0].name, "echo");
 	builtin_tab[0].function = ms_echo;
-	builtin_tab[1].name[0] = '\0';
-	builtin_tab[1].function = NULL;
+	ft_strcpy(builtin_tab[1].name, "cd");
+	builtin_tab[1].function = ms_cd;
+	ft_strcpy(builtin_tab[2].name, "setenv");
+	builtin_tab[2].function = ms_setenv;
+	ft_strcpy(builtin_tab[3].name, "unsetenv");
+	builtin_tab[3].function = ms_unsetenv;
+	ft_strcpy(builtin_tab[4].name, "env");
+	builtin_tab[4].function = ms_env;
 }

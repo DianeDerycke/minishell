@@ -17,25 +17,27 @@
 typedef struct 		s_builtin
 {
 	char			name[20];
-	void			(*function)(char **);
+	void			(*function)(char **, char **);
 }					t_builtin;
 
 //parser.c
 char				*find_path(char *cmd, char **ms_env);
 void				ms_remove_quote_cmd(char **split_cmd);
-char				**ms_split_input(char *input);
+char				**ms_split_input(char **input);
 
 //builtins.c
-void				init_builtins(t_builtin *builtin_tab);
+void				init_builtin_struct(t_builtin *builtin_tab);
 int 				find_builtin(char *cmd, t_builtin *builtins);
 
 //exec_cmd.c
 void				exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins);
 
-//echo.c
-void				ms_echo(char **split_cmd);
-
-
+// BUILTINS FILES
+void				ms_echo(char **split_cmd, char **ms_env);
+void				ms_env(char **split_cmd, char **ms_env);
+void				ms_setenv(char **split_cmd, char **ms_env);
+void				ms_unsetenv(char **split_cmd, char **ms_env);
+void				ms_cd(char **split_cmd, char **ms_env);
 //error.c
 void				malloc_error(void);
 void				command_not_found(char *cmd);

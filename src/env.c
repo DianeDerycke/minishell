@@ -11,31 +11,27 @@
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-int		main(void)
+void    ms_env(char **split_cmd, char **ms_env)
 {
-	t_builtin		builtin_tab[6];
-	char			*input;
-	extern char 	**environ;
-	char			**ms_env;
-	char			**cmd;
-	int 	 		error;
-
-	input = NULL;
-	init_builtin_struct(builtin_tab);
-	if (!(ms_env = ft_copy_array(environ)))
-		return (1);
-	while (1)
-	{
-		ft_putstr("minishell$ ");
-		if ((error = ms_read_input(&input)) == EAGAIN)
-			continue ;
-		if (error == EINTR || (!(cmd = ms_split_input(&input))))
-			return (FAILURE);
-		exec_cmd(ms_env, cmd, builtin_tab);
-	}
-	ft_free_array(cmd);
-	return (SUCCESS);
+    (void)split_cmd;
+    ft_print_array(ms_env);
 }
 
-//add alias -G avec le ls
-//regler le type de variables utilisés
+void    ms_setenv(char **split_cmd, char **ms_env)
+{
+    (void)ms_env;
+    (void)split_cmd;
+    printf("MS_SETENV\n");
+}
+
+void    ms_unsetenv(char **split_cmd, char **ms_env)
+{
+    (void)ms_env;
+    (void)split_cmd;
+    printf("MS UNSETENV\n");
+}
+
+//create parser for env options such as -P etc
+// doesn't take input with '='sign
+//Deal with permissions denied f.e env -S $HOME (mb trying accessing
+//and changing argument ?

@@ -21,7 +21,7 @@ void		exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins)
 	status = 0;
 	path = NULL;
 	if ((index = find_builtin(split_cmd[0], builtins)) >= 0)
-		builtins[index].function(split_cmd);
+		builtins[index].function(split_cmd, ms_env);
 	else if ((path = find_path(split_cmd[0], ms_env)))
 	{
 		if (!(pid = fork()))

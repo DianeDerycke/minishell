@@ -28,6 +28,8 @@ int				ms_read_input(char **cmd)
 	is_read_done = get_next_line(1, cmd);
 	if (is_read_done == -1)
 		return (EINTR);
+	if (is_read_done == 1 && !(**cmd))
+		return (EAGAIN);
 	return (SUCCESS);
 }
 

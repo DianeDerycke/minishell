@@ -40,7 +40,7 @@ char		*find_path(char *cmd, char **ms_env)
 	return (NULL);
 }
 
-char	**ms_split_input(char *input)
+char	**ms_split_input(char **input)
 {
 	size_t		len;
 	size_t		i;
@@ -48,15 +48,20 @@ char	**ms_split_input(char *input)
 	char		*tmp;
 
 	i = 0;
-	len = len_without_char(input, '"');
+	len = len_without_char(*input, '"');
+	if (!(*input) || !(**input))
+	{
+		ft_strdel(input);
+		return (NULL);
+	}
 	if (!(tmp = (char *)malloc(sizeof(char) * (len + 1))))
 		malloc_error();
 	len = 0;
-	while (input[i])
+	while ((*input)[i])
 	{
-		if (input[i] != '"')
+		if ((*input)[i] != '"')
 		{
-			tmp[len] = input[i];
+			tmp[len] = (*input)[i];
 			len++;
 		}
 		i++;
@@ -64,6 +69,7 @@ char	**ms_split_input(char *input)
 	tmp[len] = '\0';
 	cmd = ft_strsplit(tmp, ' ');
 	ft_strdel(&tmp);
-	ft_strdel(&input);
+	ft_strdel(input);
 	return (cmd);
 }
+//split in several function to clear code
