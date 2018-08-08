@@ -51,13 +51,13 @@ ssize_t     is_valid_cmd(char **split_cmd, t_opt env_opt)
         while (split_cmd[n][i])
         {
             if (!(ft_strchr(valid_opt, split_cmd[n][i])) ||
-                (split_cmd[n][i] == '-' && ft_strlen(split_cmd[i]) > 2))
-                return (error_option(split_cmd[n][i]));
+                (split_cmd[n][i] == '-' && ft_strlen(split_cmd[n]) > 2))
+                    return (error_option(split_cmd[n][i]));
             else
                 valid_option(split_cmd[n][i], &env_opt);
             i++;
-            n++;
         }
+        n++;
     }
     return (SUCCESS);
 }

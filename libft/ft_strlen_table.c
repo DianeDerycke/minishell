@@ -17,10 +17,10 @@ size_t		ft_strlen_table(char **tab)
 	size_t		i;
 
 	i = 0;
-	while (*tab)
-	{
-		tab++;
+	if (!tab || !(*tab))
+		return (0);
+	while (tab[i])
 		i++;
-	}
+	printf("SIZE STRLEN => %zu\n", i);
 	return (i);
 }

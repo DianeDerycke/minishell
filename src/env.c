@@ -15,6 +15,7 @@ ssize_t    exec_env_cmd(char **split_cmd, char **ms_env)
 {
     (void)split_cmd;
     (void)ms_env;
+    printf("TEST");
     return (SUCCESS);
 }
 
@@ -28,8 +29,10 @@ ssize_t    ms_env(char **split_cmd, char **ms_env)
     error = 0;
     if (!split_cmd || !ms_env || (error = is_valid_cmd(split_cmd, env_opt)) == 1)
         return (EAGAIN);
-    else
+    else if (ft_strlen_table(split_cmd) > 1)
         exec_env_cmd(split_cmd, ms_env);
+    else
+        ft_print_array(ms_env);
     return (SUCCESS);
 }
 
