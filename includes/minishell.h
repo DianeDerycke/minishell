@@ -17,34 +17,55 @@
 typedef struct 		s_builtin
 {
 	char			name[20];
-	void			(*function)(char **, char **);
+	ssize_t			(*function)(char **, char **);
 }					t_builtin;
+
+typedef struct 		s_opt
+{
+	ssize_t			i;
+	ssize_t			p;
+	ssize_t			s;
+	ssize_t			u;
+	ssize_t			v;
+}					t_opt;
 
 //parser.c
 char				*find_path(char *cmd, char **ms_env);
 void				ms_remove_quote_cmd(char **split_cmd);
 char				**ms_split_input(char **input);
 
+//parser env
+ssize_t     		is_valid_cmd(char **split_cmd, t_opt env_opt);
+
+
+
 //builtins.c
-void				init_builtin_struct(t_builtin *builtin_tab);
 int 				find_builtin(char *cmd, t_builtin *builtins);
 
 //exec_cmd.c
-void				exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins);
+ssize_t				exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins);
 
 // BUILTINS FILES
-void				ms_echo(char **split_cmd, char **ms_env);
-void				ms_env(char **split_cmd, char **ms_env);
-void				ms_setenv(char **split_cmd, char **ms_env);
-void				ms_unsetenv(char **split_cmd, char **ms_env);
-void				ms_cd(char **split_cmd, char **ms_env);
+ssize_t				ms_echo(char **split_cmd, char **ms_env);
+ssize_t				ms_env(char **split_cmd, char **ms_env);
+ssize_t				ms_setenv(char **split_cmd, char **ms_env);
+ssize_t				ms_unsetenv(char **split_cmd, char **ms_env);
+ssize_t				ms_cd(char **split_cmd, char **ms_env);
+
 //error.c
 void				malloc_error(void);
-void				command_not_found(char *cmd);
+ssize_t				command_not_found(char *cmd);
+ssize_t				error_option(char c);
+
 
 //utils.c
 char				*ms_getenv(char **ms_env);
 int					ms_read_input(char **cmd);
 size_t				len_without_char(char *str, char c);
+
+//init.c
+void				init_builtin_struct(t_builtin *builtin_tab);
+void				init_opt(t_opt 	*env_opt);
+
 
 #endif

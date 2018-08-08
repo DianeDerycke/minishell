@@ -11,29 +11,25 @@
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-ssize_t    exec_env_cmd(char **split_cmd, char **ms_env)
+void	init_builtin_struct(t_builtin *builtin_tab)
 {
-    (void)split_cmd;
-    (void)ms_env;
-    return (SUCCESS);
+	ft_strcpy(builtin_tab[0].name, "echo");
+	builtin_tab[0].function = ms_echo;
+	ft_strcpy(builtin_tab[1].name, "cd");
+	builtin_tab[1].function = ms_cd;
+	ft_strcpy(builtin_tab[2].name, "setenv");
+	builtin_tab[2].function = ms_setenv;
+	ft_strcpy(builtin_tab[3].name, "unsetenv");
+	builtin_tab[3].function = ms_unsetenv;
+	ft_strcpy(builtin_tab[4].name, "env");
+	builtin_tab[4].function = ms_env;
 }
 
-
-ssize_t    ms_env(char **split_cmd, char **ms_env)
+void	init_opt(t_opt 	*env_opt)
 {
-    ssize_t     error;
-    t_opt       env_opt;
-
-    init_opt(&env_opt);
-    error = 0;
-    if (!split_cmd || !ms_env || (error = is_valid_cmd(split_cmd, env_opt)) == 1)
-        return (EAGAIN);
-    else
-        exec_env_cmd(split_cmd, ms_env);
-    return (SUCCESS);
+	env_opt->i = 0;
+	env_opt->p = 0;
+	env_opt->s = 0;
+	env_opt->u = 0;
+	env_opt->v = 0;
 }
-
-//create parser for env options such as -P etc
-// doesn't take input with '='sign
-//Deal with permissions denied f.e env -S $HOME (mb trying accessing
-//and changing argument ?

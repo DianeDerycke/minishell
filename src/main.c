@@ -29,8 +29,8 @@ int		main(void)
 		ft_putstr("minishell$ ");
 		if ((error = ms_read_input(&input)) == EAGAIN)
 			continue ;
-		if (error == EINTR || (!(cmd = ms_split_input(&input))))
-			return (FAILURE);
+		if (error == -1 || (!(cmd = ms_split_input(&input))))
+			return (EINTR);
 		exec_cmd(ms_env, cmd, builtin_tab);
 	}
 	ft_free_array(cmd);

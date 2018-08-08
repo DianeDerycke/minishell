@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-void	ms_echo(char **split_cmd, char **ms_env)
+ssize_t		ms_echo(char **split_cmd, char **ms_env)
 {
 	int		i;
 	int		is_opt;
@@ -32,4 +32,5 @@ void	ms_echo(char **split_cmd, char **ms_env)
 	}
 	if (!(is_opt))
 		ft_putchar('\n');
+	return (SUCCESS);
 }

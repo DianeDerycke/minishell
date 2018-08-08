@@ -39,7 +39,7 @@ char		*find_path(char *cmd, char **ms_env)
 	}
 	return (NULL);
 }
-
+//clear find path (gros bordel)
 char	**ms_split_input(char **input)
 {
 	size_t		len;
@@ -72,4 +72,4 @@ char	**ms_split_input(char **input)
 	ft_strdel(input);
 	return (cmd);
 }
-//split in several function to clear code
+//split in several function

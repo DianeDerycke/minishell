@@ -11,29 +11,53 @@
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-ssize_t    exec_env_cmd(char **split_cmd, char **ms_env)
+static void		valid_option(char c, t_opt *env_opt)
 {
-    (void)split_cmd;
-    (void)ms_env;
-    return (SUCCESS);
+	if (c == 'i')
+		env_opt->i = 1;
+	else if (c == 'v')
+		env_opt->v = 1;
+	else if (c == 'p')
+    {
+        init_opt(env_opt);
+		env_opt->p = 1;
+    }
+	else if (c == 's')
+    {
+        init_opt(env_opt);
+		env_opt->s = 1;
+    }
+    else if (c == 'u')
+    {
+        init_opt(env_opt);
+        env_opt->u = 1;
+    }
 }
 
-
-ssize_t    ms_env(char **split_cmd, char **ms_env)
+ssize_t     is_valid_cmd(char **split_cmd, t_opt env_opt)
 {
-    ssize_t     error;
-    t_opt       env_opt;
+	int		i;
+    int     n;
+	char	valid_opt[11];
 
+	i = 0;
+    n = 1;
     init_opt(&env_opt);
-    error = 0;
-    if (!split_cmd || !ms_env || (error = is_valid_cmd(split_cmd, env_opt)) == 1)
-        return (EAGAIN);
-    else
-        exec_env_cmd(split_cmd, ms_env);
+	ft_strcpy(valid_opt, "iPSuv");
+    while (split_cmd[n])
+    {
+        if (split_cmd[n][i] == '-')
+            i++;
+        while (split_cmd[n][i])
+        {
+            if (!(ft_strchr(valid_opt, split_cmd[n][i])) ||
+                (split_cmd[n][i] == '-' && ft_strlen(split_cmd[i]) > 2))
+                return (error_option(split_cmd[n][i]));
+            else
+                valid_option(split_cmd[n][i], &env_opt);
+            i++;
+            n++;
+        }
+    }
     return (SUCCESS);
 }
-
-//create parser for env options such as -P etc
-// doesn't take input with '='sign
-//Deal with permissions denied f.e env -S $HOME (mb trying accessing
-//and changing argument ?

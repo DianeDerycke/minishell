@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-void    ms_cd(char **split_cmd, char **ms_env)
+ssize_t    ms_cd(char **split_cmd, char **ms_env)
 {
     (void)ms_env;
     (void)split_cmd;
     printf("MS_CD FUNCTION\n");
+    return (SUCCESS);
 }

@@ -50,3 +50,12 @@ size_t		len_without_char(char *str, char c)
 	}
 	return (final_len);
 }
+
+void	init_env_ot(t_opt 	*env_opt)
+{
+	env_opt->i = 0;
+	env_opt->p = 0;
+	env_opt->s = 0;
+	env_opt->u = 0;
+	env_opt->v = 0;
+}
