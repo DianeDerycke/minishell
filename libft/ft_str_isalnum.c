@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_str_isalpha.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 21:34:12 by dideryck          #+#    #+#             */
-/*   Updated: 2018/08/09 21:34:09 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/08/09 20:07:26 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/09 21:33:13 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isalpha(int c)
+int         ft_str_isalnum(char *str)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+    int     i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (ft_isalnum(str[i]) == 0 && str[i] != '_')
+            return (1);
+        i++;
+    }
+    return (0);
 }

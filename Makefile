@@ -16,7 +16,8 @@ LIBNAME = ./libft/libft.a
 
 SRC_PATH = ./src
 SRC_NAME = main.c parser.c error.c utils.c exec_cmd.c builtins.c echo.c \
-			get_next_line.c	env.c ms_cd.c	init.c 	parser_env.c
+			get_next_line.c	env.c ms_cd.c	init.c 	parser_env.c ms_setenv.c \
+			ms_unsetenv.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ_PATH = ./obj

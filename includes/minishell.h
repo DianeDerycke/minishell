@@ -35,9 +35,7 @@ void				ms_remove_quote_cmd(char **split_cmd);
 char				**ms_split_input(char **input);
 
 //parser env
-ssize_t     		is_valid_cmd(char **split_cmd, t_opt env_opt);
-
-
+ssize_t     		is_valid_env_options(char **split_cmd, t_opt env_opt);
 
 //builtins.c
 int 				find_builtin(char *cmd, t_builtin *builtins);
@@ -45,12 +43,24 @@ int 				find_builtin(char *cmd, t_builtin *builtins);
 //exec_cmd.c
 ssize_t				exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins);
 
+//env.c
+ssize_t    			exec_env_cmd(char **split_cmd, char **ms_env, t_opt env_opt);
+ssize_t    			ms_env(char **split_cmd, char **ms_env);
+
+
 // BUILTINS FILES
 ssize_t				ms_echo(char **split_cmd, char **ms_env);
 ssize_t				ms_env(char **split_cmd, char **ms_env);
 ssize_t				ms_setenv(char **split_cmd, char **ms_env);
 ssize_t				ms_unsetenv(char **split_cmd, char **ms_env);
 ssize_t				ms_cd(char **split_cmd, char **ms_env);
+
+//ms_setenv.c
+ssize_t     		is_valid_set_cmd(char **split_cmd);
+void				reset_variable(char **split_cmd, char **ms_env, ssize_t index);
+void    			add_variable(char **split_cmd, char **ms_env);
+void     			set_var_env(char **split_cmd, char **ms_env);
+ssize_t    			ms_setenv(char **split_cmd, char **ms_env);
 
 //error.c
 void				malloc_error(void);
@@ -62,6 +72,8 @@ ssize_t				error_option(char c);
 char				*ms_getenv(char **ms_env);
 int					ms_read_input(char **cmd);
 size_t				len_without_char(char *str, char c);
+ssize_t				find_variable(char **split_cmd, char **ms_env);
+char    			*create_line(char **split_cmd);
 
 //init.c
 void				init_builtin_struct(t_builtin *builtin_tab);

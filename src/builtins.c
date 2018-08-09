@@ -6,9 +6,10 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/19 00:22:08 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/21 04:26:14 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/09 19:27:08 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 int 	find_builtin(char *cmd, t_builtin *builtins)
@@ -25,14 +26,6 @@ int 	find_builtin(char *cmd, t_builtin *builtins)
 		i++;
 	}
 	return (-1);
-}
-
-ssize_t    ms_setenv(char **split_cmd, char **ms_env)
-{
-    (void)ms_env;
-    (void)split_cmd;
-    printf("MS_SETENV\n");
-	return (SUCCESS);
 }
 
 ssize_t    ms_unsetenv(char **split_cmd, char **ms_env)

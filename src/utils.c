@@ -6,10 +6,29 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/21 04:30:21 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/10 00:22:30 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/minishell.h"
+ssize_t		find_variable(char **split_cmd, char **ms_env)
+{
+	ssize_t 	i;
+	ssize_t		index;
+
+	index = 0;
+	i = 0;
+	while (ms_env[index])
+	{
+		while(ms_env[index][i] == split_cmd[1][i] && ms_env[index][i] != '=')
+			i++;
+		if (ms_env[index][i] == '=')
+			return (index);
+		index++;
+		i = 0;
+	}
+	return (-1);
+}
 
 char	*ms_getenv(char **ms_env)
 {
@@ -51,11 +70,20 @@ size_t		len_without_char(char *str, char c)
 	return (final_len);
 }
 
-void	init_env_ot(t_opt 	*env_opt)
+char    *create_line(char **split_cmd)
 {
-	env_opt->i = 0;
-	env_opt->p = 0;
-	env_opt->s = 0;
-	env_opt->u = 0;
-	env_opt->v = 0;
+    size_t  i;
+    char    *tmp;
+    char    *tmp1; 
+
+    i = 1;
+    if (!(tmp = ft_strdup(split_cmd[1])) || !(tmp1 = ft_strjoin_free(tmp, "=")))
+		malloc_error();
+    if (split_cmd[2])
+    {
+        if (!(tmp = ft_strjoin_free(tmp1, split_cmd[2])))
+			malloc_error();
+        return (tmp);
+    }
+    return (tmp1);
 }

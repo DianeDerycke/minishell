@@ -6,11 +6,11 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/21 04:28:47 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/09 20:20:02 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
 
+#include "../includes/minishell.h"
 int		main(void)
 {
 	t_builtin		builtin_tab[6];
@@ -22,7 +22,7 @@ int		main(void)
 
 	input = NULL;
 	init_builtin_struct(builtin_tab);
-	if (!(ms_env = ft_copy_array(environ)))
+	if (!(ms_env = ft_copy_array(environ, ft_strlen_table(environ))))
 		return (1);
 	while (1)
 	{

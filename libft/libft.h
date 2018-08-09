@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/20 02:59:20 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/09 21:34:28 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_isascii(int c);
+int					ft_str_isalnum(char *str);
 
 int					ft_atoi(const char *str);
 char				*ft_itoa(long int n);
@@ -128,5 +129,5 @@ void				ft_free_array(char **tab);
 size_t				ft_strlen_table(char **tab);
 char				*ft_strndup(const char *s, size_t len);
 void				ft_sort_integer_table(int *tab, int size);
-char				**ft_copy_array(char **src);
+char				**ft_copy_array(char **src, size_t len);
 #endif

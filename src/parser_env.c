@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/21 04:28:47 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/09 19:44:29 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
 
+#include "../includes/minishell.h"
 static void		valid_option(char c, t_opt *env_opt)
 {
 	if (c == 'i')
@@ -18,23 +18,14 @@ static void		valid_option(char c, t_opt *env_opt)
 	else if (c == 'v')
 		env_opt->v = 1;
 	else if (c == 'p')
-    {
-        init_opt(env_opt);
 		env_opt->p = 1;
-    }
 	else if (c == 's')
-    {
-        init_opt(env_opt);
 		env_opt->s = 1;
-    }
     else if (c == 'u')
-    {
-        init_opt(env_opt);
         env_opt->u = 1;
-    }
 }
 
-ssize_t     is_valid_cmd(char **split_cmd, t_opt env_opt)
+ssize_t     is_valid_env_options(char **split_cmd, t_opt env_opt)
 {
 	int		i;
     int     n;

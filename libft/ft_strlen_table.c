@@ -21,6 +21,5 @@ size_t		ft_strlen_table(char **tab)
 		return (0);
 	while (tab[i])
 		i++;
-	printf("SIZE STRLEN => %zu\n", i);
 	return (i);
 }
