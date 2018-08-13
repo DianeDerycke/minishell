@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/10 00:27:54 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/13 13:25:35 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ ssize_t    ms_setenv(char **split_cmd, char **ms_env)
     len_split_cmd = ft_strlen_table(split_cmd);
     tmp = NULL;
     if (len_split_cmd == 1)
-        ft_print_array(split_cmd);
-    else if ((len_split_cmd > 3) || (is_valid_set_cmd(split_cmd) == 1))
+        ft_print_array(ms_env);
+    else if (len_split_cmd > 3)
+        return (setenv_error_args());
+    else if ((is_valid_set_cmd(split_cmd)) == 1)
         return (FAILURE);
     else
         set_var_env(split_cmd, ms_env);

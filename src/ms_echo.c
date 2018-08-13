@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   ms_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 00:22:08 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/09 19:27:08 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/07/18 20:44:14 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/11 23:51:12 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int 	find_builtin(char *cmd, t_builtin *builtins)
+ssize_t		ms_echo(char **split_cmd, char **ms_env)
 {
-	int 	i;
+	int		i;
+	int		is_opt;
 
-	i = 0;
-	if (!cmd)
-		return (-1);
-	while (builtins[i].name[0])
+	is_opt = 0;
+	i = 1;
+	(void)ms_env;
+	while (split_cmd[i] && ((ft_strcmp(split_cmd[i], "-n") == 0)))
 	{
-		if (ft_strcmp(cmd, builtins[i].name) == 0)
-			return (i);
+		is_opt++;
 		i++;
 	}
-	return (-1);
-}
-
-ssize_t    ms_unsetenv(char **split_cmd, char **ms_env)
-{
-    (void)ms_env;
-    (void)split_cmd;
-    printf("MS UNSETENV\n");
+	while (split_cmd[i])
+	{
+		ft_putstr(split_cmd[i]);
+		split_cmd[i + 1] ? ft_putchar(' ') : 0;
+		i++;
+	}
+	if (!(is_opt))
+		ft_putchar('\n');
 	return (SUCCESS);
 }

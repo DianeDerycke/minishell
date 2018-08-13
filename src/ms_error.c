@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ms_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/20 00:15:50 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/13 13:24:57 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
 
+#include "../includes/minishell.h"
 ssize_t		command_not_found(char *cmd)
 {
 	ft_putstr("minishell: command not found: ");
@@ -31,5 +31,11 @@ ssize_t		error_option(char c)
 	ft_putendl_fd("\nusage: env [-iv] [-P utilpath] [-S string] [-u name]", 2);
 	ft_putendl_fd("           [name=value ...] [utility [argument ...]]", 2);
 	printf("ERROR OPTION END RETURN FAILURE\n");	
+	return (FAILURE);
+}
+
+ssize_t		setenv_error_args(void)
+{
+	ft_putendl_fd("setenv: Too many arguments.", 2);
 	return (FAILURE);
 }

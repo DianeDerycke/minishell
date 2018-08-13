@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ms_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/21 04:28:47 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/11 23:51:31 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/minishell.h"
 
+#include "../includes/minishell.h"
 void	init_builtin_struct(t_builtin *builtin_tab)
 {
 	ft_strcpy(builtin_tab[0].name, "echo");

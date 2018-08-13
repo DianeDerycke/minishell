@@ -66,6 +66,7 @@ ssize_t    			ms_setenv(char **split_cmd, char **ms_env);
 void				malloc_error(void);
 ssize_t				command_not_found(char *cmd);
 ssize_t				error_option(char c);
+ssize_t				setenv_error_args(void);
 
 
 //utils.c
