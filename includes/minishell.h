@@ -17,7 +17,7 @@
 typedef struct 		s_builtin
 {
 	char			name[20];
-	ssize_t			(*function)(char **, char **);
+	ssize_t			(*function)(char **, char ***);
 }					t_builtin;
 
 typedef struct 		s_opt
@@ -41,39 +41,42 @@ ssize_t     		is_valid_env_options(char **split_cmd, t_opt env_opt);
 int 				find_builtin(char *cmd, t_builtin *builtins);
 
 //exec_cmd.c
-ssize_t				exec_cmd(char **ms_env, char **split_cmd, t_builtin *builtins);
+ssize_t				exec_cmd(char ***ms_env, char **split_cmd, t_builtin *builtins);
 
 //env.c
 ssize_t    			exec_env_cmd(char **split_cmd, char **ms_env, t_opt env_opt);
-ssize_t    			ms_env(char **split_cmd, char **ms_env);
 
 
 // BUILTINS FILES
-ssize_t				ms_echo(char **split_cmd, char **ms_env);
-ssize_t				ms_env(char **split_cmd, char **ms_env);
-ssize_t				ms_setenv(char **split_cmd, char **ms_env);
-ssize_t				ms_unsetenv(char **split_cmd, char **ms_env);
-ssize_t				ms_cd(char **split_cmd, char **ms_env);
+ssize_t				ms_echo(char **split_cmd, char ***ms_env);
+ssize_t				ms_env(char **split_cmd, char ***ms_env);
+ssize_t				ms_setenv(char **split_cmd, char ***ms_env);
+ssize_t				ms_unsetenv(char **split_cmd, char ***ms_env);
+ssize_t				ms_cd(char **split_cmd, char ***ms_env);
 
 //ms_setenv.c
 ssize_t     		is_valid_set_cmd(char **split_cmd);
-void				reset_variable(char **split_cmd, char **ms_env, ssize_t index);
-void    			add_variable(char **split_cmd, char **ms_env);
-void     			set_var_env(char **split_cmd, char **ms_env);
-ssize_t    			ms_setenv(char **split_cmd, char **ms_env);
+char				**edit_variable(char **split_cmd, char **ms_env, ssize_t index);
+char    			**add_variable(char **split_cmd, char **ms_env);
+char			    **delete_variable(char **ms_env, size_t index);
+char     			**set_var_env(char **split_cmd, char **ms_env);
 
 //error.c
 void				malloc_error(void);
 ssize_t				command_not_found(char *cmd);
 ssize_t				error_option(char c);
-ssize_t				setenv_error_args(void);
+ssize_t				too_many_args(void);
+ssize_t				unvalid_setenv_cmd(void);
+
+//error2.c
+ssize_t     		too_few_args(void);
 
 
 //utils.c
 char				*ms_getenv(char **ms_env);
 int					ms_read_input(char **cmd);
 size_t				len_without_char(char *str, char c);
-ssize_t				find_variable(char **split_cmd, char **ms_env);
+ssize_t				find_variable(char *cmd, char **ms_env, size_t *index);
 char    			*create_line(char **split_cmd);
 
 //init.c
@@ -82,3 +85,5 @@ void				init_opt(t_opt 	*env_opt);
 
 
 #endif
+
+//change name function with ms/setenv

@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/13 13:24:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/13 15:07:33 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,14 @@ ssize_t		error_option(char c)
 	return (FAILURE);
 }
 
-ssize_t		setenv_error_args(void)
+ssize_t		too_many_args(void)
 {
 	ft_putendl_fd("setenv: Too many arguments.", 2);
+	return (FAILURE);
+}
+
+ssize_t		unvalid_setenv_cmd(void)
+{
+	ft_putendl_fd("setenv: Variable name must containe alphanumeric characters.", 2);
 	return (FAILURE);
 }

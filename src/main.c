@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/12 00:02:29 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/14 12:24:42 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int		main(void)
 			continue ;
 		if (error == -1 || (!(cmd = ms_split_input(&input))))
 			return (EINTR);
-		exec_cmd(ms_env, cmd, builtin_tab);
-		printf("EXEC CMD SUCCESS");
+		exec_cmd(&ms_env, cmd, builtin_tab);
 	}
 	ft_free_array(cmd);
 	return (SUCCESS);

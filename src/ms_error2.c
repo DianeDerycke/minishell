@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_cd.c                                            :+:      :+:    :+:   */
+/*   ms_error2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/14 10:15:25 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/08/14 14:05:46 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/14 14:07:04 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-ssize_t    ms_cd(char **split_cmd, char ***ms_env)
+ssize_t     too_few_args(void)
 {
-    (void)ms_env;
-    (void)split_cmd;
-    printf("MS_CD FUNCTION\n");
-    return (SUCCESS);
+    ft_putendl_fd("unsetenv: Too few arguments.", 2);
+    return (FAILURE);
 }

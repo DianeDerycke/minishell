@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ms_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/10 00:22:30 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/14 17:55:58 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-ssize_t		find_variable(char **split_cmd, char **ms_env)
+ssize_t		find_variable(char *cmd, char **ms_env, size_t *index)
 {
-	ssize_t 	i;
-	ssize_t		index;
+	size_t 	i;
 
-	index = 0;
 	i = 0;
-	while (ms_env[index])
+	*index = 0;
+	while (ms_env[*index])
 	{
-		while(ms_env[index][i] == split_cmd[1][i] && ms_env[index][i] != '=')
+ 		while(ms_env[*index][i] == cmd[i] && ms_env[*index][i] != '=')
 			i++;
-		if (ms_env[index][i] == '=')
-			return (index);
-		index++;
+		if (ms_env[*index][i] == '=')
+			return (0);
+		(*index)++;
 		i = 0;
 	}
 	return (-1);

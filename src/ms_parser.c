@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ms_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 02:31:12 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/20 00:30:20 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/14 17:28:47 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/minishell.h"
-
-
 char		*find_path(char *cmd, char **ms_env)
 {
 	struct stat 	buf;
@@ -39,7 +38,8 @@ char		*find_path(char *cmd, char **ms_env)
 	}
 	return (NULL);
 }
-//clear find path (gros bordel)
+//clean find path
+
 char	**ms_split_input(char **input)
 {
 	size_t		len;
@@ -54,7 +54,7 @@ char	**ms_split_input(char **input)
 		ft_strdel(input);
 		return (NULL);
 	}
-	if (!(tmp = (char *)malloc(sizeof(char) * (len + 1))))
+	if (!(tmp = malloc(len + 1)))
 		malloc_error();
 	len = 0;
 	while ((*input)[i])

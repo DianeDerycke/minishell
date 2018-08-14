@@ -6,12 +6,12 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 20:44:14 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/11 23:51:12 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/14 10:14:05 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-ssize_t		ms_echo(char **split_cmd, char **ms_env)
+ssize_t		ms_echo(char **split_cmd, char ***ms_env)
 {
 	int		i;
 	int		is_opt;
