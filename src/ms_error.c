@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/13 15:07:33 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/15 19:01:14 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ ssize_t		error_option(char c)
 	return (FAILURE);
 }
 
-ssize_t		too_many_args(void)
+ssize_t		too_many_args(char *cmd)
 {
-	ft_putendl_fd("setenv: Too many arguments.", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putendl_fd(": Too many arguments.", 2);
 	return (FAILURE);
 }
 

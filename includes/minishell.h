@@ -61,11 +61,15 @@ char    			**add_variable(char **split_cmd, char **ms_env);
 char			    **delete_variable(char **ms_env, size_t index);
 char     			**set_var_env(char **split_cmd, char **ms_env);
 
+//ms_cd.c
+ssize_t     		ms_cd_home(char **ms_env);
+
+
 //error.c
 void				malloc_error(void);
 ssize_t				command_not_found(char *cmd);
 ssize_t				error_option(char c);
-ssize_t				too_many_args(void);
+ssize_t				too_many_args(char *cmd);
 ssize_t				unvalid_setenv_cmd(void);
 
 //error2.c

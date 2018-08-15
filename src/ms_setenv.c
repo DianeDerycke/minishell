@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/14 16:08:38 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/15 19:55:41 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ char    **add_variable(char **split_cmd, char **ms_env)
 
     if (!(tmp_ms_env = ft_copy_array(ms_env, ft_strlen_table(ms_env) + 1)))
         malloc_error();
-    // ft_free_array(ms_env);
+    ft_free_array(ms_env);
     tmp_ms_env[(ft_strlen_table(tmp_ms_env))] = create_line(split_cmd);
     if (!(ms_env = ft_copy_array(tmp_ms_env, ft_strlen_table(tmp_ms_env))))
         malloc_error();
-    // ft_free_array(tmp_ms_env);
+    ft_free_array(tmp_ms_env);
     return (ms_env);
 }
 
@@ -67,7 +67,7 @@ ssize_t    ms_setenv(char **split_cmd, char ***ms_env)
     if (len_split_cmd == 1)
         ft_print_array(*ms_env);
     else if (len_split_cmd > 3)
-        return (too_many_args());
+        return (too_many_args("setenv"));
     else if ((is_valid_set_cmd(split_cmd)) == 1)
         return (unvalid_setenv_cmd());
     else
