@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 14:05:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 15:51:58 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/16 16:08:56 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ ssize_t     too_few_args(void)
 
 ssize_t     error_chdir(int error, char *path)
 {
+    if (path && !(path[0]))
+        return (FAILURE);
     if (error == -1 && !(opendir(path)))
     {
         ft_putstr_fd(path, 2);

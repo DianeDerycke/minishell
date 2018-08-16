@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/15 21:47:23 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/16 15:58:02 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ ssize_t    ms_cd(char **split_cmd, char ***ms_env)
     }
     else if ((error = chdir(split_cmd[1])) != 0)
         return (error_chdir(error, split_cmd[1]));
-    edit_oldpwd(buf, *ms_env);
-    if (buf)
-        ft_strdel(&buf);
+    ft_strdel(&buf);
+    if (edit_oldpwd(buf, *ms_env) == 1)
+        return (FAILURE);
     return (SUCCESS);
 }
 
