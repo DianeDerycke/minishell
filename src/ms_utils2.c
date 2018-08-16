@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_copy_array.c                                    :+:      :+:    :+:   */
+/*   ms_utils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 21:18:27 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 11:54:19 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/08/16 14:10:19 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/16 15:28:15 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-char	**ft_copy_array(char **src, size_t len)
-{
-	size_t		n;
-	char	**dst;
+#include "../includes/minishell.h"
 
-	n = 0;
-	dst = NULL;
-	if (!src)
-		return (NULL);
-	if (!(dst = malloc(sizeof(char *) * (len + 1))))
-		return (NULL);
-	while (n < len)
-	{
-		dst[n] = ft_strdup(src[n]);
-		n++;
-	}
-	dst[n] = NULL;
-	return (dst);
+char	*get_variable_path(char *var)
+{
+	char	*path;
+	size_t	i;
+
+	i = 0;
+    if (!var)
+        return (NULL);
+	while (var[i] != '=')
+		i++;
+	if (!(path = ft_strdup(var + i + 1)))
+		malloc_error();
+	return (path);
 }

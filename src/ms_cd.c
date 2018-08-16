@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/15 19:56:21 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/15 21:47:23 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,46 @@ ssize_t     ms_cd_home(char **ms_env)
     error = find_variable("HOME", ms_env, &index);
     if (error == -1)
         return (FAILURE);
-    else if ((chdir(ms_env[index] + 5)) == 0)
+    if ((chdir(ms_env[index] + 5)) == 0)
         return (SUCCESS);
     return (FAILURE);
 }
 
-// ssize_t     edit_oldpwd(char *path, char **ms_env)
-// {
+ssize_t     edit_oldpwd(char *path, char **ms_env)
+{
+    size_t      index;
+    ssize_t     error;
 
-// }
+    error = find_variable("OLDPWD", ms_env, &index);
+    if (error == -1)
+        return (FAILURE);
+    edit_variable("OLDPWD", path, ms_env, index);
+    return (SUCCESS);
+}
 
 ssize_t    ms_cd(char **split_cmd, char ***ms_env)
 {
     char    *buf;
     size_t  len;
+    int     error;
 
     len = ft_strlen_table(split_cmd);
     if (!(buf = malloc(2048)))
         malloc_error();
     getcwd(buf, 2048);
-    if (len == 1)
-        return (ms_cd_home(*ms_env));
-    else if (len > 2)
+    if (len > 2)
         too_many_args("cd");
-    else if (chdir(split_cmd[1]))
-        return (SUCCESS);
-    // {
-        // edit_oldpwd(buf, *ms_env);
-    // }
-    return (FAILURE);
+    if (len == 1)
+    {
+        if (ms_cd_home(*ms_env) == 1)
+            return (FAILURE);
+    }
+    else if ((error = chdir(split_cmd[1])) != 0)
+        return (error_chdir(error, split_cmd[1]));
+    edit_oldpwd(buf, *ms_env);
+    if (buf)
+        ft_strdel(&buf);
+    return (SUCCESS);
 }
+
+//handle chdir error

@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/14 17:55:58 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/15 21:59:00 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,18 @@ size_t		len_without_char(char *str, char c)
 	return (final_len);
 }
 
-char    *create_line(char **split_cmd)
+char    *create_variable(char *var_name, char *var_value)
 {
     size_t  i;
     char    *tmp;
     char    *tmp1; 
 
     i = 1;
-    if (!(tmp = ft_strdup(split_cmd[1])) || !(tmp1 = ft_strjoin_free(tmp, "=")))
+    if (!(tmp = ft_strdup(var_name)) || !(tmp1 = ft_strjoin_free(tmp, "=")))
 		malloc_error();
-    if (split_cmd[2])
+    if (var_value)
     {
-        if (!(tmp = ft_strjoin_free(tmp1, split_cmd[2])))
+        if (!(tmp = ft_strjoin_free(tmp1, var_value)))
 			malloc_error();
         return (tmp);
     }

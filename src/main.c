@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/14 12:24:42 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/16 13:11:57 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
 	input = NULL;
 	init_builtin_struct(builtin_tab);
 	if (!(ms_env = ft_copy_array(environ, ft_strlen_table(environ))))
-		return (1);
+		malloc_error();
 	while (1)
 	{
 		ft_putstr("minishell$ ");
@@ -31,11 +31,8 @@ int		main(void)
 			continue ;
 		if (error == -1 || (!(cmd = ms_split_input(&input))))
 			return (EINTR);
-		exec_cmd(&ms_env, cmd, builtin_tab);
+		exec_cmd(&ms_env, &cmd, builtin_tab);
 	}
 	ft_free_array(cmd);
 	return (SUCCESS);
 }
-
-//add alias -G avec le ls
-//regler le type de variables utilisés

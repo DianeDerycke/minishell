@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/15 19:55:41 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/15 21:45:48 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,45 @@ ssize_t     is_valid_set_cmd(char **split_cmd)
     return (SUCCESS);
 }
 
-char    **edit_variable(char **split_cmd, char **ms_env, ssize_t index)
+char    **edit_variable(char *var_name, char *var_value, char **ms_env, ssize_t index)
 {
     ft_strdel(&(ms_env[index]));
-    ms_env[index] = create_line(split_cmd);
+    ms_env[index] = create_variable(var_name, var_value);
     return (ms_env);
 }
 
-char    **add_variable(char **split_cmd, char **ms_env)
+char    **add_variable(char **split_cmd, char ***ms_env)
 {
     char    **tmp_ms_env;
+    size_t  len_tmp;
 
-    if (!(tmp_ms_env = ft_copy_array(ms_env, ft_strlen_table(ms_env) + 1)))
+    len_tmp = 0;
+    if (!(tmp_ms_env = ft_copy_array(*ms_env, ft_strlen_table(*ms_env) + 1)))
         malloc_error();
-    ft_free_array(ms_env);
-    tmp_ms_env[(ft_strlen_table(tmp_ms_env))] = create_line(split_cmd);
-    if (!(ms_env = ft_copy_array(tmp_ms_env, ft_strlen_table(tmp_ms_env))))
-        malloc_error();
-    ft_free_array(tmp_ms_env);
-    return (ms_env);
+    len_tmp = ft_strlen_table(tmp_ms_env);
+    ft_free_array(*ms_env);
+    if (ft_strlen_table(split_cmd) == 3)
+        tmp_ms_env[len_tmp] = create_variable(split_cmd[1], split_cmd[2]);
+    else
+        tmp_ms_env[len_tmp] = create_variable(split_cmd[1], NULL);
+    return (tmp_ms_env);
 }
 
-char     **set_var_env(char **split_cmd, char **ms_env)
+char     **set_var_env(char **split_cmd, char ***ms_env)
 {
     size_t     index;
 
     index = 0;
-    if (find_variable(split_cmd[1], ms_env, &index) == 0)
-        return (edit_variable(split_cmd, ms_env, index));
+    if (find_variable(split_cmd[1], *ms_env, &index) == 0)
+    {
+        if (ft_strlen_table(split_cmd) == 3)
+            edit_variable(split_cmd[1], split_cmd[2], *ms_env, index);
+        else
+            edit_variable(split_cmd[1], NULL, *ms_env, index);
+    }
     else
-        return (add_variable(split_cmd, ms_env));
+        *ms_env = add_variable(split_cmd, ms_env);
+    return (*ms_env);
 }
 
 ssize_t    ms_setenv(char **split_cmd, char ***ms_env)
@@ -71,6 +80,6 @@ ssize_t    ms_setenv(char **split_cmd, char ***ms_env)
     else if ((is_valid_set_cmd(split_cmd)) == 1)
         return (unvalid_setenv_cmd());
     else
-        *ms_env = set_var_env(split_cmd, *ms_env);
+        *ms_env = set_var_env(split_cmd, ms_env);
 	return (SUCCESS);
 }
