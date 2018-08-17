@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:02:44 by dideryck          #+#    #+#             */
-/*   Updated: 2018/07/20 02:58:29 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/17 13:01:52 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ char			**ft_strsplit(char const *s, char c)
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	tab = (char**)malloc(sizeof(char*) * (ft_count_words(s, c) + 1));
-	if (tab == NULL)
+	if (!(tab = (char**)malloc(sizeof(char*) * (ft_count_words(s, c) + 1))))
 		return (NULL);
 	i = 0;
 	return (ft_fill_table(tab, s, c, i));

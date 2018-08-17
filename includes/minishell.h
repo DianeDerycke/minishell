@@ -13,6 +13,7 @@
 # define FAILURE 1
 # define EAGAIN 1
 # define EINTR -1
+# define ARRAY_SIZE 6
 
 typedef struct 		s_builtin
 {
@@ -31,7 +32,6 @@ typedef struct 		s_opt
 
 //parser.c
 char				*find_path(char *cmd, char **ms_env);
-void				ms_remove_quote_cmd(char **split_cmd);
 char				**ms_split_input(char **input);
 
 //parser env
@@ -43,7 +43,7 @@ int 				find_builtin(char *cmd, t_builtin *builtins);
 //ms_expansions.c
 ssize_t				ms_expansions(char **split_cmd, char **ms_env);
 ssize_t   			ms_tilde_expansion(char **arg, char **ms_env);
-ssize_t				ms_dollar_expansion(char **arg, char *var, char **ms_env);
+ssize_t				ms_dollar_expansion(char **arg, char **ms_env);
 
 
 //exec_cmd.c
@@ -81,8 +81,7 @@ ssize_t				unvalid_setenv_cmd(void);
 ssize_t     		too_few_args(void);
 ssize_t     		error_chdir(int error, char *path);
 ssize_t			    undefined_variable(char *var);
-
-
+ssize_t     		missing_char(char c);
 
 //utils.c
 char				*ms_getenv(char **ms_env);

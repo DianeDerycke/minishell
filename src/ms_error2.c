@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 14:05:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 16:08:56 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/17 14:06:01 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,13 @@ ssize_t     undefined_variable(char *var)
 {
     ft_putstr_fd(var, 2);
     ft_putendl_fd(": Undefined variable.", 2);
+    return (FAILURE);
+}
+
+ssize_t     missing_char(char c)
+{
+    ft_putstr_fd("Missing", 2);
+    ft_putchar_fd(c, 2);
+    ft_putendl_fd(".", 2);
     return (FAILURE);
 }

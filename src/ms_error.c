@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/15 21:23:02 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/17 12:53:50 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ssize_t		command_not_found(char *cmd)
 	return (FAILURE);
 }
 
-void	ms_malloc_error(void)
+void	malloc_error(void)
 {
 	ft_putendl("minishell: Malloc error");
 	exit (FAILURE);
@@ -43,6 +43,6 @@ ssize_t		too_many_args(char *cmd)
 
 ssize_t		unvalid_setenv_cmd(void)
 {
-	ft_putendl_fd("setenv: Variable name must containe alphanumeric characters.", 2);
+	ft_putendl_fd("setenv: Variable name must contain alphanumeric characters.", 2);
 	return (FAILURE);
 }

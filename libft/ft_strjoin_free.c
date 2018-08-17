@@ -6,11 +6,11 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 21:08:04 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/17 21:09:43 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/17 15:48:31 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
+#include "libft.h"
 char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char			*str;

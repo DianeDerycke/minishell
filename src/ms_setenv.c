@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/15 21:45:48 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/17 15:29:57 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 ssize_t     is_valid_set_cmd(char **split_cmd)
 {
     size_t      i;
+    size_t      j;
 
+    j = 0;
     i = 1;
     while (split_cmd[i])
     {
