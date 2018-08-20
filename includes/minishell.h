@@ -14,7 +14,8 @@
 # define EAGAIN 1
 # define EINTR -1
 # define ARRAY_SIZE 6
-
+# define BACKSPACE 92
+# define MS_BUFF_SIZE 2048
 typedef struct 		s_builtin
 {
 	char			name[20];
@@ -41,7 +42,7 @@ ssize_t     		is_valid_env_options(char **split_cmd, t_opt env_opt);
 int 				find_builtin(char *cmd, t_builtin *builtins);
 
 //ms_expansions.c
-ssize_t				ms_expansions(char **split_cmd, char **ms_env);
+ssize_t				ms_apply_expansions(char **split_cmd, char **ms_env);
 ssize_t   			ms_tilde_expansion(char **arg, char **ms_env);
 ssize_t				ms_dollar_expansion(char **arg, char **ms_env);
 
@@ -67,7 +68,11 @@ char			    **delete_variable(char **ms_env, size_t index);
 char     			**set_var_env(char **split_cmd, char ***ms_env);
 
 //ms_cd.c
-ssize_t     		ms_cd_home(char **ms_env);
+ssize_t     		ms_cd_to_home(char **ms_env);
+ssize_t     		edit_oldpwd_var(char **ms_env, char **buf);
+ssize_t     		ms_get_cwd(char **buf);
+
+
 
 
 //error.c
@@ -92,6 +97,10 @@ char    			*create_variable(char *var_name, char *var_value);
 
 //utils2.c
 char				*get_variable_path(char *var);
+char    			*get_variable_name(char *arg, size_t bs_index);
+void    			join_path_rest(char **arg, char *var_path, size_t bs_index);
+
+
 
 //init.c
 void				init_builtin_struct(t_builtin *builtin_tab);

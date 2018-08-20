@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 15:39:16 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/20 15:29:11 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ssize_t		exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins)
 
 	status = 0;
 	path = NULL;
-	if (ms_expansions(*split_cmd, *ms_env) == 1)
+	if (ms_apply_expansions(*split_cmd, *ms_env) == 1)
 		return (FAILURE);
 	if ((index = find_builtin((*split_cmd)[0], builtins)) >= 0)
 		builtins[index].function(*split_cmd, ms_env);

@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 02:31:12 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/15 22:03:08 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/20 12:07:24 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char		*find_path(char *cmd, char **ms_env)
 	}
 	return (NULL);
 }
-//clean find path
+//to do: clean find path
 
 char	**ms_split_input(char **input)
 {
@@ -72,4 +72,4 @@ char	**ms_split_input(char **input)
 	ft_strdel(input);
 	return (cmd);
 }
-//split in several function
+//to do: split_input in several functions

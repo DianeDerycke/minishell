@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 14:52:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/17 15:09:12 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/20 15:15:47 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ ssize_t		ft_find_char(char *str, char c, size_t *index)
 	while (str[*index] && str[*index] != c)
 		(*index)++;
 	if (!(str[*index]))
+	{
+		*index = 0;
 		return (-1);
+	}
 	return (0);
 }

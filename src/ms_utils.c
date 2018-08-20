@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/15 21:59:00 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/20 14:32:27 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ ssize_t		find_variable(char *cmd, char **ms_env, size_t *index)
 
 	i = 0;
 	*index = 0;
+	if (!cmd)
+		return (-1);
 	while (ms_env[*index])
 	{
  		while(ms_env[*index][i] == cmd[i] && ms_env[*index][i] != '=')

@@ -6,14 +6,15 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 13:11:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/20 15:30:23 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 int		main(void)
 {
-	t_builtin		builtin_tab[6];
+	t_builtin		builtin_tab[ARRAY_SIZE];
 	char			*input;
 	extern char 	**environ;
 	char			**ms_env;

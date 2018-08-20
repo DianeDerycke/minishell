@@ -6,13 +6,13 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 15:58:02 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/20 16:44:57 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t     ms_cd_home(char **ms_env)
+ssize_t     ms_cd_to_home(char **ms_env)
 {
     size_t      index;
     ssize_t     error;
@@ -20,46 +20,54 @@ ssize_t     ms_cd_home(char **ms_env)
     error = find_variable("HOME", ms_env, &index);
     if (error == -1)
         return (FAILURE);
-    if ((chdir(ms_env[index] + 5)) == 0)
+    if ((chdir(ms_env[index] + 5)) == SUCCESS)
         return (SUCCESS);
     return (FAILURE);
 }
 
-ssize_t     edit_oldpwd(char *path, char **ms_env)
+ssize_t     edit_oldpwd_var(char **ms_env, char **buf)
 {
     size_t      index;
-    ssize_t     error;
 
-    error = find_variable("OLDPWD", ms_env, &index);
-    if (error == -1)
+    if (find_variable("OLDPWD", ms_env, &index) == -1)
         return (FAILURE);
-    edit_variable("OLDPWD", path, ms_env, index);
+    edit_variable("OLDPWD", *buf, ms_env, index);
+    ft_strdel(buf);
+    return (SUCCESS);
+}
+
+ssize_t     ms_get_cwd(char **buf)
+{
+    if (!(*buf = malloc(MS_BUFF_SIZE)))
+        malloc_error();
+    if (!(getcwd(*buf, MS_BUFF_SIZE)))
+    {
+        ft_strdel(buf);
+        return (FAILURE);
+    }
     return (SUCCESS);
 }
 
 ssize_t    ms_cd(char **split_cmd, char ***ms_env)
 {
-    char    *buf;
     size_t  len;
     int     error;
+    char    *buf;
 
+    buf = NULL;
     len = ft_strlen_table(split_cmd);
-    if (!(buf = malloc(2048)))
-        malloc_error();
-    getcwd(buf, 2048);
+    if (ms_get_cwd(&buf) == FAILURE)
+        return (FAILURE);
     if (len > 2)
         too_many_args("cd");
-    if (len == 1)
+    else if (len == 1)
     {
-        if (ms_cd_home(*ms_env) == 1)
+        if (ms_cd_to_home(*ms_env) == FAILURE)
             return (FAILURE);
     }
     else if ((error = chdir(split_cmd[1])) != 0)
         return (error_chdir(error, split_cmd[1]));
-    ft_strdel(&buf);
-    if (edit_oldpwd(buf, *ms_env) == 1)
+    if (edit_oldpwd_var(*ms_env, &buf) == FAILURE)
         return (FAILURE);
     return (SUCCESS);
 }
-
-//handle chdir error
