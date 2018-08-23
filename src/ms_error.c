@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/17 12:53:50 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 14:21:18 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ ssize_t		command_not_found(char *cmd)
 	ft_putstr("minishell: command not found: ");
 	ft_putendl(cmd);
 	return (FAILURE);
-}
-
-void	malloc_error(void)
-{
-	ft_putendl("minishell: Malloc error");
-	exit (FAILURE);
 }
 
 ssize_t		error_option(char c)

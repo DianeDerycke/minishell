@@ -6,13 +6,13 @@
 #    By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/23 13:11:33 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/08/23 13:23:04 by DERYCKE          ###   ########.fr        #
+#    Updated: 2018/08/23 14:16:43 by DERYCKE          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libms.a
 
-FILES = ms_clean_input
+FILES = ms_clean_input ms_create_variable ms_malloc_error
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 

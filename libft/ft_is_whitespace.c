@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_array.c                                   :+:      :+:    :+:   */
+/*   ft_is_whitespace.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 02:20:39 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 15:03:54 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/08/23 14:53:48 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/23 14:54:03 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void	ft_print_array(char **array)
-{
-	int		i;
 
-	i = 0;
-	while (array[i])
-	{
-		ft_putendl(array[i]);
-		i++;
-	}
+int		ft_is_whitespace(char c)
+{
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\v' || c == '\f')
+		return (1);
+	return (0);
 }

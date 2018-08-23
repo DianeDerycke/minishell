@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:10:19 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/20 14:32:37 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 14:18:43 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_variable_path(char *var)
 	while (var[i] != '=')
 		i++;
 	if (!(path = ft_strdup(var + i + 1)))
-		malloc_error();
+		ms_malloc_error();
 	return (path);
 }
 
@@ -41,7 +41,7 @@ char    *get_variable_name(char *arg, size_t bs_index)
     else
         tmp = ft_strdup(arg + 1);
     if (!tmp)
-        malloc_error();
+        ms_malloc_error();
     return (tmp);
 }
 

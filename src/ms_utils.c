@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/22 20:24:19 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 14:19:57 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ssize_t		find_variable(char *cmd, char **ms_env, size_t *index)
 	return (-1);
 }
 
-char	*ms_getenv(char **ms_env)
+char	*ms_get_varpath_value(char **ms_env)
 {
 	int		i;
 
@@ -54,42 +54,6 @@ int				ms_read_input(char **cmd)
 		return (EINTR);
 	}
 	if (is_read_done == 1 && !(**cmd))
-		return (EAGAIN);
+		return (PAGAIN);
 	return (SUCCESS);
-}
-
-size_t		len_without_char(char *str, char c)
-{
-	size_t		final_len;
-	size_t		i;
-
-	i = 0;
-	final_len = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-	{
-		if (str[i] != c)
-			final_len++;
-		i++;
-	}
-	return (final_len);
-}
-
-char    *create_variable(char *var_name, char *var_value)
-{
-    size_t  i;
-    char    *tmp;
-    char    *tmp1; 
-
-    i = 1;
-    if (!(tmp = ft_strdup(var_name)) || !(tmp1 = ft_strjoin_free(tmp, "=")))
-		malloc_error();
-    if (var_value)
-    {
-        if (!(tmp = ft_strjoin_free(tmp1, var_value)))
-			malloc_error();
-        return (tmp);
-    }
-    return (tmp1);
 }

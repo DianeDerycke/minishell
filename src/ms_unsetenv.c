@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 23:38:32 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 00:32:09 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 14:18:35 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char    **delete_variable(char **ms_env, size_t index)
     i = 0;
     j = 0;
     if (!(tmp_env = ft_copy_array(ms_env, ft_strlen_array(ms_env))))
-        malloc_error();
+        ms_malloc_error();
     ft_free_array(ms_env);
     if (!(ms_env = malloc(sizeof(char *) * (ft_strlen_array(tmp_env)))))
-        malloc_error();
+        ms_malloc_error();
     while (tmp_env[j])
     {
         if (i == index)

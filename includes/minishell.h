@@ -36,6 +36,7 @@ int 				find_builtin(char *cmd, t_builtin *builtins);
 //ms_cd.c
 ssize_t				ms_cd(char **split_cmd, char ***ms_env);
 ssize_t     		ms_cd_to_home(char **ms_env);
+ssize_t     		edit_pwd_var(char **ms_env);
 ssize_t     		edit_oldpwd_var(char **ms_env, char **buf);
 ssize_t     		ms_get_cwd(char **buf);
 
@@ -75,7 +76,6 @@ ssize_t				ms_dollar_expansion(char **arg, char **ms_env);
 ssize_t				exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
 
 //error.c
-void				malloc_error(void);
 ssize_t				command_not_found(char *cmd);
 ssize_t				error_option(char c);
 ssize_t				too_many_args(char *cmd);
@@ -88,12 +88,9 @@ ssize_t			    undefined_variable(char *var);
 ssize_t     		missing_char(char c);
 
 //utils.c
-char				*ms_getenv(char **ms_env);
+char				*ms_get_varpath_value(char **ms_env);
 int					ms_read_input(char **cmd);
-size_t				len_without_char(char *str, char c);
 ssize_t				find_variable(char *cmd, char **ms_env, size_t *index);
-char    			*create_variable(char *var_name, char *var_value);
-
 //utils2.c
 char				*get_variable_path(char *var);
 char    			*get_variable_name(char *arg, size_t bs_index);

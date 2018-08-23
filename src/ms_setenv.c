@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 00:31:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 15:30:11 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ ssize_t     is_valid_set_cmd(char **split_cmd)
 char    **edit_variable(char *var_name, char *var_value, char **ms_env, ssize_t index)
 {
     ft_strdel(&(ms_env[index]));
-    ms_env[index] = create_variable(var_name, var_value);
+    ms_env[index] = ms_create_variable(var_name, var_value);
     return (ms_env);
 }
 
@@ -41,13 +41,13 @@ char    **add_variable(char **split_cmd, char ***ms_env)
 
     len_tmp = 0;
     if (!(tmp_ms_env = ft_copy_array(*ms_env, ft_strlen_array(*ms_env) + 1)))
-        malloc_error();
+        ms_malloc_error();
     len_tmp = ft_strlen_array(tmp_ms_env);
     ft_free_array(*ms_env);
     if (ft_strlen_array(split_cmd) == 3)
-        tmp_ms_env[len_tmp] = create_variable(split_cmd[1], split_cmd[2]);
+        tmp_ms_env[len_tmp] = ms_create_variable(split_cmd[1], split_cmd[2]);
     else
-        tmp_ms_env[len_tmp] = create_variable(split_cmd[1], NULL);
+        tmp_ms_env[len_tmp] = ms_create_variable(split_cmd[1], NULL);
     return (tmp_ms_env);
 }
 

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_array.c                                   :+:      :+:    :+:   */
+/*   ms_malloc_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 02:20:39 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 15:03:54 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/08/23 14:16:58 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/23 14:17:04 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-void	ft_print_array(char **array)
-{
-	int		i;
+#include "libms.h"
 
-	i = 0;
-	while (array[i])
-	{
-		ft_putendl(array[i]);
-		i++;
-	}
+void	ms_malloc_error(void)
+{
+	ft_putendl("minishell: Malloc error");
+	exit (FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 13:15:15 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 14:55:53 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ void				ft_malloc_error(void);
 ssize_t				ft_find_char(char *str, char c, size_t *index);
 void    			ft_replace(char *str, char c, char new_c);
 char    			**ft_trim_array(char **array);
+int					ft_is_whitespace(char c);
+void    			ft_replace_whitespaces(char *str, char c);
 
 
 #endif

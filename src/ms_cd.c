@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 13:19:59 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 15:37:56 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ ssize_t     ms_cd_to_home(char **ms_env)
     return (FAILURE);
 }
 
+ssize_t     edit_pwd_var(char **ms_env)
+{
+    char    *buf;
+    size_t  index;
+
+    index = 0;
+    buf = NULL;
+    if (ms_get_cwd(&buf) || find_variable("PWD", ms_env, &index) == -1)
+        return (FAILURE);
+    edit_variable("PWD", buf, ms_env, index);
+    ft_strdel(&buf);
+    return (SUCCESS);
+}
+
 ssize_t     edit_oldpwd_var(char **ms_env, char **buf)
 {
     size_t      index;
@@ -39,7 +53,7 @@ ssize_t     edit_oldpwd_var(char **ms_env, char **buf)
 ssize_t     ms_get_cwd(char **buf)
 {
     if (!(*buf = malloc(MS_BUFF_SIZE)))
-        malloc_error();
+        ms_malloc_error();
     if (!(getcwd(*buf, MS_BUFF_SIZE)))
     {
         ft_strdel(buf);
@@ -70,7 +84,7 @@ ssize_t    ms_cd(char **split_cmd, char ***ms_env)
         ft_strdel(&buf);
         return (error_chdir(error, split_cmd[1]));
     }
-    if (edit_oldpwd_var(*ms_env, &buf) == FAILURE)
+    if (edit_oldpwd_var(*ms_env, &buf) == FAILURE || edit_pwd_var(*ms_env) == FAILURE)
         return (FAILURE);
     ft_strdel(&buf);
     return (SUCCESS);
