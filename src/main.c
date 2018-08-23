@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/20 15:30:23 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 00:31:24 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,21 @@ int		main(void)
 
 	input = NULL;
 	init_builtin_struct(builtin_tab);
-	if (!(ms_env = ft_copy_array(environ, ft_strlen_table(environ))))
+	if (!(ms_env = ft_copy_array(environ, ft_strlen_array(environ))))
 		malloc_error();
 	while (1)
 	{
 		ft_putstr("minishell$ ");
 		if ((error = ms_read_input(&input)) == EAGAIN)
 			continue ;
-		if (error == -1 || (!(cmd = ms_split_input(&input))))
+		if (error == -1 || (!(cmd = ms_clean_input(&input))))
+		{
+			ft_free_array(ms_env);
 			return (EINTR);
+		}
 		exec_cmd(&ms_env, &cmd, builtin_tab);
+		ft_free_array(cmd);
 	}
-	ft_free_array(cmd);
+	ft_free_array(ms_env);
 	return (SUCCESS);
 }

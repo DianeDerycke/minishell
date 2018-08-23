@@ -6,7 +6,7 @@
 #    By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/08/16 14:18:25 by DERYCKE          ###   ########.fr        #
+#    Updated: 2018/08/23 00:27:58 by DERYCKE          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBNAME = ./libft/libft.a
 SRC_PATH = ./src
 SRC_NAME = main.c ms_parser.c ms_error.c ms_utils.c ms_exec_cmd.c ms_builtins.c ms_echo.c \
 			get_next_line.c	ms_env.c ms_cd.c ms_init.c ms_parser_env.c ms_setenv.c \
-			ms_unsetenv.c ms_error2.c ms_utils2.c ms_expansions.c
+			ms_unsetenv.c ms_error2.c ms_utils2.c ms_expansions.c ms_input_processing.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ_PATH = ./obj
@@ -28,7 +28,7 @@ CPPFLAGS = -Iincludes
 LDFLAGS = -Llibft
 LDLIBS = -lft
 CC = gcc
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -g -o0 -Werror -Wextra -Wall
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/14 16:38:08 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 00:31:32 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ssize_t    ms_env(char **split_cmd, char ***ms_env)
     if (!split_cmd || !ms_env || 
             (error = is_valid_env_options(split_cmd, env_opt)) == 1)
         return (EAGAIN);
-    else if (ft_strlen_table(split_cmd) > 1)
+    else if (ft_strlen_array(split_cmd) > 1)
         exec_env_cmd(split_cmd, *ms_env, env_opt);
     else
         ft_print_array(*ms_env);

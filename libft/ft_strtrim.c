@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
+/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 17:09:02 by dideryck          #+#    #+#             */
-/*   Updated: 2017/11/30 02:23:06 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/08/23 12:16:20 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		ft_is_spacetrim(char c)
+static	int		ft_is_whitespaces(char c)
 {
-	if (c == ' ' || c == '\n' || c == '\t')
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\v' || c == '\f')
 		return (1);
 	return (0);
 }
@@ -31,9 +31,9 @@ char			*ft_strtrim(char const *s)
 	if (!s)
 		return (NULL);
 	end = ft_strlen(s) - 1;
-	while (start < end && ft_is_spacetrim(s[start]))
+	while (start < end && ft_is_whitespaces(s[start]))
 		start++;
-	while (end > 0 && ft_is_spacetrim(s[end]))
+	while (end > 0 && ft_is_whitespaces(s[end]))
 		end--;
 	if (start >= end)
 		return (ft_strdup(""));

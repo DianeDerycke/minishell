@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen_table.c                                  :+:      :+:    :+:   */
+/*   ft_replace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
+/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/26 01:09:16 by dideryck          #+#    #+#             */
-/*   Updated: 2017/11/30 00:49:42 by dideryck         ###   ########.fr       */
+/*   Created: 2018/08/22 21:37:50 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/23 00:39:12 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen_table(char **tab)
+void    ft_replace(char *str, char c, char new_c)
 {
-	size_t		i;
+    size_t      i;
 
 	i = 0;
-	if (!tab || !(*tab))
-		return (0);
-	while (tab[i])
+	while (str[i])
+	{
+		if (str[i] == c)
+			str[i] = new_c;
 		i++;
-	return (i);
+	}
 }

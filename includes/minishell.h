@@ -13,7 +13,7 @@
 # define FAILURE 1
 # define EAGAIN 1
 # define EINTR -1
-# define ARRAY_SIZE 6
+# define ARRAY_SIZE 5
 # define BACKSPACE 92
 # define MS_BUFF_SIZE 2048
 typedef struct 		s_builtin
@@ -31,49 +31,55 @@ typedef struct 		s_opt
 	ssize_t			v;
 }					t_opt;
 
+//ms_input_processing.c
+char				**ms_clean_input(char **input);
+
 //parser.c
 char				*find_path(char *cmd, char **ms_env);
-char				**ms_split_input(char **input);
-
-//parser env
-ssize_t     		is_valid_env_options(char **split_cmd, t_opt env_opt);
 
 //builtins.c
 int 				find_builtin(char *cmd, t_builtin *builtins);
+
+//ms_cd.c
+ssize_t				ms_cd(char **split_cmd, char ***ms_env);
+ssize_t     		ms_cd_to_home(char **ms_env);
+ssize_t     		edit_oldpwd_var(char **ms_env, char **buf);
+ssize_t     		ms_get_cwd(char **buf);
+
+//ms_echo.c
+ssize_t				ms_echo(char **split_cmd, char ***ms_env);
+void				ms_display_echo_arg(char **split_cmd, size_t index);
+ssize_t				ms_is_echo_opt(char **split_cmd, size_t *index);
+
+//ms_env.c
+ssize_t				ms_env(char **split_cmd, char ***ms_env);
+ssize_t    			exec_env_cmd(char **split_cmd, char **ms_env, t_opt env_opt);
+
+
+//ms_parser env
+ssize_t     		is_valid_env_options(char **split_cmd, t_opt env_opt);
+void				valid_option(char c, t_opt *env_opt);
+
+
+//ms_setenv.c
+ssize_t				ms_setenv(char **split_cmd, char ***ms_env);
+ssize_t     		is_valid_set_cmd(char **split_cmd);
+char    			**edit_variable(char *var_name, char *var_value, char **ms_env, ssize_t index);
+char    			**add_variable(char **split_cmd, char ***ms_env);
+char     			**set_var_env(char **split_cmd, char ***ms_env);
+
+//ms_unsetenv.c
+ssize_t				ms_unsetenv(char **split_cmd, char ***ms_env);
+char			    **delete_variable(char **ms_env, size_t index);
+
 
 //ms_expansions.c
 ssize_t				ms_apply_expansions(char **split_cmd, char **ms_env);
 ssize_t   			ms_tilde_expansion(char **arg, char **ms_env);
 ssize_t				ms_dollar_expansion(char **arg, char **ms_env);
 
-
 //exec_cmd.c
 ssize_t				exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
-
-//env.c
-ssize_t    			exec_env_cmd(char **split_cmd, char **ms_env, t_opt env_opt);
-
-
-// BUILTINS FILES
-ssize_t				ms_echo(char **split_cmd, char ***ms_env);
-ssize_t				ms_env(char **split_cmd, char ***ms_env);
-ssize_t				ms_setenv(char **split_cmd, char ***ms_env);
-ssize_t				ms_unsetenv(char **split_cmd, char ***ms_env);
-ssize_t				ms_cd(char **split_cmd, char ***ms_env);
-//ms_setenv.c
-ssize_t     		is_valid_set_cmd(char **split_cmd);
-char    			**edit_variable(char *var_name, char *var_value, char **ms_env, ssize_t index);
-char    			**add_variable(char **split_cmd, char ***ms_env);
-char			    **delete_variable(char **ms_env, size_t index);
-char     			**set_var_env(char **split_cmd, char ***ms_env);
-
-//ms_cd.c
-ssize_t     		ms_cd_to_home(char **ms_env);
-ssize_t     		edit_oldpwd_var(char **ms_env, char **buf);
-ssize_t     		ms_get_cwd(char **buf);
-
-
-
 
 //error.c
 void				malloc_error(void);
@@ -100,13 +106,8 @@ char				*get_variable_path(char *var);
 char    			*get_variable_name(char *arg, size_t bs_index);
 void    			join_path_rest(char **arg, char *var_path, size_t bs_index);
 
-
-
 //init.c
 void				init_builtin_struct(t_builtin *builtin_tab);
 void				init_opt(t_opt 	*env_opt);
 
-
 #endif
-
-//change name function with ms/setenv

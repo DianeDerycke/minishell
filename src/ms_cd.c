@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/20 16:44:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 12:28:58 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,28 @@ ssize_t     ms_get_cwd(char **buf)
 
 ssize_t    ms_cd(char **split_cmd, char ***ms_env)
 {
-    size_t  len;
+    size_t  len_cmd;
     int     error;
     char    *buf;
 
     buf = NULL;
-    len = ft_strlen_table(split_cmd);
+    len_cmd = ft_strlen_array(split_cmd);
     if (ms_get_cwd(&buf) == FAILURE)
         return (FAILURE);
-    if (len > 2)
+    if (len_cmd > 2)
         too_many_args("cd");
-    else if (len == 1)
+    else if (len_cmd == 1)
     {
         if (ms_cd_to_home(*ms_env) == FAILURE)
             return (FAILURE);
     }
     else if ((error = chdir(split_cmd[1])) != 0)
+    {
+        ft_strdel(&buf);
         return (error_chdir(error, split_cmd[1]));
+    }
     if (edit_oldpwd_var(*ms_env, &buf) == FAILURE)
         return (FAILURE);
+    ft_strdel(&buf);
     return (SUCCESS);
 }

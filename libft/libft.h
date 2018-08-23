@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/20 15:18:54 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 00:30:46 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,14 @@ void				ft_pause(void);
 int					ft_is_space(char c);
 void				ft_swap(int *a, int *b);
 void				ft_free_array(char **tab);
-size_t				ft_strlen_table(char **tab);
+size_t				ft_strlen_array(char **tab);
 char				*ft_strndup(const char *s, size_t len);
 void				ft_sort_integer_table(int *tab, int size);
 char				**ft_copy_array(char **src, size_t len);
 void				ft_malloc_error(void);
 ssize_t				ft_find_char(char *str, char c, size_t *index);
+void    			ft_replace(char *str, char c, char new_c);
+char    			**ft_trim_array(char **array);
+
+
 #endif

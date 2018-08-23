@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/20 14:32:27 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/22 20:24:19 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*ms_getenv(char **ms_env)
 	i = 0;
 	while (ms_env[i] && ft_strncmp("PATH=", ms_env[i], 5) != 0)
 		i++;
+	if (!(ms_env[i]))
+		return (NULL);
 	return (ms_env[i] + 5);
 }
 
@@ -47,7 +49,10 @@ int				ms_read_input(char **cmd)
 
 	is_read_done = get_next_line(1, cmd);
 	if (is_read_done == -1)
+	{
+		ft_strdel(cmd);
 		return (EINTR);
+	}
 	if (is_read_done == 1 && !(**cmd))
 		return (EAGAIN);
 	return (SUCCESS);

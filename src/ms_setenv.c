@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/17 15:29:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 00:31:57 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ char    **add_variable(char **split_cmd, char ***ms_env)
     size_t  len_tmp;
 
     len_tmp = 0;
-    if (!(tmp_ms_env = ft_copy_array(*ms_env, ft_strlen_table(*ms_env) + 1)))
+    if (!(tmp_ms_env = ft_copy_array(*ms_env, ft_strlen_array(*ms_env) + 1)))
         malloc_error();
-    len_tmp = ft_strlen_table(tmp_ms_env);
+    len_tmp = ft_strlen_array(tmp_ms_env);
     ft_free_array(*ms_env);
-    if (ft_strlen_table(split_cmd) == 3)
+    if (ft_strlen_array(split_cmd) == 3)
         tmp_ms_env[len_tmp] = create_variable(split_cmd[1], split_cmd[2]);
     else
         tmp_ms_env[len_tmp] = create_variable(split_cmd[1], NULL);
@@ -58,7 +58,7 @@ char     **set_var_env(char **split_cmd, char ***ms_env)
     index = 0;
     if (find_variable(split_cmd[1], *ms_env, &index) == 0)
     {
-        if (ft_strlen_table(split_cmd) == 3)
+        if (ft_strlen_array(split_cmd) == 3)
             edit_variable(split_cmd[1], split_cmd[2], *ms_env, index);
         else
             edit_variable(split_cmd[1], NULL, *ms_env, index);
@@ -74,7 +74,7 @@ ssize_t    ms_setenv(char **split_cmd, char ***ms_env)
     size_t     len_split_cmd;
 
     i = 1;
-    len_split_cmd = ft_strlen_table(split_cmd);
+    len_split_cmd = ft_strlen_array(split_cmd);
     if (len_split_cmd == 1)
         ft_print_array(*ms_env);
     else if (len_split_cmd > 3)

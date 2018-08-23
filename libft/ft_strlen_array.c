@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_builtins.c                                      :+:      :+:    :+:   */
+/*   ft_strlen_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 00:22:08 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/22 18:33:52 by DERYCKE          ###   ########.fr       */
+/*   Created: 2017/11/26 01:09:16 by dideryck          #+#    #+#             */
+/*   Updated: 2018/08/23 00:30:54 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int 	find_builtin(char *cmd, t_builtin *builtins)
+size_t		ft_strlen_array(char **tab)
 {
-	int 	i;
+	size_t		i;
 
 	i = 0;
-	if (!cmd)
-		return (-1);
-	while (i < ARRAY_SIZE)
-	{
-		if (ft_strcmp(cmd, builtins[i].name) == SUCCESS)
-			return (i);
+	if (!tab || !(*tab))
+		return (0);
+	while (tab[i])
 		i++;
-	}
-	return (-1);
+	return (i);
 }
