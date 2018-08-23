@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 12:28:58 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 13:19:59 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,5 @@ ssize_t    ms_cd(char **split_cmd, char ***ms_env)
     ft_strdel(&buf);
     return (SUCCESS);
 }
+
+//to do : clean

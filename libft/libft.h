@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 00:30:46 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 13:15:15 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define CYAN   "\x1B[96m"
 # define WHITE   "\x1B[37m"
 # define RESET "\x1B[0m"
+# define SUCCESS 0
+# define FAILURE 1
 
 typedef struct		s_elem
 {

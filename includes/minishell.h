@@ -2,6 +2,7 @@
 #define MINISHELL_H
 
 # include "../libft/libft.h"
+# include "../libms/libms.h"
 # include "../includes/get_next_line.h"
 # include <fcntl.h>
 # include <dirent.h>
@@ -9,12 +10,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 
-# define SUCCESS 0
-# define FAILURE 1
-# define EAGAIN 1
-# define EINTR -1
 # define ARRAY_SIZE 5
-# define BACKSPACE 92
 # define MS_BUFF_SIZE 2048
 typedef struct 		s_builtin
 {
@@ -30,9 +26,6 @@ typedef struct 		s_opt
 	ssize_t			u;
 	ssize_t			v;
 }					t_opt;
-
-//ms_input_processing.c
-char				**ms_clean_input(char **input);
 
 //parser.c
 char				*find_path(char *cmd, char **ms_env);

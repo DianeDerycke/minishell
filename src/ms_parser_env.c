@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_env.c                                       :+:      :+:    :+:   */
+/*   ms_parser_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/09 19:44:29 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 13:01:54 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-static void		valid_option(char c, t_opt *env_opt)
+
+void		valid_option(char c, t_opt *env_opt)
 {
 	if (c == 'i')
 		env_opt->i = 1;

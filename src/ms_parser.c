@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 02:31:12 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/22 21:18:24 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 12:59:27 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,3 @@ char		*find_path(char *cmd, char **ms_env)
 }
 //to do: clean find path
 //to do: change ms_getenv function name
-
-char	**ms_split_input(char **input)
-{
-	size_t		i;
-	char		**cmd;
-
-	i = 0;
-	while ((*input)[i])
-	{
-		if ((*input)[i] == '"')
-			(*input)[i] = ' ';
-		i++;
-	}
-	cmd = ft_strsplit(*input, ' ');
-	ft_strdel(input);
-	return (cmd);
-}
-//to do: split_input in several functions
