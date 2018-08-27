@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 15:38:26 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/27 14:58:25 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(void)
 	extern char 	**environ;
 	char			**ms_env;
 	char			**cmd;
-	int 	 		error;
+	ssize_t 	 	error;
 
 	input = NULL;
 	init_builtin_struct(builtin_tab);
@@ -33,10 +33,9 @@ int		main(void)
 		if (error == -1 || (!(cmd = ms_clean_input(&input))))
 		{
 			ft_free_array(ms_env);
-			return (EINTR);
+			return (ERR_INTR);
 		}
 		exec_cmd(&ms_env, &cmd, builtin_tab);
-		ft_free_array(cmd);
 	}
 	ft_free_array(ms_env);
 	return (SUCCESS);

@@ -3,7 +3,6 @@
 
 # include "../libft/libft.h"
 # include "../libms/libms.h"
-# include "../includes/get_next_line.h"
 # include <fcntl.h>
 # include <dirent.h>
 # include <sys/stat.h>
@@ -49,11 +48,9 @@ ssize_t				ms_is_echo_opt(char **split_cmd, size_t *index);
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
 ssize_t    			exec_env_cmd(char **split_cmd, char **ms_env, t_opt env_opt);
 
-
 //ms_parser env
 ssize_t     		is_valid_env_options(char **split_cmd, t_opt env_opt);
 void				valid_option(char c, t_opt *env_opt);
-
 
 //ms_setenv.c
 ssize_t				ms_setenv(char **split_cmd, char ***ms_env);
@@ -89,7 +86,6 @@ ssize_t     		missing_char(char c);
 
 //utils.c
 char				*ms_get_varpath_value(char **ms_env);
-int					ms_read_input(char **cmd);
 ssize_t				find_variable(char *cmd, char **ms_env, size_t *index);
 //utils2.c
 char				*get_variable_path(char *var);

@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 13:01:54 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/27 14:47:48 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ ssize_t     is_valid_env_options(char **split_cmd, t_opt env_opt)
                 valid_option(split_cmd[n][i], &env_opt);
             i++;
         }
+        i = 0;
         n++;
     }
     return (SUCCESS);

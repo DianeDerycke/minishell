@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 16:18:12 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/07/20 22:16:55 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 15:50:55 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ typedef struct		s_pos
 	char				*rest;
 }					t_pos;
 
-int					get_next_line(const int fd, char **line);
+ssize_t					get_next_line(const int fd, char **line);
 
 #endif

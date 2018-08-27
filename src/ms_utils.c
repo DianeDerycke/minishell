@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 14:19:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/23 22:34:36 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,4 @@ char	*ms_get_varpath_value(char **ms_env)
 	if (!(ms_env[i]))
 		return (NULL);
 	return (ms_env[i] + 5);
-}
-
-int				ms_read_input(char **cmd)
-{
-	int 	is_read_done;
-
-	is_read_done = get_next_line(1, cmd);
-	if (is_read_done == -1)
-	{
-		ft_strdel(cmd);
-		return (EINTR);
-	}
-	if (is_read_done == 1 && !(**cmd))
-		return (PAGAIN);
-	return (SUCCESS);
 }

@@ -6,13 +6,14 @@
 #    By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/23 13:11:33 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/08/23 14:16:43 by DERYCKE          ###   ########.fr        #
+#    Updated: 2018/08/27 14:27:01 by DERYCKE          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libms.a
 
-FILES = ms_clean_input ms_create_variable ms_malloc_error
+FILES = ms_clean_input ms_create_variable ms_malloc_error ms_read_input \
+		get_next_line ms_exec_binary
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 

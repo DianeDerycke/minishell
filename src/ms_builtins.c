@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/19 00:22:08 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/22 18:33:52 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/27 13:58:30 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int 	find_builtin(char *cmd, t_builtin *builtins)
 			return (i);
 		i++;
 	}
+	if (ft_strcmp(cmd, "exit") == SUCCESS)
+		exit(0);
 	return (-1);
 }
