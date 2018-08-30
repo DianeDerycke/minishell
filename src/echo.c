@@ -6,13 +6,13 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 20:44:14 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:49 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:47:15 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t		ms_is_echo_opt(char **split_cmd, size_t *index)
+ssize_t		has_echo_opt(char **split_cmd, size_t *index)
 {
 	ssize_t		is_opt;
 
@@ -25,7 +25,7 @@ ssize_t		ms_is_echo_opt(char **split_cmd, size_t *index)
 	return (is_opt);
 }
 
-void	ms_display_echo_arg(char **split_cmd, size_t index)
+void	display_echo_arg(char **split_cmd, size_t index)
 {
 	while (split_cmd[index])
 	{
@@ -42,8 +42,8 @@ ssize_t		ms_echo(char **split_cmd, char ***ms_env)
 
 	(void)ms_env;
 	i = 1;
-	is_opt = ms_is_echo_opt(split_cmd, &i);
-	ms_display_echo_arg(split_cmd, i);
+	is_opt = has_echo_opt(split_cmd, &i);
+	display_echo_arg(split_cmd, i);
 	if (!(is_opt))
 		ft_putchar('\n');
 	return (SUCCESS);

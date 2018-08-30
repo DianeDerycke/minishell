@@ -6,13 +6,13 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:55 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:48:11 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t    ms_tilde_expansion(char **arg, char **ms_env)
+ssize_t    tilde_expansion(char **arg, char **ms_env)
 {
     size_t  index;
 
@@ -27,7 +27,7 @@ ssize_t    ms_tilde_expansion(char **arg, char **ms_env)
     return (SUCCESS);
 }
 
-ssize_t 	ms_dollar_expansion(char **arg, char **ms_env)
+ssize_t 	dollar_expansion(char **arg, char **ms_env)
 {
     size_t  bs_index;
     size_t  index;
@@ -55,7 +55,7 @@ ssize_t 	ms_dollar_expansion(char **arg, char **ms_env)
     }
 }
 
-ssize_t 	ms_apply_expansions(char **split_cmd, char **ms_env)
+ssize_t 	apply_expansions(char **split_cmd, char **ms_env)
 {
 	size_t		i;
 
@@ -64,11 +64,11 @@ ssize_t 	ms_apply_expansions(char **split_cmd, char **ms_env)
 	{
 		if (split_cmd[i][0] == '$')
         {
-			if (ms_dollar_expansion(split_cmd + i, ms_env) == FAILURE)
+			if (dollar_expansion(split_cmd + i, ms_env) == FAILURE)
                 return (FAILURE);
         }
 		else if (ft_strcmp(split_cmd[i], "~") == SUCCESS)
-            if (ms_tilde_expansion(split_cmd + i, ms_env) == FAILURE)
+            if (tilde_expansion(split_cmd + i, ms_env) == FAILURE)
                 return (FAILURE);
 		i++;
 	}

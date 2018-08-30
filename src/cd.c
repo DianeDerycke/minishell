@@ -6,13 +6,13 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:48 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:46:46 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t     ms_cd_to_home(char **ms_env)
+ssize_t     cd_to_home(char **ms_env)
 {
     size_t      index;
     ssize_t     error;
@@ -32,7 +32,7 @@ ssize_t     edit_pwd_var(char **ms_env)
 
     index = 0;
     buf = NULL;
-    if (ms_get_cwd(&buf) || find_variable("PWD", ms_env, &index) == -1)
+    if (get_cwd(&buf) || find_variable("PWD", ms_env, &index) == -1)
         return (FAILURE);
     edit_variable("PWD", buf, ms_env, index);
     ft_strdel(&buf);
@@ -50,7 +50,7 @@ ssize_t     edit_oldpwd_var(char **ms_env, char **buf)
     return (SUCCESS);
 }
 
-ssize_t     ms_get_cwd(char **buf)
+ssize_t     get_cwd(char **buf)
 {
     if (!(*buf = malloc(MS_BUFF_SIZE)))
         ms_malloc_error();
@@ -70,13 +70,13 @@ ssize_t    ms_cd(char **split_cmd, char ***ms_env)
 
     buf = NULL;
     len_cmd = ft_strlen_array(split_cmd);
-    if (ms_get_cwd(&buf) == FAILURE)
+    if (get_cwd(&buf) == FAILURE)
         return (FAILURE);
     if (len_cmd > 2)
         too_many_args("cd");
     else if (len_cmd == 1)
     {
-        if (ms_cd_to_home(*ms_env) == FAILURE)
+        if (cd_to_home(*ms_env) == FAILURE)
             return (FAILURE);
     }
     else if ((error = chdir(split_cmd[1])) != 0)

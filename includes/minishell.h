@@ -31,15 +31,15 @@ int 				find_builtin(char *cmd, t_builtin *builtins);
 
 //ms_cd.c
 ssize_t				ms_cd(char **split_cmd, char ***ms_env);
-ssize_t     		ms_cd_to_home(char **ms_env);
+ssize_t     		cd_to_home(char **ms_env);
 ssize_t     		edit_pwd_var(char **ms_env);
 ssize_t     		edit_oldpwd_var(char **ms_env, char **buf);
-ssize_t     		ms_get_cwd(char **buf);
+ssize_t     		get_cwd(char **buf);
 
 //ms_echo.c
 ssize_t				ms_echo(char **split_cmd, char ***ms_env);
-void				ms_display_echo_arg(char **split_cmd, size_t index);
-ssize_t				ms_is_echo_opt(char **split_cmd, size_t *index);
+void				display_echo_arg(char **split_cmd, size_t index);
+ssize_t				has_echo_opt(char **split_cmd, size_t *index);
 
 //ms_env.c
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
@@ -65,9 +65,9 @@ char			    **delete_variable(char **ms_env, size_t index);
 
 
 //ms_expansions.c
-ssize_t				ms_apply_expansions(char **split_cmd, char **ms_env);
-ssize_t   			ms_tilde_expansion(char **arg, char **ms_env);
-ssize_t				ms_dollar_expansion(char **arg, char **ms_env);
+ssize_t				apply_expansions(char **split_cmd, char **ms_env);
+ssize_t   			tilde_expansion(char **arg, char **ms_env);
+ssize_t				dollar_expansion(char **arg, char **ms_env);
 
 //exec_cmd.c
 ssize_t				exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
