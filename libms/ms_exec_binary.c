@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 14:26:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 09:34:29 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 12:35:53 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ms_exec_binary(char *utility, char **split_cmd, char **env)
 	else if (!path)
 	{
 		ms_command_not_found(utility);
-		ft_strdel(&path);
+		return ;
 	}
 	ft_strdel(&path);
 }

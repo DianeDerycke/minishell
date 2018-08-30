@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 09:39:29 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 12:08:57 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 # define PAGAIN 1
 # define ERR_INTR -1
-# define BACKSPACE 92
+# define C_BACKSPACE 92
+# define C_EQUAL 61
 
 ssize_t     ms_read_input(char **input);
 char	    **ms_clean_input(char **input);

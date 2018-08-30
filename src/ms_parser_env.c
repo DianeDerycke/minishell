@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/29 12:10:26 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 10:16:44 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		valid_option(char c, t_opt *env_opt)
         env_opt->u = 1;
 }
 
-void     init_env_options(char **split_cmd, t_opt env_opt)
+void     init_env_options(char **split_cmd, t_opt *env_opt)
 {
 	int		i;
     int     n;
@@ -43,7 +43,7 @@ void     init_env_options(char **split_cmd, t_opt env_opt)
             if (!(ft_strchr(valid_opt, split_cmd[n][i])))
                 return (error_option(split_cmd[n][i]));
             else
-                valid_option(split_cmd[n][i], &env_opt);
+                valid_option(split_cmd[n][i], env_opt);
             i++;
         }
         i = 0;

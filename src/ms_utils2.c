@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:10:19 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 14:18:43 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 11:10:02 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,15 @@ char	*get_variable_path(char *var)
 	return (path);
 }
 
-char    *get_variable_name(char *arg, size_t bs_index)
+char    *get_variable_name(char *arg, size_t end)
 {
     char    *tmp;
 
     tmp = NULL;
     if (!arg)
         return (NULL);
-    // if ((arg)[1] == '{' && (arg)[ft_strlen((arg)) - 1] == '}')
-    //     tmp = ft_strndup(arg + 2, ft_strlen((arg)) - 2);
-    if (bs_index > 0)
-        tmp = ft_strndup(arg + 1, bs_index);
+    if (end > 0)
+        tmp = ft_strndup(arg + 1, end);
     else
         tmp = ft_strdup(arg + 1);
     if (!tmp)

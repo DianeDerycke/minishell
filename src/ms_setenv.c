@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 15:30:11 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 10:47:10 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char     **set_var_env(char **split_cmd, char ***ms_env)
             edit_variable(split_cmd[1], split_cmd[2], *ms_env, index);
         else
             edit_variable(split_cmd[1], NULL, *ms_env, index);
+    //to do: fix if/else to only if
     }
     else
         *ms_env = add_variable(split_cmd, ms_env);

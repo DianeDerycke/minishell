@@ -43,9 +43,13 @@ ssize_t				ms_is_echo_opt(char **split_cmd, size_t *index);
 
 //ms_env.c
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
+void    			add_argument_to_env(char **split_cmd, char **env);
+ssize_t    			apply_options(char **split_cmd, char **env);
+
+
 
 //ms_parser env
-void	     		init_env_options(char **split_cmd, t_opt env_opt);
+void	     		init_env_options(char **split_cmd, t_opt *env_opt);
 void				valid_option(char c, t_opt *env_opt);
 
 //ms_setenv.c
@@ -77,7 +81,6 @@ ssize_t				unvalid_setenv_cmd(void);
 ssize_t     		too_few_args(void);
 ssize_t     		error_chdir(int error, char *path);
 ssize_t			    undefined_variable(char *var);
-ssize_t     		missing_char(char c);
 
 //utils.c
 ssize_t				find_variable(char *cmd, char **ms_env, size_t *index);
