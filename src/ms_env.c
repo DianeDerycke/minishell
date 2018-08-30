@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:20:23 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:21:23 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,3 @@ ssize_t    ms_env(char **split_cmd, char ***ms_env)
         ft_print_array(*ms_env);
     return (SUCCESS);
 }
-// doesn't take input with '='sign
-//Deal with permissions denied f.e env -S $HOME (trying accessing
-//and changing argument ?
