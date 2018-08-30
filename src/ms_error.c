@@ -6,25 +6,18 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/27 13:28:50 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/28 20:03:16 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-ssize_t		command_not_found(char *cmd)
-{
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(cmd);
-	return (FAILURE);
-}
 
-ssize_t		error_option(char c)
+void		error_option(char c)
 {
 	ft_putstr_fd("env: illegal option -- ", 2);
 	ft_putchar_fd(c, 2);
 	ft_putendl_fd("\nusage: env [-iv] [-P utilpath] [-S string] [-u name]", 2);
 	ft_putendl_fd("           [name=value ...] [utility [argument ...]]", 2);
-	return (FAILURE);
 }
 
 ssize_t		too_many_args(char *cmd)

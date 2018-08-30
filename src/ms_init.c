@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 12:43:03 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/28 19:33:07 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_builtin_struct(t_builtin *builtin_tab)
 	builtin_tab[4].function = ms_env;
 }
 
-void	init_opt(t_opt 	*env_opt)
+void	init_opt_struct(t_opt 	*env_opt)
 {
 	env_opt->i = 0;
 	env_opt->p = 0;

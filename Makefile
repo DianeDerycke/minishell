@@ -6,7 +6,7 @@
 #    By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/08/23 22:11:27 by DERYCKE          ###   ########.fr        #
+#    Updated: 2018/08/30 09:34:01 by DERYCKE          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBMS = ./libms/
 LIBNAME = ./libft/libft.a ./libms/libms.a
 
 SRC_PATH = ./src
-SRC_NAME = main.c ms_parser.c ms_error.c ms_utils.c ms_exec_cmd.c ms_builtins.c ms_echo.c \
+SRC_NAME = main.c ms_error.c ms_utils.c ms_exec_cmd.c ms_builtins.c ms_echo.c \
 			ms_env.c ms_cd.c ms_init.c ms_parser_env.c ms_setenv.c ms_unsetenv.c ms_error2.c \
 			ms_utils2.c ms_expansions.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))

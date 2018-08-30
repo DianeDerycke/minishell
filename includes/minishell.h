@@ -26,9 +26,6 @@ typedef struct 		s_opt
 	ssize_t			v;
 }					t_opt;
 
-//parser.c
-char				*find_path(char *cmd, char **ms_env);
-
 //builtins.c
 int 				find_builtin(char *cmd, t_builtin *builtins);
 
@@ -46,10 +43,9 @@ ssize_t				ms_is_echo_opt(char **split_cmd, size_t *index);
 
 //ms_env.c
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
-ssize_t    			exec_env_cmd(char **split_cmd, char **ms_env, t_opt env_opt);
 
 //ms_parser env
-ssize_t     		is_valid_env_options(char **split_cmd, t_opt env_opt);
+void	     		init_env_options(char **split_cmd, t_opt env_opt);
 void				valid_option(char c, t_opt *env_opt);
 
 //ms_setenv.c
@@ -73,8 +69,7 @@ ssize_t				ms_dollar_expansion(char **arg, char **ms_env);
 ssize_t				exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
 
 //error.c
-ssize_t				command_not_found(char *cmd);
-ssize_t				error_option(char c);
+void				error_option(char c);
 ssize_t				too_many_args(char *cmd);
 ssize_t				unvalid_setenv_cmd(void);
 
@@ -85,15 +80,14 @@ ssize_t			    undefined_variable(char *var);
 ssize_t     		missing_char(char c);
 
 //utils.c
-char				*ms_get_varpath_value(char **ms_env);
 ssize_t				find_variable(char *cmd, char **ms_env, size_t *index);
 //utils2.c
 char				*get_variable_path(char *var);
-char    			*get_variable_name(char *arg, size_t bs_index);
+char    			*get_variable_name(char *arg, size_t bs_index);//change name function
 void    			join_path_rest(char **arg, char *var_path, size_t bs_index);
 
 //init.c
 void				init_builtin_struct(t_builtin *builtin_tab);
-void				init_opt(t_opt 	*env_opt);
+void				init_opt_struct(t_opt 	*env_opt);
 
 #endif

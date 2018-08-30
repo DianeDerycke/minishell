@@ -6,17 +6,49 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/27 13:46:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/29 12:09:15 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-ssize_t    exec_env_cmd(char **split_cmd, char **ms_env, t_opt env_opt)
+
+char    **create_tmp_env(char **split_cmd, size_t *index)
 {
-    (void)split_cmd;
-    (void)ms_env;
-    (void)env_opt;
-    ft_putendl("Options not handle yet");
+    size_t      n;
+    char        **array;
+
+    array = NULL;
+    n = 0;
+    if (!split_cmd)
+        return (NULL);
+    while(split_cmd[*index] && !ft_strchr(split_cmd[*index], '='))
+        (*index)++;
+    while(split_cmd[*index] && ft_strchr(split_cmd[*index], '='))
+    {
+        if (!(array[n] = ft_strdup(split_cmd[*index])))
+        {
+            ft_free_array(array);
+            ms_malloc_error();
+        }
+        n++;
+        (*index)++;
+    }
+    return (array);
+}
+
+ssize_t    apply_options(char **split_cmd, t_opt env_opt)
+{
+    size_t      index;
+    char        **tmp_env;
+
+    index = 0;
+    tmp_env = NULL;
+    if (env_opt.i == 1)
+    {
+        tmp_env = create_tmp_env(split_cmd, &index);
+        ms_exec_binary(split_cmd[index], split_cmd, tmp_env);
+        ft_free_array(tmp_env);
+    }
     return (SUCCESS);
 }
 
@@ -25,14 +57,18 @@ ssize_t    ms_env(char **split_cmd, char ***ms_env)
 {
     ssize_t     error;
     t_opt       env_opt;
+    char        **tmp_env;
 
+    tmp_env = NULL;
     error = 0;
-    init_opt(&env_opt);
-    if (!split_cmd || !ms_env || 
-            (error = is_valid_env_options(split_cmd, env_opt)) == 1)
+    init_opt_struct(&env_opt);
+    if (!split_cmd || !ms_env)
         return (PAGAIN);
     else if (ft_strlen_array(split_cmd) > 1)
-        exec_env_cmd(split_cmd, *ms_env, env_opt);
+    {
+        init_env_options(split_cmd, env_opt);
+        apply_options(split_cmd, env_opt);
+    }
     else
         ft_print_array(*ms_env);
     return (SUCCESS);

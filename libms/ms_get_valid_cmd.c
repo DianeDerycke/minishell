@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_parser.c                                        :+:      :+:    :+:   */
+/*   ms_get_valid_cmd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 02:31:12 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 14:10:02 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/08/29 12:16:30 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/08/30 09:31:52 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-char		*find_path(char *cmd, char **ms_env)
+#include "libms.h"
+
+char		*ms_get_valid_cmd(char *cmd, char **ms_env)
 {
 	struct stat 	buf;
 	char			*dir_path;
@@ -25,7 +26,7 @@ char		*find_path(char *cmd, char **ms_env)
 		return (NULL);
 	if (stat(cmd, &buf) == 0 && (S_ISREG(buf.st_mode) && (buf.st_mode & S_IXUSR)))
 		return (ft_strdup(cmd));
-	if (!(dir_path = ms_get_varpath_value(ms_env)))
+	if (!(dir_path = ms_find_path_variable(ms_env)))
 		return (NULL);
 	path_array = ft_strsplit(dir_path, ':');
 	while (path_array[i])
@@ -43,4 +44,3 @@ char		*find_path(char *cmd, char **ms_env)
 	ft_free_array(path_array);
 	return (NULL);
 }
-//to do: SPLIT FIND PATH
