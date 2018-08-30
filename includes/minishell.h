@@ -29,42 +29,42 @@ typedef struct 		s_opt
 //builtins.c
 int 				find_builtin(char *cmd, t_builtin *builtins);
 
-//ms_cd.c
+//cd.c
 ssize_t				ms_cd(char **split_cmd, char ***ms_env);
 ssize_t     		cd_to_home(char **ms_env);
 ssize_t     		edit_pwd_var(char **ms_env);
 ssize_t     		edit_oldpwd_var(char **ms_env, char **buf);
 ssize_t     		get_cwd(char **buf);
 
-//ms_echo.c
+//echo.c
 ssize_t				ms_echo(char **split_cmd, char ***ms_env);
 void				display_echo_arg(char **split_cmd, size_t index);
 ssize_t				has_echo_opt(char **split_cmd, size_t *index);
 
-//ms_env.c
+//env.c
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
 void    			add_argument_to_env(char **split_cmd, char **env);
 ssize_t    			apply_options(char **split_cmd, char **env);
 
 
 
-//ms_parser env
+//parser env
 void	     		init_env_options(char **split_cmd, t_opt *env_opt);
 void				valid_option(char c, t_opt *env_opt);
 
-//ms_setenv.c
+//setenv.c
 ssize_t				ms_setenv(char **split_cmd, char ***ms_env);
 ssize_t     		is_valid_set_cmd(char **split_cmd);
 char    			**edit_variable(char *var_name, char *var_value, char **ms_env, ssize_t index);
 char    			**add_variable(char **split_cmd, char ***ms_env);
 char     			**set_var_env(char **split_cmd, char ***ms_env);
 
-//ms_unsetenv.c
+//unsetenv.c
 ssize_t				ms_unsetenv(char **split_cmd, char ***ms_env);
 char			    **delete_variable(char **ms_env, size_t index);
 
 
-//ms_expansions.c
+//expansions.c
 ssize_t				apply_expansions(char **split_cmd, char **ms_env);
 ssize_t   			tilde_expansion(char **arg, char **ms_env);
 ssize_t				dollar_expansion(char **arg, char **ms_env);
