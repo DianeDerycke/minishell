@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:57 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/08/30 13:39:10 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ int		main(void)
 {
 	t_builtin		builtin_tab[ARRAY_SIZE];
 	char			*input;
-	extern char 	**environ;
 	char			**ms_env;
 	char			**cmd;
 	ssize_t 	 	error;
 
 	input = NULL;
 	init_builtin_struct(builtin_tab);
-	if (!(ms_env = ft_copy_array(environ, ft_strlen_array(environ))))
-		ms_malloc_error();
+	ms_env = ms_get_env();
 	while (1)
 	{
 		ft_putstr("minishell$ ");
