@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:48:11 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/07 20:54:28 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ ssize_t 	dollar_expansion(char **arg, char **ms_env)
     size_t  index;
     char    *var_name;
 
-    ft_find_char(*arg, C_BACKSPACE, &bs_index);
+    ft_find_char(*arg, VAL_BACKSPACE, &bs_index);
     var_name = get_variable_name(*arg, bs_index);
     if (find_variable(var_name, ms_env, &index) == SUCCESS)
     {

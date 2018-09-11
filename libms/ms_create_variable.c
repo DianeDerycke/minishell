@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 14:14:23 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 14:18:02 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/07 20:55:44 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char    *ms_create_variable(char *var_name, char *var_value)
     char    *tmp1; 
 
     i = 1;
-    if (!(tmp = ft_strdup(var_name)) || !(tmp1 = ft_strjoin_free(tmp, "=")))
+    if (!(tmp = ft_strdup(var_name)) || !(tmp1 = ft_strjoin_free(tmp, STR_EQUAL)))
 		ms_malloc_error();
     if (var_value)
     {
