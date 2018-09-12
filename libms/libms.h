@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/08 21:02:56 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/12 17:12:32 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define VAL_EQUAL 61
 # define STR_EQUAL "="
 # define VAL_DASH 45
+# define DEFAULT_PATH "/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin"
 
 char        **ms_get_env(void);
 ssize_t     ms_read_input(char **input);

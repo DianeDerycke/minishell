@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 12:16:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/11 17:05:40 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/12 17:14:07 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ char		*ms_get_valid_cmd(char *cmd, char **ms_env)
 	if (stat(cmd, &buf) == 0 && (S_ISREG(buf.st_mode) && (buf.st_mode & S_IXUSR)))
 		return (ft_strdup(cmd));
 	if (!(dir_path = ms_find_path_variable(ms_env)))
-		return (NULL);
+		ms_malloc_error();
 	path_array = ft_strsplit(dir_path, ':');
+	ft_strdel(&dir_path);
 	while (path_array[i])
 	{
 		tmp = ft_strjoin(path_array[i], "/");
