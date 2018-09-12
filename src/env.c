@@ -6,7 +6,7 @@
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/12 16:51:09 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/13 01:26:42 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ ssize_t    apply_options(char **split_cmd, t_opt opt, char **ms_env)
         tmp_env = ft_copy_array(ms_env, ft_strlen_array(ms_env) + 1);
         add_argument_to_env(split_cmd, tmp_env);
     }
-    ms_exec_binary(split_cmd[len_cmd - 1], split_cmd + len_cmd - 1, tmp_env);
+    if (ms_exec_binary(split_cmd[len_cmd - 1], split_cmd + len_cmd - 1, tmp_env) == FAILURE)
+        return (ms_no_such_file_or_dir(split_cmd[0], split_cmd[len_cmd - 1]));
     if (tmp_env)
         ft_free_array(tmp_env);
     return (SUCCESS);

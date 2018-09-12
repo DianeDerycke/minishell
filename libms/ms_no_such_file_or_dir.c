@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_exec_binary.c                                   :+:      :+:    :+:   */
+/*   ms_no_such_file_or_dir.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/27 14:26:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/13 01:20:42 by DERYCKE          ###   ########.fr       */
+/*   Created: 2018/09/13 01:23:11 by DERYCKE           #+#    #+#             */
+/*   Updated: 2018/09/13 01:27:10 by DERYCKE          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libms.h"
 
-ssize_t		ms_exec_binary(char *utility, char **split_cmd, char **env)
+ssize_t     ms_no_such_file_or_dir(char *utility, char *cmd)
 {
-	char	*path;
-	pid_t	pid;
-	int		status;
-
-	path = NULL;
-	status = 0;
-	if ((path = ms_get_valid_cmd(utility, env)))
-	{
-		if ((pid = fork()) == SUCCESS)
-			execve(path, split_cmd, env);
-		else
-			waitpid(pid, &status, 0);
-	}
-	else if (!path)
-		return (FAILURE);
-	ft_strdel(&path);
-	return (SUCCESS);
+    ft_putstr_fd(utility, 2);
+    ft_putstr_fd(": ", 2);
+    ft_putstr_fd(cmd, 2);
+    ft_putendl_fd(": No such file or directory", 2);
+    return (FAILURE);
 }
