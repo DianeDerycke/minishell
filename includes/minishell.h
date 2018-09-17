@@ -31,7 +31,7 @@ int 				find_builtin(char *cmd, t_builtin *builtins);
 
 //cd.c
 ssize_t				ms_cd(char **split_cmd, char ***ms_env);
-ssize_t     		cd_to_home(char **ms_env);
+ssize_t     		change_directory(char **ms_env, char *var_name);
 ssize_t     		edit_pwd_var(char ***ms_env);
 ssize_t     		edit_oldpwd_var(char ***ms_env, char **buf);
 ssize_t     		get_cwd(char **buf);

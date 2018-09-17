@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/10 19:20:19 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/17 17:43:37 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t     cd_to_home(char **ms_env)
+ssize_t     cd_to_env_var(char **ms_env, char *var_name)
 {
     size_t      index;
     ssize_t     error;
 
-    error = find_variable("HOME", ms_env, &index);
+    error = find_variable(var_name, ms_env, &index);
     if (error == -1)
-        return (FAILURE);
-    if ((chdir(ms_env[index] + 5)) == SUCCESS)
+        return (FAILURE); //VARIABLE DOES NOT EXIST ERROR
+    if ((chdir(ms_env[index] + ft_strlen(var_name)) == SUCCESS))
         return (SUCCESS);
     return (FAILURE);
 }
-
+//no such file or directory error (try to open argument before changing dir)
 ssize_t     edit_pwd_var(char ***ms_env)
 {
     char    *buf;
@@ -76,7 +76,12 @@ ssize_t    ms_cd(char **split_cmd, char ***ms_env)
         too_many_args("cd");
     else if (len_cmd == 1)
     {
-        if (cd_to_home(*ms_env) == FAILURE)
+        if (cd_to_env_var(*ms_env, HOME) == FAILURE)
+            return (FAILURE);
+    }
+    else if (len_cmd == 2 && ft_strcmp(split_cmd[1], "-") == 0)
+    {
+        if (cd_to_env_var(*ms_env, OLDPWD) == FAILURE)
             return (FAILURE);
     }
     else if ((error = chdir(split_cmd[1])) != 0)

@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/17 16:57:00 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:35:26 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/wait.h>
 # include <signal.h>
 
+# define HOME "HOME"
+# define OLDPWD "OLDPWD"
 # define PAGAIN 1
 # define ERR_INTR -1
 # define VAL_BACKSPACE 92
