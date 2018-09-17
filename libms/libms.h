@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/13 01:24:26 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/17 16:57:00 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define VAL_EQUAL 61
 # define STR_EQUAL "="
 # define VAL_DASH 45
+# define VAL_DOLLAR 36
+# define CH_DOLLAR '$'
 # define DEFAULT_PATH "/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin"
 
 char        **ms_get_env(void);

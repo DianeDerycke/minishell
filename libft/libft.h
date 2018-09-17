@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 14:55:53 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/17 17:01:22 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,6 @@ void    			ft_replace(char *str, char c, char new_c);
 char    			**ft_trim_array(char **array);
 int					ft_is_whitespace(char c);
 void    			ft_replace_whitespaces(char *str, char c);
-
+char				*ft_dup_until(char *str, char c);
 
 #endif

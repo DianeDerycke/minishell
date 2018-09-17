@@ -66,7 +66,7 @@ char			    **delete_variable(char **ms_env, size_t index);
 //expansions.c
 ssize_t				apply_expansions(char **split_cmd, char **ms_env);
 ssize_t   			tilde_expansion(char **arg, char **ms_env);
-ssize_t				dollar_expansion(char **arg, char **ms_env);
+ssize_t				dollar_expansion(char **arg, char **ms_env, char *start_var);
 
 //exec_cmd.c
 ssize_t				exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
@@ -83,10 +83,11 @@ ssize_t			    undefined_variable(char *var);
 
 //utils.c
 ssize_t				find_variable(char *cmd, char **ms_env, size_t *index);
-//utils2.c
 char				*get_variable_path(char *var);
 char    			*get_variable_name(char *arg, size_t bs_index);//change name function
-void    			join_path_rest(char **arg, char *var_path, size_t bs_index);
+void    			join_path_rest(char **arg, char *var_value, size_t bs_index);
+char				*join_beginning_path(char *str, char *str2, char c);
+
 
 //init.c
 void				init_builtin_struct(t_builtin *builtin_tab);

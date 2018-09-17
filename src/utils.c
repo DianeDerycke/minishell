@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/10 23:12:32 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/17 17:24:53 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,21 @@ void    join_path_rest(char **arg, char *var_path, size_t bs_index)
     else
         *arg = var_path;
     ft_strdel(&rest_arg);
+}
+
+char	*join_beginning_path(char *str, char *str2, char c)
+{
+	size_t		i;
+	char		*tmp;
+	char		*cpy;
+
+	i = 0;
+	cpy = NULL;
+	if (!(tmp = ft_dup_until(str, c)))
+		return (NULL);
+	if (!(cpy = ft_strjoin_free(tmp, str2)))
+		return (NULL);
+	ft_strdel(&str);
+	ft_strdel(&str2);
+	return (cpy);
 }
