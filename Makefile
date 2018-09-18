@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+         #
+#    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/08/30 13:53:18 by DERYCKE          ###   ########.fr        #
+#    Updated: 2018/09/18 13:04:17 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,14 +29,14 @@ CPPFLAGS = -Iincludes
 LDFLAGS = -Llibft -Llibms
 LDLIBS = -lft -lms
 CC = gcc
-CFLAGS = -g -o0 -Werror -Wextra -Wall
+CFLAGS = -g -o0 -Werror -Wextra -Wall -fsanitize=address
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT) 
 	make -C $(LIBMS)
-	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true

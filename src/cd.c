@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/17 17:43:37 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/18 12:54:46 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ssize_t     cd_to_env_var(char **ms_env, char *var_name)
     error = find_variable(var_name, ms_env, &index);
     if (error == -1)
         return (FAILURE); //VARIABLE DOES NOT EXIST ERROR
-    if ((chdir(ms_env[index] + ft_strlen(var_name)) == SUCCESS))
+    if ((chdir(ms_env[index] + (ft_strlen(var_name) + 1)) == SUCCESS))
         return (SUCCESS);
     return (FAILURE);
 }
@@ -94,5 +94,3 @@ ssize_t    ms_cd(char **split_cmd, char ***ms_env)
     ft_strdel(&buf);
     return (SUCCESS);
 }
-
-//to do : clean
