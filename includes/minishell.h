@@ -31,7 +31,7 @@ int 				find_builtin(char *cmd, t_builtin *builtins);
 
 //cd.c
 ssize_t				ms_cd(char **split_cmd, char ***ms_env);
-ssize_t     		change_directory(char **ms_env, char *var_name);
+ssize_t     		cd_to_env_var(char **ms_env, char *var_name);
 ssize_t     		edit_pwd_var(char ***ms_env);
 ssize_t     		edit_oldpwd_var(char ***ms_env, char **buf);
 ssize_t     		get_cwd(char **buf);
@@ -44,6 +44,7 @@ ssize_t				has_echo_opt(char **split_cmd, size_t *index);
 //env.c
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
 void    			add_argument_to_env(char **split_cmd, char **env);
+char      			**find_first_bin(char **split_cmd, int c);
 ssize_t    			apply_options(char **split_cmd, t_opt opt, char **ms_env);
 char        		**create_tmp_env(char **split_cmd);
 

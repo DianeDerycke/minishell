@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_clean_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:20:38 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/23 15:39:09 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/18 13:36:02 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	**ms_clean_input(char **input)
     tmp = NULL;
     if (!input || !*input)
         return (NULL);
-    ft_replace(*input, '"', ' ');
-    ft_replace_whitespaces(*input, ' ');
-	if (!(tmp = ft_strsplit(*input, ' ')))
+    ft_replace(*input, C_DQUOTE, C_WHITESPACE);
+    ft_replace_whitespaces(*input, C_WHITESPACE);
+	if (!(tmp = ft_strsplit(*input, C_WHITESPACE)))
         return (NULL);
 	ft_strdel(input);
 	return (tmp);

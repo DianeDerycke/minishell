@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/13 01:26:42 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/18 15:25:16 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,69 @@ char        **create_tmp_env(char **split_cmd)
     return (tmp_env);
 }
 
+char      **find_first_bin(char **split_cmd, int c)
+{
+    size_t      i;
+
+    i = 0;
+    if (!split_cmd || !c)
+        return (NULL);
+    while (split_cmd[i] && !(ft_strchr(split_cmd[i], c)))
+        i++;
+    if (split_cmd[i])
+    {
+        while (split_cmd[i] && ft_strchr(split_cmd[i], c))
+            i++;
+    }
+    if (!(split_cmd[i]))
+        return (NULL);
+    return (split_cmd + i);
+}
+
+ssize_t     has_arg(char **split_cmd)
+{
+    size_t  i;
+
+    i = 1;
+    while (split_cmd[i] && !ft_strchr(split_cmd[i], VAL_EQUAL))
+        i++;
+    if (split_cmd[i] && ft_strchr(split_cmd[i], VAL_EQUAL))
+        return (SUCCESS);
+    return (FAILURE);
+}
+
 ssize_t    apply_options(char **split_cmd, t_opt opt, char **ms_env)
 {
     char    **tmp_env;
-    size_t  len_cmd;
+    char    **start_bin;
 
-    tmp_env = NULL;
-    len_cmd = ft_strlen_array(split_cmd);
+    start_bin = NULL;
     if (opt.i)
+    {
         tmp_env = create_tmp_env(split_cmd);
+        if (!(start_bin = find_first_bin(split_cmd, VAL_EQUAL)))
+            start_bin = split_cmd + 2;
+        if ((start_bin && *start_bin && ft_strchr(*start_bin, VAL_EQUAL)) || (!start_bin || !(*start_bin)))
+            ft_print_array(tmp_env);
+        else if (ms_exec_binary(*start_bin, start_bin, tmp_env) == FAILURE)
+        {
+            ft_free_array(tmp_env);
+            return (ms_no_such_file_or_dir(split_cmd[0], *start_bin));
+        }
+    }
     else
     {
         tmp_env = ft_copy_array(ms_env, ft_strlen_array(ms_env) + 1);
         add_argument_to_env(split_cmd, tmp_env);
+        if (!(start_bin = find_first_bin(split_cmd, VAL_EQUAL)))
+            start_bin = split_cmd + 1;
+        if (ms_exec_binary(*start_bin, start_bin, tmp_env) == FAILURE)
+        {
+            ft_free_array(tmp_env);
+            return (ms_no_such_file_or_dir(split_cmd[0], *start_bin));
+        }
     }
-    if (ms_exec_binary(split_cmd[len_cmd - 1], split_cmd + len_cmd - 1, tmp_env) == FAILURE)
-        return (ms_no_such_file_or_dir(split_cmd[0], split_cmd[len_cmd - 1]));
-    if (tmp_env)
-        ft_free_array(tmp_env);
+    ft_free_array(tmp_env);
     return (SUCCESS);
 }
 
@@ -97,7 +142,8 @@ ssize_t    ms_env(char **split_cmd, char ***ms_env)
     else if (ft_strlen_array(split_cmd) > 1)
     {
         init_env_options(split_cmd, &opt);
-        apply_options(split_cmd, opt, *ms_env);
+        if (apply_options(split_cmd, opt, *ms_env) == FAILURE)
+            return (FAILURE);
     }
     else
         ft_print_array(*ms_env);

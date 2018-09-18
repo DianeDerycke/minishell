@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/17 17:35:26 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/18 13:58:46 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "../libft/libft.h"
 #include "get_next_line.h"
+
 # include <fcntl.h>
 # include <dirent.h>
 # include <sys/stat.h>
@@ -25,12 +26,15 @@
 # define OLDPWD "OLDPWD"
 # define PAGAIN 1
 # define ERR_INTR -1
+# define STR_EQUAL "="
+# define CH_DOLLAR '$'
+# define C_WHITESPACE ' '
+# define C_DQUOTE '"'
+# define C_EQUAL '='
 # define VAL_BACKSPACE 92
 # define VAL_EQUAL 61
-# define STR_EQUAL "="
 # define VAL_DASH 45
 # define VAL_DOLLAR 36
-# define CH_DOLLAR '$'
 # define DEFAULT_PATH "/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin"
 
 char        **ms_get_env(void);
