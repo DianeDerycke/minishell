@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/11 16:34:46 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/19 12:40:54 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ ssize_t     is_valid_set_cmd(char **split_cmd)
         i++;
     }
     return (SUCCESS);
-}
-
-void    edit_variable(char *var_name, char *var_value, char ***ms_env, size_t index)
-{
-    ft_strdel((*ms_env + index));
-    *(*ms_env + index) = ms_create_variable(var_name, var_value);
 }
 
 char    **add_variable(char *var_name, char *var_value, char **ms_env)
@@ -68,8 +62,8 @@ ssize_t    ms_setenv(char **split_cmd, char ***ms_env)
         return (too_many_args("setenv"));
     else if ((is_valid_set_cmd(split_cmd)) == 1)
         return (unvalid_setenv_cmd());
-    else if (find_variable(split_cmd[1], *ms_env, &index) == 0)
-        edit_variable(split_cmd[1], split_cmd[2], ms_env, index);
+    else if (ms_find_variable(split_cmd[1], *ms_env, &index) == 0)
+        ms_edit_variable(split_cmd[1], split_cmd[2], ms_env, index);
     else
     {
         tmp = ft_copy_array(*ms_env, ft_strlen_array(*ms_env));

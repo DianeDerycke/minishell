@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 14:05:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:53 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/19 12:53:44 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@ ssize_t     too_few_args(void)
 
 ssize_t     error_chdir(int error, char *path)
 {
+    struct stat     f_stat;
+    if (lstat(path, &f_stat) < 0)
+        return (FAILURE);
     if (path && !(path[0]))
         return (FAILURE);
     if (error == -1 && !(opendir(path)))
     {
         ft_putstr_fd(path, 2);
-        ft_putendl_fd(": No such file or directory.", 2);
+        if (!(f_stat.st_mode & S_IXUSR))
+            ft_putendl_fd(": Permissions denied.", 2);
+        else
+            ft_putendl_fd(": No such file or directory.", 2);
     }
     return (FAILURE);
 }

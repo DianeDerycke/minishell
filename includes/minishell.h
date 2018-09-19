@@ -10,7 +10,6 @@
 # include <signal.h>
 
 # define ARRAY_SIZE 5
-# define MS_BUFF_SIZE 2048
 typedef struct 		s_builtin
 {
 	char			name[20];
@@ -32,9 +31,7 @@ int 				find_builtin(char *cmd, t_builtin *builtins);
 //cd.c
 ssize_t				ms_cd(char **split_cmd, char ***ms_env);
 ssize_t     		cd_to_env_var(char **ms_env, char *var_name);
-ssize_t     		edit_pwd_var(char ***ms_env);
 ssize_t     		edit_oldpwd_var(char ***ms_env, char **buf);
-ssize_t     		get_cwd(char **buf);
 
 //echo.c
 ssize_t				ms_echo(char **split_cmd, char ***ms_env);
@@ -55,7 +52,6 @@ void				valid_option(char c, t_opt *env_opt);
 //setenv.c
 ssize_t				ms_setenv(char **split_cmd, char ***ms_env);
 ssize_t     		is_valid_set_cmd(char **split_cmd);
-void				edit_variable(char *var_name, char *var_value, char ***ms_env, size_t index);
 char				**add_variable(char *var_name, char *var_value, char **ms_env);
 char				**set_var_env(char **split_cmd, char **ms_env);
 
@@ -83,7 +79,6 @@ ssize_t     		error_chdir(int error, char *path);
 ssize_t			    undefined_variable(char *var);
 
 //utils.c
-ssize_t				find_variable(char *cmd, char **ms_env, size_t *index);
 char				*get_variable_path(char *var);
 char    			*get_variable_name(char *arg, size_t bs_index);//change name function
 void    			join_path_rest(char **arg, char *var_value, size_t bs_index);

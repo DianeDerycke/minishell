@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/18 12:55:55 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 12:37:47 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ssize_t    tilde_expansion(char **arg, char **ms_env)
     size_t  index;
 
     index = 0;
-    if (find_variable("HOME", ms_env, &index) == SUCCESS)
+    if (ms_find_variable("HOME", ms_env, &index) == SUCCESS)
     {
         ft_strdel(arg);
         *arg = get_variable_path(ms_env[index]);
@@ -37,7 +37,7 @@ ssize_t 	dollar_expansion(char **arg, char **ms_env, char *start_var)
     tmp = NULL;
     ft_find_char(start_var, VAL_BACKSPACE, &bs_index);
     var_name = get_variable_name(start_var, bs_index);
-    if (find_variable(var_name, ms_env, &index) == SUCCESS)
+    if (ms_find_variable(var_name, ms_env, &index) == SUCCESS)
     {
         ft_strdel(&var_name);
         if (bs_index > 0)

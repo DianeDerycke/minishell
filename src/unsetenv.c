@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unsetenv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 23:38:32 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:26:00 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/19 12:38:01 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ ssize_t    ms_unsetenv(char **split_cmd, char ***ms_env)
     else
         while (split_cmd[i])
         {
-            if (find_variable(split_cmd[i], *ms_env, &index) == -1)
+            if (ms_find_variable(split_cmd[i], *ms_env, &index) == -1)
                 return (FAILURE);
             else
                 *ms_env = delete_variable(*ms_env, index);

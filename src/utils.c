@@ -6,31 +6,11 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/17 17:24:53 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 12:37:15 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-ssize_t		find_variable(char *cmd, char **ms_env, size_t *index)
-{
-	size_t 	i;
-
-	i = 0;
-	*index = 0;
-	if (!cmd || !ms_env)
-		return (-1);
-	while (ms_env[*index])
-	{
- 		while(ms_env[*index][i] == cmd[i] && ms_env[*index][i] != '=')
-			i++;
-		if (ms_env[*index][i] == '=')
-			return (0);
-		(*index)++;
-		i = 0;
-	}
-	return (-1);
-}
-
 char	*get_variable_path(char *var)
 {
 	char	*path;

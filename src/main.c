@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:39:10 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/19 13:06:58 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ int		main(void)
 	char			**ms_env;
 	char			**cmd;
 	ssize_t 	 	error;
+	ssize_t			ret;
 
 	input = NULL;
 	init_builtin_struct(builtin_tab);
 	ms_env = ms_get_env();
+	ret = 0;
 	while (1)
 	{
 		ft_putstr("minishell$ ");
@@ -33,8 +35,8 @@ int		main(void)
 			ft_free_array(ms_env);
 			return (ERR_INTR);
 		}
-		exec_cmd(&ms_env, &cmd, builtin_tab);
+		ret = exec_cmd(&ms_env, &cmd, builtin_tab);
 	}
 	ft_free_array(ms_env);
-	return (SUCCESS);
+	return (ret);
 }
