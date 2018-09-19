@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 14:30:38 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 16:12:03 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ ssize_t		unvalid_setenv_cmd(void)
 	return (FAILURE);
 }
 
-ssize_t     error_chdir(int error, char *path)
+ssize_t     error_chdir(int error, char *path, char *cmd)
 {
     struct stat     f_stat;
 
-    if (error == -1 && !(opendir(path)))
+    if (error == -1 && ms_file_exist(path) == SUCCESS)
     {
         if (lstat(path, &f_stat) == 0 && !(f_stat.st_mode & S_IXUSR))
-            return (ms_error_perm_denied("cd", path));
-        else
-            return (ms_no_such_file_or_dir("cd", path));
+            return (ms_error_perm_denied(cmd, path));
     }
+    else
+        return (ms_no_such_file_or_dir(cmd, path));
     return (FAILURE);
 }

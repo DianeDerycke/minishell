@@ -6,7 +6,7 @@
 #    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/09/19 14:34:25 by dideryck         ###   ########.fr        #
+#    Updated: 2018/09/19 15:07:54 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ CPPFLAGS = -Iincludes
 LDFLAGS = -Llibft -Llibms
 LDLIBS = -lft -lms
 CC = gcc
-CFLAGS = -g -o0 -Werror -Wextra -Wall -fsanitize=address
+CFLAGS = -g -o0 -Werror -Wextra -Wall
 
 all: $(NAME)
 

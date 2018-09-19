@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/19 00:22:08 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:46 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/19 17:55:55 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int 	find_builtin(char *cmd, t_builtin *builtins)
+int 	find_builtin(char *cmd, t_builtin *builtins, int ret)
 {
 	int 	i;
 
@@ -26,6 +26,6 @@ int 	find_builtin(char *cmd, t_builtin *builtins)
 		i++;
 	}
 	if (ft_strcmp(cmd, "exit") == SUCCESS)
-		exit(0);
+		exit(ret);
 	return (-1);
 }

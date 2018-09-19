@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec_binary.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 14:26:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/13 01:20:42 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/19 17:51:05 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libms.h"
 
-ssize_t		ms_exec_binary(char *utility, char **split_cmd, char **env)
+int			ms_exec_binary(char *utility, char **split_cmd, char **env)
 {
 	char	*path;
 	pid_t	pid;
@@ -30,5 +30,5 @@ ssize_t		ms_exec_binary(char *utility, char **split_cmd, char **env)
 	else if (!path)
 		return (FAILURE);
 	ft_strdel(&path);
-	return (SUCCESS);
+	return (status != 0 ? -1 : 0);
 }

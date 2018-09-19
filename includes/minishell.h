@@ -26,7 +26,7 @@ typedef struct 		s_opt
 }					t_opt;
 
 //builtins.c
-int 				find_builtin(char *cmd, t_builtin *builtins);
+int 				find_builtin(char *cmd, t_builtin *builtins, int ret);
 
 //cd.c
 ssize_t				ms_cd(char **split_cmd, char ***ms_env);
@@ -66,13 +66,13 @@ ssize_t   			tilde_expansion(char **arg, char **ms_env);
 ssize_t				dollar_expansion(char **arg, char **ms_env, char *start_var);
 
 //exec_cmd.c
-ssize_t				exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
+int					exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
 
 //error.c
 void				error_option(char c);
 ssize_t				too_many_args(char *cmd);
 ssize_t				unvalid_setenv_cmd(void);
-ssize_t     		error_chdir(int error, char *path);
+ssize_t     		error_chdir(int error, char *path, char *cmd);
 
 //utils.c
 char				*get_variable_path(char *var);

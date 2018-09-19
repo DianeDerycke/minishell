@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 12:36:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/19 12:36:42 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 16:27:17 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ssize_t		ms_find_variable(char *cmd, char **ms_env, size_t *index)
 	{
  		while(ms_env[*index][i] == cmd[i] && ms_env[*index][i] != '=')
 			i++;
-		if (ms_env[*index][i] == '=')
+		if (ms_env[*index][i] == '=' && (!cmd[i] || cmd[i] == VAL_BACKSPACE))
 			return (0);
 		(*index)++;
 		i = 0;

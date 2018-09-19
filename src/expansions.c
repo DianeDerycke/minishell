@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 14:27:37 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 18:09:50 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 ssize_t    tilde_expansion(char **arg, char **ms_env)
 {
-    size_t  index;
+    size_t  i;
+    char    *tmp;
 
-    index = 0;
+    i = 0;
     if (ms_find_variable("HOME", ms_env, &index) == SUCCESS)
     {
         ft_strdel(arg);
-        *arg = get_variable_path(ms_env[index]);
+        tmp = get_variable_path(ms_env[index]);
     }
     else
         return (ms_undefined_variable("HOME"));

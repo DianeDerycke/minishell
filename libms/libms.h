@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 14:29:57 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 17:04:00 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ ssize_t     ms_read_input(char **input);
 char	    **ms_clean_input(char **input);
 char        *ms_create_variable(char *var_name, char *var_value);
 void	    ms_malloc_error(void);
-ssize_t	    ms_exec_binary(char *utility, char **split_cmd, char **env);
+int 	    ms_exec_binary(char *utility, char **split_cmd, char **env);
 char		*ms_get_valid_cmd(char *cmd, char **ms_env);
 char        *ms_find_path_variable(char **ms_env);
 ssize_t     ms_get_cwd(char **buf);

@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 12:40:49 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 16:52:27 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ ssize_t    apply_options(char **split_cmd, t_opt opt, char **ms_env)
     char    **tmp_env;
     char    **start_bin;
 
+    (void)ms_env;
     start_bin = NULL;
     if (opt.i)
     {
@@ -111,12 +112,12 @@ ssize_t    apply_options(char **split_cmd, t_opt opt, char **ms_env)
         else if (ms_exec_binary(*start_bin, start_bin, tmp_env) == FAILURE)
         {
             ft_free_array(tmp_env);
-            return (ms_no_such_file_or_dir(split_cmd[0], *start_bin));
+            return (error_chdir(ERR_INTR, *start_bin, "env"));
         }
     }
     else
     {
-        tmp_env = ft_copy_array(ms_env, ft_strlen_array(ms_env) + 1);
+        tmp_env = create_tmp_env(split_cmd);
         add_argument_to_env(split_cmd, tmp_env);
         if (!(start_bin = find_first_bin(split_cmd, VAL_EQUAL)))
             start_bin = split_cmd + 1;
