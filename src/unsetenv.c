@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 23:38:32 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 12:38:01 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 14:31:06 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ ssize_t    ms_unsetenv(char **split_cmd, char ***ms_env)
     i = 1;
     index = 0;
     if (ft_strlen_array(split_cmd) == 1)
-        return (too_few_args());
+        return (ms_too_few_args("unsetenv"));
     else
         while (split_cmd[i])
         {

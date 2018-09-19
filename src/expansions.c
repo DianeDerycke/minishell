@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 12:37:47 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 14:27:37 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ssize_t    tilde_expansion(char **arg, char **ms_env)
         *arg = get_variable_path(ms_env[index]);
     }
     else
-        return (undefined_variable("HOME"));
+        return (ms_undefined_variable("HOME"));
     return (SUCCESS);
 }
 
@@ -53,7 +53,7 @@ ssize_t 	dollar_expansion(char **arg, char **ms_env, char *start_var)
     }
     else
     {
-        undefined_variable(var_name);
+        ms_undefined_variable(var_name);
         ft_strdel(&var_name);
         return (FAILURE);   
     }

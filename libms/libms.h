@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 13:09:13 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/19 14:29:57 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <sys/wait.h>
 # include <signal.h>
 
+# define SUCCESS 0
+# define FAILURE 1
 # define HOME "HOME"
 # define OLDPWD "OLDPWD"
 # define PAGAIN 1
@@ -49,15 +51,18 @@ char        *ms_find_path_variable(char **ms_env);
 ssize_t     ms_get_cwd(char **buf);
 ssize_t     ms_edit_pwd_var(char ***ms_env);
 ssize_t		ms_find_variable(char *cmd, char **ms_env, size_t *index);
-void    ms_edit_variable(char *var_name, char *var_value, char ***ms_env, size_t index);
-
-
-
+void        ms_edit_variable(char *var_name, char *var_value, char ***ms_env, size_t index);
+ssize_t     ms_file_exist(const char *path);
 
 
 //ERROR
 ssize_t		ms_command_not_found(char *cmd);
 ssize_t     ms_no_such_file_or_dir(char *utility, char *cmd);
-ssize_t    ms_perm_denied(char *utility);
+ssize_t     ms_perm_denied(char *utility);
+ssize_t     ms_error_perm_denied(char *utility, char *cmd);
+ssize_t     ms_undefined_variable(char *var);
+ssize_t     ms_too_few_args(char *utility);
+
+
 
 #endif

@@ -6,7 +6,7 @@
 #    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/09/18 13:40:29 by dideryck         ###   ########.fr        #
+#    Updated: 2018/09/19 14:34:25 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBNAME = ./libft/libft.a ./libms/libms.a
 
 SRC_PATH = ./src
 SRC_NAME = main.c error.c utils.c exec_cmd.c builtins.c echo.c \
-			env.c cd.c init.c parser_env.c setenv.c unsetenv.c error2.c \
+			env.c cd.c init.c parser_env.c setenv.c unsetenv.c \
 			expansions.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
@@ -29,7 +29,7 @@ CPPFLAGS = -Iincludes
 LDFLAGS = -Llibft -Llibms
 LDLIBS = -lft -lms
 CC = gcc
-CFLAGS = -g -o0 -Werror -Wextra -Wall
+CFLAGS = -g -o0 -Werror -Wextra -Wall -fsanitize=address
 
 all: $(NAME)
 

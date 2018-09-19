@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:52 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/19 14:30:38 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,18 @@ ssize_t		unvalid_setenv_cmd(void)
 {
 	ft_putendl_fd("setenv: Variable name must contain alphanumeric characters.", 2);
 	return (FAILURE);
+}
+
+ssize_t     error_chdir(int error, char *path)
+{
+    struct stat     f_stat;
+
+    if (error == -1 && !(opendir(path)))
+    {
+        if (lstat(path, &f_stat) == 0 && !(f_stat.st_mode & S_IXUSR))
+            return (ms_error_perm_denied("cd", path));
+        else
+            return (ms_no_such_file_or_dir("cd", path));
+    }
+    return (FAILURE);
 }

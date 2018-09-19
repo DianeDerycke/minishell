@@ -72,11 +72,7 @@ ssize_t				exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
 void				error_option(char c);
 ssize_t				too_many_args(char *cmd);
 ssize_t				unvalid_setenv_cmd(void);
-
-//error2.c
-ssize_t     		too_few_args(void);
 ssize_t     		error_chdir(int error, char *path);
-ssize_t			    undefined_variable(char *var);
 
 //utils.c
 char				*get_variable_path(char *var);
