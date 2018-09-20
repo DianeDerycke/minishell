@@ -27,8 +27,6 @@
 # define CYAN   "\x1B[96m"
 # define WHITE   "\x1B[37m"
 # define RESET "\x1B[0m"
-# define SUCCESS 0
-# define FAILURE 1
 
 typedef struct		s_elem
 {

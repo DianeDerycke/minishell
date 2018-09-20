@@ -62,7 +62,7 @@ char			    **delete_variable(char **ms_env, size_t index);
 
 //expansions.c
 ssize_t				apply_expansions(char **split_cmd, char **ms_env);
-ssize_t   			tilde_expansion(char **arg, char **ms_env);
+ssize_t   			tilde_expansion(char **arg);
 ssize_t				dollar_expansion(char **arg, char **ms_env, char *start_var);
 
 //exec_cmd.c

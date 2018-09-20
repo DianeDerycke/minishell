@@ -6,25 +6,34 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 18:09:50 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/20 14:16:37 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t    tilde_expansion(char **arg, char **ms_env)
+ssize_t    tilde_expansion(char **arg)
 {
-    size_t  i;
     char    *tmp;
 
-    i = 0;
-    if (ms_find_variable("HOME", ms_env, &index) == SUCCESS)
+    tmp = NULL;
+    if (!arg || !(*arg))
+        return (FAILURE);
+    if ((*arg)[0] == C_TILDE && ft_strlen(*arg) > 1  && (*arg)[1] == C_SLASH)
+    {
+        if (!(tmp = ft_strdup((*arg) + 1)))
+            ms_malloc_error();
+        ft_strdel(arg);
+        if (!(*arg = ft_strjoin(DEFAULT_HOME, tmp)))
+            ms_malloc_error();
+        ft_strdel(&tmp);
+    }
+    else if ((*arg)[0] == C_TILDE)
     {
         ft_strdel(arg);
-        tmp = get_variable_path(ms_env[index]);
+        if (!(*arg = ft_strdup(DEFAULT_HOME)))
+            ms_malloc_error();
     }
-    else
-        return (ms_undefined_variable("HOME"));
     return (SUCCESS);
 }
 
@@ -77,8 +86,8 @@ ssize_t 	apply_expansions(char **split_cmd, char **ms_env)
                 return (FAILURE);
             }
         }
-		else if ((ft_strcmp(split_cmd[i], "~") == SUCCESS))
-            if (tilde_expansion(split_cmd + i, ms_env) == FAILURE)
+		else if ((ft_strcmp(split_cmd[i], "~") == SUCCESS) || ft_strchr(split_cmd[i], VAL_TILDE))
+            if (tilde_expansion(split_cmd + i) == FAILURE)
             {
                 ft_free_array(split_cmd);
                 return (FAILURE);

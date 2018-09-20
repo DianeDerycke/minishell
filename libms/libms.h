@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 17:04:00 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:37:46 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,25 @@
 
 # define SUCCESS 0
 # define FAILURE 1
-# define HOME "HOME"
-# define OLDPWD "OLDPWD"
 # define PAGAIN 1
 # define ERR_INTR -1
+# define DEFAULT_HOME "/Users/dideryck"
+# define DEFAULT_PATH "/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin"
+# define HOME "HOME"
+# define OLDPWD "OLDPWD"
 # define STR_EQUAL "="
 # define CH_DOLLAR '$'
 # define C_WHITESPACE ' '
 # define C_DQUOTE '"'
 # define C_EQUAL '='
+# define C_TILDE '~'
+# define C_SLASH '/'
 # define VAL_BACKSPACE 92
 # define VAL_EQUAL 61
 # define VAL_DASH 45
 # define VAL_DOLLAR 36
+# define VAL_TILDE 126
 # define MS_BUFF_SIZE 2048
-# define DEFAULT_PATH "/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin"
 
 char        **ms_get_env(void);
 ssize_t     ms_read_input(char **input);

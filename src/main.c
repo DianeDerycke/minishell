@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 16:48:41 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/20 14:50:08 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int		main(void)
 	while (1)
 	{
 		ft_putstr("minishell$ ");
-		if ((error = ms_read_input(&input)) == PAGAIN)
-			continue ;
-		if (error == -1 || (!(cmd = ms_clean_input(&input))))
+		if ((error = ms_read_input(&input)) == PAGAIN || (!(cmd = ms_clean_input(&input))))
 		{
-			ft_free_array(ms_env);
-			return (ERR_INTR);
+			if (error == -1)
+			{
+				ft_free_array(ms_env);
+				return (ERR_INTR);
+			}
+			continue ;				
 		}
 		ret = exec_cmd(&ms_env, &cmd, builtin_tab);
 	}
