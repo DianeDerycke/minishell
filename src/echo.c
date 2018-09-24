@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 20:44:14 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 15:25:23 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 17:08:01 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ssize_t		has_echo_opt(char **split_cmd, size_t *index)
 	return (is_opt);
 }
 
-void	display_echo_arg(char **split_cmd, size_t index)
+void		display_echo_arg(char **split_cmd, size_t index)
 {
 	while (split_cmd[index])
 	{

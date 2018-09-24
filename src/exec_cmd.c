@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 16:07:40 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 17:32:37 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int			exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins)
 		ret = builtins[index].function(*split_cmd, ms_env);
 	else if ((ret = ms_exec_binary((*split_cmd)[0], *split_cmd, *ms_env)) == 1)
 	{
-		if (ms_file_exist == FAILURE)
+		if (ms_file_exist((*split_cmd)[0]) == FAILURE)
 			ms_command_not_found((*split_cmd)[0]);
 		else if (lstat((*split_cmd)[0], &f_stat) == 0 &&
-					!(f_stat.st_mode & S_IXUSR))
+				!(f_stat.st_mode & S_IXUSR))
 			ms_perm_denied((*split_cmd)[0]);
 	}
 	ft_free_array(*split_cmd);

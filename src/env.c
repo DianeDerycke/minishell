@@ -6,18 +6,18 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 15:25:27 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 17:40:10 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void    add_argument_to_env(char **split_cmd, char **env)
+static void			add_argument_to_env(char **split_cmd, char **env)
 {
-	size_t  i;
-	size_t  index;
-	char    *var_name;
-	char    *var_value;
+	size_t	i;
+	size_t	index;
+	char	*var_name;
+	char	*var_value;
 
 	i = 1;
 	index = 0;
@@ -25,7 +25,7 @@ void    add_argument_to_env(char **split_cmd, char **env)
 	var_value = NULL;
 	while (split_cmd[i] && !(ft_strchr(split_cmd[i], VAL_EQUAL)))
 		i++;
-	while(split_cmd[i] && ft_strchr(split_cmd[i], VAL_EQUAL))
+	while (split_cmd[i] && ft_strchr(split_cmd[i], VAL_EQUAL))
 	{
 		ft_find_char(split_cmd[i], VAL_EQUAL, &index);
 		var_name = get_variable_name(split_cmd[i], index);
@@ -38,12 +38,12 @@ void    add_argument_to_env(char **split_cmd, char **env)
 	}
 }
 
-char        **create_tmp_env(char **split_cmd)
+static char			**create_tmp_env(char **split_cmd)
 {
-	size_t      i;
-	size_t      j;
-	size_t      len;
-	char        **tmp_env;
+	size_t		i;
+	size_t		j;
+	size_t		len;
+	char		**tmp_env;
 
 	i = 1;
 	j = 0;
@@ -60,13 +60,13 @@ char        **create_tmp_env(char **split_cmd)
 		i++;
 		j++;
 	}
-	tmp_env[j] = NULL; 
+	tmp_env[j] = NULL;
 	return (tmp_env);
 }
 
-char      **find_first_bin(char **split_cmd, int c)
+static char			**find_first_bin(char **split_cmd, int c)
 {
-	size_t      i;
+	size_t		i;
 
 	i = 0;
 	if (!split_cmd || !c)
@@ -83,68 +83,49 @@ char      **find_first_bin(char **split_cmd, int c)
 	return (split_cmd + i);
 }
 
-ssize_t     has_arg(char **split_cmd)
+static ssize_t		apply_opt(char **cmd, t_opt opt, ssize_t ret, char **s_bin)
 {
-	size_t  i;
+	char	**tmp_env;
 
-	i = 1;
-	while (split_cmd[i] && !ft_strchr(split_cmd[i], VAL_EQUAL))
-		i++;
-	if (split_cmd[i] && ft_strchr(split_cmd[i], VAL_EQUAL))
-		return (SUCCESS);
-	return (FAILURE);
-}
-
-ssize_t    apply_options(char **split_cmd, t_opt opt, char **ms_env)
-{
-	char    **tmp_env;
-	char    **start_bin;
-
-	(void)ms_env;
-	start_bin = NULL;
 	if (opt.i)
 	{
-		tmp_env = create_tmp_env(split_cmd);
-		if (!(start_bin = find_first_bin(split_cmd, VAL_EQUAL)))
-			start_bin = split_cmd + 2;
-		if ((start_bin && *start_bin && ft_strchr(*start_bin, VAL_EQUAL)) || (!start_bin || !(*start_bin)))
+		tmp_env = create_tmp_env(cmd);
+		if (!(s_bin = find_first_bin(cmd, VAL_EQUAL)))
+			s_bin = cmd + 2;
+		if ((s_bin && *s_bin && ft_strchr(*s_bin, VAL_EQUAL)) ||
+				(!s_bin || !(*s_bin)))
 			ft_print_array(tmp_env);
-		else if (ms_exec_binary(*start_bin, start_bin, tmp_env) == FAILURE)
-		{
-			ft_free_array(tmp_env);
-			return (error_chdir(ERR_INTR, *start_bin, "env"));
-		}
+		else if (ms_exec_binary(*s_bin, s_bin, tmp_env) == FAILURE)
+			ret = error_chdir(ERR_INTR, *s_bin, "env");
 	}
 	else
 	{
-		tmp_env = create_tmp_env(split_cmd);
-		add_argument_to_env(split_cmd, tmp_env);
-		if (!(start_bin = find_first_bin(split_cmd, VAL_EQUAL)))
-			start_bin = split_cmd + 1;
-		if (ms_exec_binary(*start_bin, start_bin, tmp_env) == FAILURE)
-		{
-			ft_free_array(tmp_env);
-			return (ms_no_such_file_or_dir(split_cmd[0], *start_bin));
-		}
+		tmp_env = create_tmp_env(cmd);
+		add_argument_to_env(cmd, tmp_env);
+		if (!(s_bin = find_first_bin(cmd, VAL_EQUAL)))
+			s_bin = cmd + 1;
+		if (ms_exec_binary(*s_bin, s_bin, tmp_env) == FAILURE)
+			ret = ms_no_such_file_or_dir(cmd[0], *s_bin);
 	}
 	ft_free_array(tmp_env);
-	return (SUCCESS);
+	return (ret);
 }
-//NORME
 
-ssize_t    ms_env(char **split_cmd, char ***ms_env)
+ssize_t				ms_env(char **split_cmd, char ***ms_env)
 {
-	ssize_t     error;
-	t_opt       opt;
+	ssize_t		ret;
+	t_opt		opt;
+	char		**s_bin;
 
-	error = 0;
+	ret = 0;
+	s_bin = NULL;
 	init_opt_struct(&opt);
 	if (!split_cmd || !ms_env)
 		return (PAGAIN);
 	else if (ft_strlen_array(split_cmd) > 1)
 	{
 		init_env_options(split_cmd, &opt);
-		if (apply_options(split_cmd, opt, *ms_env) == FAILURE)
+		if (apply_opt(split_cmd, opt, ret, s_bin) == FAILURE)
 			return (FAILURE);
 	}
 	else

@@ -6,13 +6,13 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 15:52:55 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 17:26:34 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*get_var_path(char *var)
+char		*get_var_path(char *var)
 {
 	char	*path;
 	size_t	i;
@@ -27,7 +27,7 @@ char	*get_var_path(char *var)
 	return (path);
 }
 
-char	*get_variable_name(char *arg, size_t end)
+char		*get_variable_name(char *arg, size_t end)
 {
 	char	*tmp;
 
@@ -43,7 +43,7 @@ char	*get_variable_name(char *arg, size_t end)
 	return (tmp);
 }
 
-void	join_path_rest(char **arg, char *var_path, size_t bs_index)
+void		join_path_rest(char **arg, char *var_path, size_t bs_index)
 {
 	char	*rest_arg;
 
@@ -56,7 +56,7 @@ void	join_path_rest(char **arg, char *var_path, size_t bs_index)
 	ft_strdel(&rest_arg);
 }
 
-char	*join_begin_path(char *str, char *str2, char c)
+char		*join_begin_path(char *str, char *str2, char c)
 {
 	size_t		i;
 	char		*tmp;
@@ -71,4 +71,16 @@ char	*join_begin_path(char *str, char *str2, char c)
 	ft_strdel(&str);
 	ft_strdel(&str2);
 	return (cpy);
+}
+
+ssize_t		has_arg(char **split_cmd)
+{
+	size_t		i;
+
+	i = 1;
+	while (split_cmd[i] && !ft_strchr(split_cmd[i], VAL_EQUAL))
+		i++;
+	if (split_cmd[i] && ft_strchr(split_cmd[i], VAL_EQUAL))
+		return (SUCCESS);
+	return (FAILURE);
 }

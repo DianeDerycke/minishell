@@ -40,10 +40,6 @@ ssize_t				has_echo_opt(char **split_cmd, size_t *index);
 
 //env.c
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
-void    			add_argument_to_env(char **split_cmd, char **env);
-char      			**find_first_bin(char **split_cmd, int c);
-ssize_t    			apply_options(char **split_cmd, t_opt opt, char **ms_env);
-char        		**create_tmp_env(char **split_cmd);
 
 //parser env
 void	     		init_env_options(char **split_cmd, t_opt *env_opt);
@@ -76,9 +72,11 @@ ssize_t     		error_chdir(int error, char *path, char *cmd);
 
 //utils.c
 char				*get_var_path(char *var);
-char    			*get_variable_name(char *arg, size_t bs_index);//change name function
+char    			*get_variable_name(char *arg, size_t bs_index);
 void    			join_path_rest(char **arg, char *var_value, size_t bs_index);
 char				*join_begin_path(char *str, char *str2, char c);
+ssize_t				has_arg(char **split_cmd);
+
 
 
 //init.c

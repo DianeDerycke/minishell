@@ -6,15 +6,15 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/19 00:22:08 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 15:25:17 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 17:09:02 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int 	find_builtin(char *cmd, t_builtin *builtins, int ret)
+int		find_builtin(char *cmd, t_builtin *builtins, int ret)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	if (!cmd)

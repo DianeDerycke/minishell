@@ -6,16 +6,16 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 15:25:20 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 17:07:17 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t     cd_to_env_var(char **ms_env, char *var_name)
+ssize_t		cd_to_env_var(char **ms_env, char *var_name)
 {
-	size_t      index;
-	ssize_t     error;
+	size_t		index;
+	ssize_t		error;
 
 	error = ms_find_variable(var_name, ms_env, &index);
 	if (error == -1)
@@ -25,9 +25,9 @@ ssize_t     cd_to_env_var(char **ms_env, char *var_name)
 	return (FAILURE);
 }
 
-ssize_t     edit_oldpwd_var(char ***ms_env, char **buf)
+ssize_t		edit_oldpwd_var(char ***ms_env, char **buf)
 {
-	size_t      index;
+	size_t		index;
 
 	index = 0;
 	if (!buf || !(*buf))
@@ -39,12 +39,12 @@ ssize_t     edit_oldpwd_var(char ***ms_env, char **buf)
 	return (SUCCESS);
 }
 
-ssize_t    ms_cd(char **split_cmd, char ***ms_env)
+ssize_t		ms_cd(char **split_cmd, char ***ms_env)
 {
-	size_t  len_cmd;
-	int     ret;
-	int     error;
-	char    *buf;
+	size_t		len_cmd;
+	int			ret;
+	int			error;
+	char		*buf;
 
 	buf = NULL;
 	len_cmd = ft_strlen_array(split_cmd);

@@ -6,20 +6,20 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 12:31:16 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/24 13:40:18 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 17:51:47 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libms.h"
 
-ssize_t     ms_get_cwd(char **buf)
+ssize_t		ms_get_cwd(char **buf)
 {
-    if (!(*buf = malloc(MS_BUFF_SIZE)))
-        ms_malloc_error();
-    if (!(getcwd(*buf, MS_BUFF_SIZE)))
-    {
-        ft_strdel(buf);
-        return (FAILURE);
-    }
-    return (SUCCESS);
+	if (!(*buf = malloc(MS_BUFF_SIZE)))
+		ms_malloc_error();
+	if (!(getcwd(*buf, MS_BUFF_SIZE)))
+	{
+		ft_strdel(buf);
+		return (FAILURE);
+	}
+	return (SUCCESS);
 }

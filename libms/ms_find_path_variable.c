@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_find_path_variable.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 09:28:10 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/12 17:13:53 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:50:15 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libms.h"
 
-char        *ms_find_path_variable(char **ms_env)
+char	*ms_find_path_variable(char **ms_env)
 {
 	int		i;
 	char	*value_path;
