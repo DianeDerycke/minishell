@@ -6,7 +6,7 @@
 #    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/25 02:53:05 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/09/17 17:01:04 by dideryck         ###   ########.fr        #
+#    Updated: 2018/09/24 19:09:51 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,15 @@ OBJ = $(addsuffix .o, $(FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 
 %.o: %.c
-	gcc -c -Wall -Werror -Wextra -I . -o $@ $< 
+	@gcc -c -Wall -Werror -Wextra -I . -o $@ $< 
 
 clean: 
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -rf libft.a
+	@rm -rf libft.a
 
 re: fclean all

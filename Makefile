@@ -6,7 +6,7 @@
 #    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/09/24 18:57:36 by dideryck         ###   ########.fr        #
+#    Updated: 2018/09/24 19:15:00 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,25 +34,29 @@ CFLAGS = -Werror -Wextra -Wall
 all: compile
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	@$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 compile: 
-	make -C $(LIBFT) 
-	make -C $(LIBMS)
-	make $(NAME)
+	@make -s -C $(LIBFT) 
+	@make -s -C $(LIBMS)
+	@make -s $(NAME)
+	@echo "COMPILATION DONE"
 	
 clean:
-	rm -fv $(OBJ)
+	@rm -f $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	make -C $(LIBFT) clean
-	make -C $(LIBMS) clean
+	@make -C $(LIBFT) clean
+	@make -C $(LIBMS) clean
+	@echo "CLEAN DONE"
 
 fclean: clean
-	rm -fv $(NAME)
-	rm -fv $(LIBNAME)
+	@rm -f $(NAME)
+	@rm -f $(LIBNAME)
+	@echo "FCLEAN DONE"
 
 re: fclean all
+	@echo "RE DONE"
