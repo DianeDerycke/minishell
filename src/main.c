@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/20 14:50:08 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:19:54 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,5 @@ int		main(void)
 	ft_free_array(ms_env);
 	return (ret);
 }
+
+//NORME

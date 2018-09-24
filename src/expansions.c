@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/20 14:16:37 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:19:32 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ ssize_t 	dollar_expansion(char **arg, char **ms_env, char *start_var)
         return (FAILURE);   
     }
 }
+//NORME
 
 ssize_t 	apply_expansions(char **split_cmd, char **ms_env)
 {

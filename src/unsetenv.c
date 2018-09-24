@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 23:38:32 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 14:31:06 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:21:14 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ char    **delete_variable(char **ms_env, size_t index)
             else
                 break;
         }
-        ms_env[i] = ft_strdup(tmp_env[j]);
-        j++;
-        i++;
+        ms_env[i++] = ft_strdup(tmp_env[j++]);
     }
     ms_env[i] = NULL;
     ft_free_array(tmp_env);

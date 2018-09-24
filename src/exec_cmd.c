@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 17:51:20 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:19:12 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int			exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins)
 	}
 	if ((index = find_builtin((*split_cmd)[0], builtins, ret)) >= 0)
 		ret = builtins[index].function(*split_cmd, ms_env);
-	else
-		if ((ret = ms_exec_binary((*split_cmd)[0], *split_cmd, *ms_env)) == FAILURE)
+	else if ((ret = ms_exec_binary((*split_cmd)[0], *split_cmd, *ms_env)) == 1)
 		{
-			if ((ms_file_exist((*split_cmd)[0]) == SUCCESS && lstat((*split_cmd)[0], &f_stat) == 0))
+			if ((ms_file_exist((*split_cmd)[0]) == SUCCESS && 
+				lstat((*split_cmd)[0], &f_stat) == 0))
 			{
 				if (!(f_stat.st_mode & S_IXUSR))
 					ms_perm_denied((*split_cmd)[0]);

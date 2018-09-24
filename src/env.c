@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 16:52:27 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:16:45 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ ssize_t    apply_options(char **split_cmd, t_opt opt, char **ms_env)
     ft_free_array(tmp_env);
     return (SUCCESS);
 }
+//NORME
 
 ssize_t    ms_env(char **split_cmd, char ***ms_env)
 {

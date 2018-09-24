@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 14:15:46 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:11:54 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ ssize_t     edit_oldpwd_var(char ***ms_env, char **buf)
     size_t      index;
 
     index = 0;
+    if (!buf || !(*buf))
+        return (FAILURE);
     if (ms_find_variable(OLDPWD, *ms_env, &index) == -1)
         return (FAILURE);
     ms_edit_variable(OLDPWD, *buf, ms_env, index);
@@ -58,7 +60,7 @@ ssize_t    ms_cd(char **split_cmd, char ***ms_env)
         ft_strdel(&buf);
         return (error_chdir(ret, split_cmd[1], "cd"));
     }
-    if ((buf == NULL && error == FAILURE) || edit_oldpwd_var(ms_env, &buf) == FAILURE ||
+    if (error == FAILURE || edit_oldpwd_var(ms_env, &buf) == FAILURE ||
             ms_edit_pwd_var(ms_env) == FAILURE)
         return (FAILURE);
     ft_strdel(&buf);
