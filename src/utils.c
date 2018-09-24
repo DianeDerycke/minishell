@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 17:26:34 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 20:05:05 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char		*get_variable_name(char *arg, size_t end)
 	return (tmp);
 }
 
-void		join_path_rest(char **arg, char *var_path, size_t bs_index)
+void		join_path_rest(char **arg, char *v_path, size_t bs_index)
 {
 	char	*rest_arg;
 

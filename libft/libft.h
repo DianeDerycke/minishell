@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/17 17:01:22 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 20:13:19 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,10 @@ void				ft_sort_integer_table(int *tab, int size);
 char				**ft_copy_array(char **src, size_t len);
 void				ft_malloc_error(void);
 ssize_t				ft_find_char(char *str, char c, size_t *index);
-void    			ft_replace(char *str, char c, char new_c);
-char    			**ft_trim_array(char **array);
+void				ft_replace(char *str, char c, char new_c);
+char				**ft_trim_array(char **array);
 int					ft_is_whitespace(char c);
-void    			ft_replace_whitespaces(char *str, char c);
+void				ft_replace_whitespaces(char *str, char c);
 char				*ft_dup_until(char *str, char c);
 
 #endif

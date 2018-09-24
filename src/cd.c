@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 17:07:17 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 19:44:19 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ ssize_t		edit_oldpwd_var(char ***ms_env, char **buf)
 		return (FAILURE);
 	if (ms_find_variable(OLDPWD, *ms_env, &index) == -1)
 		return (FAILURE);
-	ms_edit_variable(OLDPWD, *buf, ms_env, index);
+	ms_edit_var(OLDPWD, *buf, ms_env, index);
 	ft_strdel(buf);
 	return (SUCCESS);
 }

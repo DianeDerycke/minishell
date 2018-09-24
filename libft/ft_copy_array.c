@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 21:18:27 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/16 11:54:19 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/24 20:12:21 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	**ft_copy_array(char **src, size_t len)
+
+char			**ft_copy_array(char **src, size_t len)
 {
 	size_t		n;
-	char	**dst;
+	char		**dst;
 
 	n = 0;
 	dst = NULL;

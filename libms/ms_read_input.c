@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 22:06:11 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/20 14:23:16 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 19:39:51 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ssize_t		ms_read_input(char **input)
 {
-	ssize_t	 	is_read_done;
+	ssize_t		is_read_done;
 
 	is_read_done = get_next_line(1, input);
 	if (is_read_done == -1)

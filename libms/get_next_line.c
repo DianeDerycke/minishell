@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:47:16 by dideryck          #+#    #+#             */
-/*   Updated: 2018/08/23 22:21:44 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/24 20:05:48 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		add_buffer_to_rest(char **rest, char buffer[], int ret)
 		*rest = ft_strjoin_free(*rest, buffer);
 }
 
-ssize_t				get_next_line(const int fd, char **line)
+ssize_t			get_next_line(const int fd, char **line)
 {
 	static t_pos		pos;
 
