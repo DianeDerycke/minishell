@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 14:06:21 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 18:25:54 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define VAL_DASH 45
 # define VAL_DOLLAR 36
 # define VAL_TILDE 126
-# define MS_BUFF_SIZE 1
+# define MS_BUFF_SIZE 1024
 
 char        **ms_get_env(void);
 ssize_t     ms_read_input(char **input);
@@ -56,7 +56,7 @@ char        *ms_find_path_variable(char **ms_env);
 ssize_t     ms_get_cwd(char **buf);
 ssize_t     ms_edit_pwd_var(char ***ms_env);
 ssize_t		ms_find_variable(char *cmd, char **ms_env, size_t *index);
-void        ms_edit_variable(char *var_name, char *var_value, char ***ms_env, size_t index);
+void        ms_edit_variable(char *var_name, char *var_value, char ***env, size_t index);
 ssize_t     ms_file_exist(const char *path);
 
 

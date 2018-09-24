@@ -6,7 +6,7 @@
 #    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/09/19 15:07:54 by dideryck         ###   ########.fr        #
+#    Updated: 2018/09/24 18:57:36 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,19 +29,22 @@ CPPFLAGS = -Iincludes
 LDFLAGS = -Llibft -Llibms
 LDLIBS = -lft -lms
 CC = gcc
-CFLAGS = -g -o0 -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall
 
-all: $(NAME)
+all: compile
 
 $(NAME): $(OBJ)
-	make -C $(LIBFT) 
-	make -C $(LIBMS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
+compile: 
+	make -C $(LIBFT) 
+	make -C $(LIBMS)
+	make $(NAME)
+	
 clean:
 	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
