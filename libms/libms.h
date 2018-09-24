@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/20 13:37:46 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:06:21 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define HOME "HOME"
 # define OLDPWD "OLDPWD"
 # define STR_EQUAL "="
+# define STR_DASH "-"
 # define CH_DOLLAR '$'
 # define C_WHITESPACE ' '
 # define C_DQUOTE '"'
@@ -42,7 +43,7 @@
 # define VAL_DASH 45
 # define VAL_DOLLAR 36
 # define VAL_TILDE 126
-# define MS_BUFF_SIZE 2048
+# define MS_BUFF_SIZE 1
 
 char        **ms_get_env(void);
 ssize_t     ms_read_input(char **input);
