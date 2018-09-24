@@ -63,7 +63,7 @@ char			    **delete_variable(char **ms_env, size_t index);
 //expansions.c
 ssize_t				apply_expansions(char **split_cmd, char **ms_env);
 ssize_t   			tilde_expansion(char **arg);
-ssize_t				dollar_expansion(char **arg, char **ms_env, char *start_var);
+ssize_t				dollar_expansion(char **arg, char **env, char *start_var);
 
 //exec_cmd.c
 int					exec_cmd(char ***ms_env, char ***split_cmd, t_builtin *builtins);
@@ -75,10 +75,10 @@ ssize_t				unvalid_setenv_cmd(void);
 ssize_t     		error_chdir(int error, char *path, char *cmd);
 
 //utils.c
-char				*get_variable_path(char *var);
+char				*get_var_path(char *var);
 char    			*get_variable_name(char *arg, size_t bs_index);//change name function
 void    			join_path_rest(char **arg, char *var_value, size_t bs_index);
-char				*join_beginning_path(char *str, char *str2, char c);
+char				*join_begin_path(char *str, char *str2, char c);
 
 
 //init.c

@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 03:04:31 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/19 16:12:03 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 16:09:12 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,21 @@ ssize_t		too_many_args(char *cmd)
 
 ssize_t		unvalid_setenv_cmd(void)
 {
-	ft_putendl_fd("setenv: Variable name must contain alphanumeric characters.", 2);
+	ft_putstr_fd("setenv: ", 2);
+	ft_putendl_fd("Variable name must contain alphanumeric characters.", 2);
 	return (FAILURE);
 }
 
-ssize_t     error_chdir(int error, char *path, char *cmd)
+ssize_t		error_chdir(int error, char *path, char *cmd)
 {
-    struct stat     f_stat;
+	struct stat		f_stat;
 
-    if (error == -1 && ms_file_exist(path) == SUCCESS)
-    {
-        if (lstat(path, &f_stat) == 0 && !(f_stat.st_mode & S_IXUSR))
-            return (ms_error_perm_denied(cmd, path));
-    }
-    else
-        return (ms_no_such_file_or_dir(cmd, path));
-    return (FAILURE);
+	if (error == -1 && ms_file_exist(path) == SUCCESS)
+	{
+		if (lstat(path, &f_stat) == 0 && !(f_stat.st_mode & S_IXUSR))
+			return (ms_error_perm_denied(cmd, path));
+	}
+	else
+		return (ms_no_such_file_or_dir(cmd, path));
+	return (FAILURE);
 }

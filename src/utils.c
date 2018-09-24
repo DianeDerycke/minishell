@@ -6,19 +6,20 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 15:23:14 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:52:55 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-char	*get_variable_path(char *var)
+
+char	*get_var_path(char *var)
 {
 	char	*path;
 	size_t	i;
 
 	i = 0;
-    if (!var)
-        return (NULL);
+	if (!var)
+		return (NULL);
 	while (var[i] != '=')
 		i++;
 	if (!(path = ft_strdup(var + i + 1)))
@@ -26,36 +27,36 @@ char	*get_variable_path(char *var)
 	return (path);
 }
 
-char    *get_variable_name(char *arg, size_t end)
+char	*get_variable_name(char *arg, size_t end)
 {
-    char    *tmp;
+	char	*tmp;
 
-    tmp = NULL;
-    if (!arg)
-        return (NULL);
-    if (end > 0)
-        tmp = ft_strndup(arg + 1, end);
-    else
-        tmp = ft_strdup(arg + 1);
-    if (!tmp)
-        ms_malloc_error();
-    return (tmp);
+	tmp = NULL;
+	if (!arg)
+		return (NULL);
+	if (end > 0)
+		tmp = ft_strndup(arg + 1, end);
+	else
+		tmp = ft_strdup(arg + 1);
+	if (!tmp)
+		ms_malloc_error();
+	return (tmp);
 }
 
-void    join_path_rest(char **arg, char *var_path, size_t bs_index)
+void	join_path_rest(char **arg, char *var_path, size_t bs_index)
 {
-    char    *rest_arg;
+	char	*rest_arg;
 
-    rest_arg = ft_strdup(*arg + (bs_index + 1));
-    ft_strdel(arg);
-    if (rest_arg)
-        *arg = ft_strjoin_free(var_path, rest_arg);
-    else
-        *arg = var_path;
-    ft_strdel(&rest_arg);
+	rest_arg = ft_strdup(*arg + (bs_index + 1));
+	ft_strdel(arg);
+	if (rest_arg)
+		*arg = ft_strjoin_free(var_path, rest_arg);
+	else
+		*arg = var_path;
+	ft_strdel(&rest_arg);
 }
 
-char	*join_beginning_path(char *str, char *str2, char c)
+char	*join_begin_path(char *str, char *str2, char c)
 {
 	size_t		i;
 	char		*tmp;

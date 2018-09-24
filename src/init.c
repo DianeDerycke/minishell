@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: DERYCKE <DERYCKE@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/08/30 13:25:56 by DERYCKE          ###   ########.fr       */
+/*   Updated: 2018/09/24 15:40:19 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 void	init_builtin_struct(t_builtin *builtin_tab)
 {
 	ft_strcpy(builtin_tab[0].name, "echo");
@@ -25,7 +26,7 @@ void	init_builtin_struct(t_builtin *builtin_tab)
 	builtin_tab[4].function = ms_env;
 }
 
-void	init_opt_struct(t_opt 	*env_opt)
+void	init_opt_struct(t_opt *env_opt)
 {
 	env_opt->i = 0;
 	env_opt->p = 0;
