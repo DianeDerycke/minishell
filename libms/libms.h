@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 19:46:22 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/25 17:43:34 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PAGAIN 1
 # define ERR_INTR -1
 # define DEFAULT_HOME "/Users/dideryck"
-# define DEFAULT_PATH "/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin"
+# define DEFAULT_PATH "PATH=/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin"
 # define HOME "HOME"
 # define OLDPWD "OLDPWD"
 # define STR_EQUAL "="

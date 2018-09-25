@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 19:44:23 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/25 18:01:58 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,26 @@ static char			**create_tmp_env(char **split_cmd)
 	size_t		j;
 	size_t		len;
 	char		**tmp_env;
+	char		**tmp;
 
 	i = 1;
 	j = 0;
 	tmp_env = NULL;
+	tmp = NULL;
 	while (split_cmd[i] && ft_strchr(split_cmd[i], VAL_DASH))
+	{
+		if (ft_strncmp(split_cmd[i], "PATH", 4) == SUCCESS)
+			j = 1;
 		i++;
+	}
 	len = ft_strlen_array(split_cmd + i);
-	if (!(tmp_env = malloc(sizeof(char *) * (len + 1))))
+	if (j == 0 || len == 0)
+		j++;
+	if (!(tmp_env = malloc(sizeof(char *) * (len + 1 + j))))
 		ms_malloc_error();
+	if (j == 0)
+		tmp_env[] = ft_strdup(DEFAULT_PATH);
+	j = 0;
 	while (split_cmd[i] && ft_strchr(split_cmd[i], VAL_EQUAL))
 	{
 		if (!(tmp_env[j] = ft_strdup(split_cmd[i])))
@@ -61,6 +72,7 @@ static char			**create_tmp_env(char **split_cmd)
 		j++;
 	}
 	tmp_env[j] = NULL;
+	printf("HERE\n");
 	return (tmp_env);
 }
 
@@ -83,7 +95,7 @@ static char			**find_first_bin(char **split_cmd, int c)
 	return (split_cmd + i);
 }
 
-static ssize_t		apply_opt(char **cmd, t_opt opt, ssize_t ret, char **s_bin)
+static ssize_t		apply_opt(char **cmd, t_opt opt, ssize_t ret, char **s_bin, char **env)
 {
 	char	**tmp_env;
 
@@ -100,7 +112,7 @@ static ssize_t		apply_opt(char **cmd, t_opt opt, ssize_t ret, char **s_bin)
 	}
 	else
 	{
-		tmp_env = create_tmp_env(cmd);
+		tmp_env = ft_copy_array(env, ft_strlen_array(env));
 		add_argument_to_env(cmd, tmp_env);
 		if (!(s_bin = find_first_bin(cmd, VAL_EQUAL)))
 			s_bin = cmd + 1;
@@ -125,7 +137,7 @@ ssize_t				ms_env(char **split_cmd, char ***ms_env)
 	else if (ft_strlen_array(split_cmd) > 1)
 	{
 		init_env_options(split_cmd, &opt);
-		if (apply_opt(split_cmd, opt, ret, s_bin) == FAILURE)
+		if (apply_opt(split_cmd, opt, ret, s_bin, *ms_env) == FAILURE)
 			return (FAILURE);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 09:28:10 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 17:50:15 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/25 16:53:39 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ char	*ms_find_path_variable(char **ms_env)
 
 	value_path = NULL;
 	i = 0;
+	if (!ms_env)
+		return (NULL);
 	while (ms_env[i] && ft_strncmp("PATH=", ms_env[i], 5) != 0)
 		i++;
-	if (!(ms_env[i]))
-	{
-		value_path = ft_strdup(DEFAULT_PATH);
-		return (value_path);
-	}
+	if (ms_env[i] == NULL)
+		return (NULL);
 	value_path = ft_strdup(ms_env[i] + 5);
 	return (value_path);
 }
