@@ -6,13 +6,13 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 12:16:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 19:37:16 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/25 14:37:44 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libms.h"
 
-static char		*ms_test_each_path(char *path_array, char *cmd)
+static char		*ms_test_each_path(char **path_array, char *cmd)
 {
 	struct stat		buf;
 	char			*filename;

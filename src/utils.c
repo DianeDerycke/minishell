@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 20:05:05 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/25 14:39:30 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void		join_path_rest(char **arg, char *v_path, size_t bs_index)
 	rest_arg = ft_strdup(*arg + (bs_index + 1));
 	ft_strdel(arg);
 	if (rest_arg)
-		*arg = ft_strjoin_free(var_path, rest_arg);
+		*arg = ft_strjoin_free(v_path, rest_arg);
 	else
-		*arg = var_path;
+		*arg = v_path;
 	ft_strdel(&rest_arg);
 }
 

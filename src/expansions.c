@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 16:00:20 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/25 15:03:48 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ ssize_t		dollar_expansion(char **arg, char **env, char *start_var)
 			if (!(*arg = join_begin_path(tmp, get_var_path(env[i]), CH_DOLLAR)))
 				ret = FAILURE;
 		}
+		return (ret);
 	}
-	else
-		ret = ms_undefined_variable(tmp);
+	ret = ms_undefined_variable(tmp);
 	ft_strdel(&tmp);
 	return (ret);
 }
