@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_exec_binary.c                                   :+:      :+:    :+:   */
+/*   ms_get_var_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/27 14:26:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/26 18:43:06 by dideryck         ###   ########.fr       */
+/*   Created: 2018/09/26 16:14:28 by dideryck          #+#    #+#             */
+/*   Updated: 2018/09/26 16:28:39 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libms.h"
 
-int		ms_exec_binary(char *utility, char **split_cmd, char **env, char **tmp)
+char		*ms_get_var_path(char *var)
 {
 	char	*path;
-	pid_t	pid;
-	int		status;
+	size_t	i;
 
-	path = NULL;
-	status = 0;
-	if ((path = ms_get_valid_cmd(utility, env)))
-	{
-		if ((pid = fork()) == SUCCESS)
-			execve(path, split_cmd, tmp);
-		else
-			waitpid(pid, &status, 0);
-	}
-	else if (!path)
-		return (FAILURE);
-	ft_strdel(&path);
-	return (status != 0 ? -1 : 0);
+	i = 0;
+	if (!var)
+		return (NULL);
+	while (var[i] != '=')
+		i++;
+	if (!(path = ft_strdup(var + i + 1)))
+		ms_malloc_error();
+	return (path);
 }

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_exec_binary.c                                   :+:      :+:    :+:   */
+/*   ms_env_valid_path.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/27 14:26:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/26 18:43:06 by dideryck         ###   ########.fr       */
+/*   Created: 2018/09/26 14:41:54 by dideryck          #+#    #+#             */
+/*   Updated: 2018/09/26 16:29:01 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libms.h"
 
-int		ms_exec_binary(char *utility, char **split_cmd, char **env, char **tmp)
+char	*ms_env_valid_path(char **ms_env)
 {
-	char	*path;
-	pid_t	pid;
-	int		status;
+	int		i;
+	char	*value_path;
 
-	path = NULL;
-	status = 0;
-	if ((path = ms_get_valid_cmd(utility, env)))
-	{
-		if ((pid = fork()) == SUCCESS)
-			execve(path, split_cmd, tmp);
-		else
-			waitpid(pid, &status, 0);
-	}
-	else if (!path)
-		return (FAILURE);
-	ft_strdel(&path);
-	return (status != 0 ? -1 : 0);
+	value_path = NULL;
+	i = 0;
+	if (!ms_env)
+		return (NULL);
+	while (ms_env[i] && ft_strncmp("PATH=", ms_env[i], 5) != 0)
+		i++;
+	if (ms_env[i] == NULL)
+		return (DEFAULT_PATH);
+	value_path = ft_strdup(ms_env[i] + 5);
+	return (value_path);
 }

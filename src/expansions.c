@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/25 15:03:48 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/26 17:29:22 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ ssize_t		dollar_expansion(char **arg, char **env, char *start_var)
 
 	ret = 0;
 	ft_find_char(start_var, VAL_BACKSPACE, &bs_index);
-	tmp = get_variable_name(start_var, bs_index);
+	tmp = get_variable_name(start_var + 1, bs_index);
 	if (ms_find_variable(tmp, env, &i) == SUCCESS)
 	{
 		ft_strdel(&tmp);
 		if (bs_index > 0)
-			join_path_rest(arg, get_var_path(env[i]), bs_index);
+			join_path_rest(arg, ms_get_var_path(env[i]), bs_index);
 		else
 		{
 			tmp = ft_strdup(*arg);
 			ft_strdel(arg);
-			if (!(*arg = join_begin_path(tmp, get_var_path(env[i]), CH_DOLLAR)))
+			if (!(*arg = join_begin_path(tmp, ms_get_var_path(env[i]), DOLLAR)))
 				ret = FAILURE;
 		}
 		return (ret);

@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:56:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/24 20:05:12 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/26 17:25:12 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ ssize_t				has_echo_opt(char **split_cmd, size_t *index);
 ** env.c
 */
 ssize_t				ms_env(char **split_cmd, char ***ms_env);
+void				add_argument_to_env(char **split_cmd, char ***env);
+char				**find_first_bin(char **split_cmd, int c);
+
 
 /*
 ** parser env
@@ -104,11 +107,11 @@ ssize_t				error_chdir(int error, char *path, char *cmd);
 /*
 ** utils.c
 */
-char				*get_var_path(char *var);
 char				*get_variable_name(char *arg, size_t bs_index);
 void				join_path_rest(char **arg, char *v_path, size_t bs_index);
 char				*join_begin_path(char *str, char *str2, char c);
 ssize_t				has_arg(char **split_cmd);
+ssize_t				exec_simple_env(char **cmd, char **s_bin, char **env);
 
 /*
 ** init.c
