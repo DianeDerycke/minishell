@@ -6,13 +6,13 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 13:51:19 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/27 14:00:34 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 14:37:15 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char				**find_first_bin(char **split_cmd, int c)
+char		**find_first_bin(char **split_cmd, int c)
 {
 	size_t		i;
 
@@ -29,14 +29,26 @@ char				**find_first_bin(char **split_cmd, int c)
 	return (split_cmd + i);
 }
 
-size_t      getnbr_args(char **split_cmd, int c)
+size_t		getnbr_args(char **split_cmd, int c)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    if (!split_cmd)
-        return (0);
-    while (split_cmd[i] && ft_strchr(split_cmd[i], c))
-        i++;
-    return (i);
+	i = 0;
+	if (!split_cmd)
+		return (0);
+	while (split_cmd[i] && ft_strchr(split_cmd[i], c))
+		i++;
+	return (i);
+}
+
+void		copy_add_var_to_env(char ***env, char *name, char *value)
+{
+	char	**tmp;
+
+	tmp = NULL;
+	if (!(tmp = ft_copy_array(*env, ft_strlen_array(*env))))
+		ms_malloc_error();
+	ft_free_array(*env);
+	*env = add_variable(name, value, tmp);
+	ft_free_array(tmp);
 }

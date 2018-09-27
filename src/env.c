@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/27 14:01:23 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 14:35:28 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void				add_argument_to_env(char **split_cmd, char ***env)
 {
 	size_t	i;
 	size_t	index;
-	char	**tmp;
 	char	*var_name;
 	char	*var_value;
 
 	i = 1;
 	index = 0;
-	tmp = NULL;
 	var_name = NULL;
 	var_value = NULL;
 	while (split_cmd[i] && !(ft_strchr(split_cmd[i], VAL_EQUAL)))
@@ -35,12 +33,7 @@ void				add_argument_to_env(char **split_cmd, char ***env)
 		if (ms_find_variable(var_name, *env, &index) == SUCCESS)
 			ms_edit_var(var_name, var_value, env, index);
 		else
-		{
-			tmp = ft_copy_array(*env, ft_strlen_array(*env));
-			ft_free_array(*env);
-			*env = add_variable(var_name, var_value, tmp);
-			ft_free_array(tmp);
-		}
+			copy_add_var_to_env(env, var_name, var_value);
 		ft_strdel(&var_value);
 		ft_strdel(&var_name);
 		i++;
