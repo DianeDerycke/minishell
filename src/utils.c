@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/26 17:31:01 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 14:17:47 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,20 @@ ssize_t		has_arg(char **split_cmd)
 ssize_t		exec_simple_env(char **cmd, char **s_bin, char **env)
 {
 	char	**tmp_env;
+	char	*path;
 	ssize_t	ret;
 
 	ret = 0;
+	path = NULL;
 	tmp_env = ft_copy_array(env, ft_strlen_array(env));
 	add_argument_to_env(cmd, &tmp_env);
 	if (!(s_bin = find_first_bin(cmd, VAL_EQUAL)))
 		s_bin = cmd + 1;
-	if (ms_find_path_variable(tmp_env))
+	if ((path = ms_find_path_variable(tmp_env)))
 	{
 		if (ms_exec_binary(*s_bin, s_bin, tmp_env, tmp_env) == FAILURE)
 			ret = ms_no_such_file_or_dir(cmd[0], *s_bin);
+		ft_strdel(&path);
 	}
 	else if (ms_exec_binary(*s_bin, s_bin, env, tmp_env) == FAILURE)
 		ret = ms_no_such_file_or_dir(cmd[0], *s_bin);
