@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:56:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/26 17:25:12 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:59:47 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,11 @@ ssize_t				exec_simple_env(char **cmd, char **s_bin, char **env);
 */
 void				init_builtin_struct(t_builtin *builtin_tab);
 void				init_opt_struct(t_opt *env_opt);
+
+/*
+** utils2.c
+*/
+size_t				getnbr_args(char **split_cmd, int c);
+char				**find_first_bin(char **split_cmd, int c);
+
 #endif

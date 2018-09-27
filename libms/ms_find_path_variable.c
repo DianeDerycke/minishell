@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 09:28:10 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/26 18:43:07 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:22:20 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ char	*ms_find_path_variable(char **ms_env)
 	if (ms_env[i] == NULL)
 		return (NULL);
 	value_path = ft_strdup(ms_env[i] + 5);
-	return (value_path);
+	return (value_path ? value_path : NULL);
 }
