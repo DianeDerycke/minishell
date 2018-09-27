@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 15:40:19 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 16:21:02 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_builtin_struct(t_builtin *builtin_tab)
 	builtin_tab[3].function = ms_unsetenv;
 	ft_strcpy(builtin_tab[4].name, "env");
 	builtin_tab[4].function = ms_env;
+	ft_strcpy(builtin_tab[5].name, "help");
+	builtin_tab[5].function = ms_help;
 }
 
 void	init_opt_struct(t_opt *env_opt)
@@ -34,3 +36,17 @@ void	init_opt_struct(t_opt *env_opt)
 	env_opt->u = 0;
 	env_opt->v = 0;
 }
+
+/*
+$ help
+minishell help
+
+ - cd
+    Change the shell working directory.
+    
+    	Change the current directory to DIR.  The default DIR is the value of the
+    	HOME shell variable.
+- pwd
+
+
+*/

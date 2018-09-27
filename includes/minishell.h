@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:56:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/27 14:38:32 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 16:21:13 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 
-# define ARRAY_SIZE 5
+# define ARRAY_SIZE 7
 
 typedef struct		s_builtin
 {
@@ -124,5 +124,10 @@ void				init_opt_struct(t_opt *env_opt);
 size_t				getnbr_args(char **split_cmd, int c);
 char				**find_first_bin(char **split_cmd, int c);
 void				copy_add_var_to_env(char ***env, char *name, char *value);
+
+/*
+** help.c
+*/
+ssize_t				ms_help(char **split_cmd, char ***ms_env);
 
 #endif

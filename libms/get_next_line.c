@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:47:16 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/24 20:05:48 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/09/27 15:52:41 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ ssize_t			get_next_line(const int fd, char **line)
 	if (pos.ret < BUFF_SIZE && !(ft_strlen(pos.rest)))
 		return (0);
 	create_line(&(pos.rest), line);
+	ft_strdel(&pos.rest);
 	return (1);
 }
