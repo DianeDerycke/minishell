@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ms_get_var_name.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 21:46:37 by dideryck          #+#    #+#             */
-/*   Updated: 2018/10/01 19:55:28 by dideryck         ###   ########.fr       */
+/*   Created: 2018/10/01 18:50:04 by dideryck          #+#    #+#             */
+/*   Updated: 2018/10/01 18:51:03 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libms.h"
 
-int		ft_isalnum(int c)
+char		*ms_get_var_name(char *arg, size_t end)
 {
-	return(ft_isalpha(c) || ft_isdigit(c));
+	char	*tmp;
+
+	tmp = NULL;
+	if (!arg)
+		return (NULL);
+	if (end > 0)
+		tmp = ft_strndup(arg, end);
+	else
+		tmp = ft_strdup(arg);
+	if (!tmp)
+		ms_malloc_error();
+	return (tmp);
 }

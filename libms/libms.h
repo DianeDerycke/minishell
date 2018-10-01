@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/26 16:30:19 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 18:51:10 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ ssize_t		ms_edit_pwd_var(char ***ms_env);
 ssize_t		ms_find_variable(char *cmd, char **ms_env, size_t *index);
 void		ms_edit_var(char *v_name, char *v_value, char ***env, size_t index);
 ssize_t		ms_file_exist(const char *path);
-char		*ms_get_var_path(char *var);
+char		*ms_get_var_path(char *var, char **env, int *end);
+char		*ms_get_var_name(char *arg, size_t end);
 
 ssize_t		ms_command_not_found(char *cmd);
 ssize_t		ms_no_such_file_or_dir(char *utility, char *cmd);

@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/01 14:39:41 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 21:13:24 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,49 +37,46 @@ ssize_t		tilde_expansion(char **arg)
 	return (SUCCESS);
 }
 
-ssize_t		dollar_expansion(char **arg, char **env, char *start_var)
+static void		dollar_expansion(char **split_cmd, char **env, char *arg,
+										char *ptr)
 {
-	size_t		i;
-	ssize_t		ret;
-	size_t		bs_index;
-	char		*tmp;
+	char	*sub;
+	char	*join;
+	char	*v_value;
+	int 	index;
 
-	ret = 0;
-	ft_find_char(start_var, VAL_BACKSPACE, &bs_index);
-	tmp = get_variable_name(start_var + 1, bs_index);
-	if (ms_find_variable(tmp, env, &i) == SUCCESS)
+	index = 0;
+	while (ptr)
 	{
-		ft_strdel(&tmp);
-		if (bs_index > 0)
-			join_path_rest(arg, ms_get_var_path(env[i]), bs_index);
-		else
+		sub = (ptr != arg ? ft_strsub(arg, 0, (size_t)(ptr - arg - 1)) : ft_strdup(""));
+		if (sub == NULL)
+			ms_malloc_error();
+		if ((v_value = ms_get_var_path(ptr + 1, env, &index)) != NULL)
 		{
-			tmp = ft_strdup(*arg);
-			ft_strdel(arg);
-			if (!(*arg = join_begin_path(tmp, ms_get_var_path(env[i]), DOLLAR)))
-				ret = FAILURE;
+			if (!(join = ft_strjoin_free(sub, v_value)) ||
+			(ptr[index] && ((!(sub = ft_strsub(ptr + 1, index, ft_strlen(ptr + index)))) || 
+			(!(join = ft_strjoin_free(join, sub))))))
+				ms_malloc_error();
 		}
-		return (ret);
+		ft_strdel(&sub);
+		arg = ptr + index;
+		ptr = ft_strchr(ptr + index, VAL_DOLLAR);
 	}
-	ret = ms_undefined_variable(tmp);
-	ft_strdel(&tmp);
-	return (ret);
+	ft_strdel(split_cmd);
+	*split_cmd = join;
 }
 
 ssize_t		apply_expansions(char **split_cmd, char **ms_env)
 {
 	size_t		i;
-	char		*start_var;
+	char		*ptr;
 
+	ptr = NULL;
 	i = 0;
-	start_var = NULL;
 	while (split_cmd[i])
 	{
-		if ((start_var = ft_strchr(split_cmd[i], VAL_DOLLAR)))
-		{
-			if (dollar_expansion(split_cmd + i, ms_env, start_var) == FAILURE)
-				return (FAILURE);
-		}
+		if ((ptr = ft_strchr(split_cmd[i], VAL_DOLLAR)))
+			dollar_expansion(split_cmd + i, ms_env, split_cmd[i], ptr);
 		else if ((ft_strcmp(split_cmd[i], "~") == SUCCESS) ||
 					ft_strchr(split_cmd[i], VAL_TILDE))
 			if (tilde_expansion(split_cmd + i) == FAILURE)

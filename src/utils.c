@@ -6,27 +6,11 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 18:50:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/27 14:17:47 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 18:52:17 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-char		*get_variable_name(char *arg, size_t end)
-{
-	char	*tmp;
-
-	tmp = NULL;
-	if (!arg)
-		return (NULL);
-	if (end > 0)
-		tmp = ft_strndup(arg, end);
-	else
-		tmp = ft_strdup(arg);
-	if (!tmp)
-		ms_malloc_error();
-	return (tmp);
-}
 
 void		join_path_rest(char **arg, char *v_path, size_t bs_index)
 {

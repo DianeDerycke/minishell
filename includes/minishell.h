@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:56:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/10/01 15:13:13 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 20:23:19 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ char				**delete_variable(char **ms_env, size_t index);
 */
 ssize_t				apply_expansions(char **split_cmd, char **ms_env);
 ssize_t				tilde_expansion(char **arg);
-ssize_t				dollar_expansion(char **arg, char **env, char *start_var);
 
 /*
 ** exec_cmd.c
@@ -106,7 +105,6 @@ ssize_t				error_chdir(int error, char *path, char *cmd);
 /*
 ** utils.c
 */
-char				*get_variable_name(char *arg, size_t bs_index);
 void				join_path_rest(char **arg, char *v_path, size_t bs_index);
 char				*join_begin_path(char *str, char *str2, char c);
 ssize_t				has_arg(char **split_cmd);

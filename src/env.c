@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/27 14:35:28 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 18:51:58 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void				add_argument_to_env(char **split_cmd, char ***env)
 	while (split_cmd[i] && ft_strchr(split_cmd[i], VAL_EQUAL))
 	{
 		ft_find_char(split_cmd[i], VAL_EQUAL, &index);
-		var_name = get_variable_name(split_cmd[i], index);
+		var_name = ms_get_var_name(split_cmd[i], index);
 		var_value = ft_strdup(split_cmd[i] + index + 1);
 		if (ms_find_variable(var_name, *env, &index) == SUCCESS)
 			ms_edit_var(var_name, var_value, env, index);
