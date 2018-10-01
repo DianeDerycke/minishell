@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/27 16:04:15 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 12:32:58 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(void)
 	t_builtin		builtin_tab[ARRAY_SIZE];
 
 	ret = 0;
+	cmd = NULL;
 	input = NULL;
 	ms_env = ms_get_env();
 	init_builtin_struct(builtin_tab);

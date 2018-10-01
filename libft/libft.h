@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 20:13:19 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 12:05:40 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,6 @@ char				**ft_trim_array(char **array);
 int					ft_is_whitespace(char c);
 void				ft_replace_whitespaces(char *str, char c);
 char				*ft_dup_until(char *str, char c);
+void				ft_clear_screen(void);
 
 #endif

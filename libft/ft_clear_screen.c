@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_clear_screen.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/26 01:03:12 by dideryck          #+#    #+#             */
-/*   Updated: 2018/10/01 12:45:51 by dideryck         ###   ########.fr       */
+/*   Created: 2018/10/01 12:04:49 by dideryck          #+#    #+#             */
+/*   Updated: 2018/10/01 12:05:54 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+void	ft_clear_screen(void)
 {
-	char	buf[1024];
+  const char    *clear;
 
-	read(0, buf, 1);
+  clear = "\e[1;1H\e[2J";
+  write(STDOUT_FILENO, clear, 12);
+  write(STDOUT_FILENO, "\r", 1);
 }

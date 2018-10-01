@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/26 15:46:17 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 12:34:11 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int			exec_cmd(char ***ms_env, char ***cmd, t_builtin *builtins)
 {
 	int				index;
-	char			*path;
 	struct stat		f_stat;
 	static int		ret = 0;
 
-	path = NULL;
-	if (!**cmd || apply_expansions(*cmd, *ms_env) == 1)
+	index = 0;
+	if (!cmd || !*cmd || !**cmd || apply_expansions(*cmd, *ms_env) == 1)
 	{
 		ft_free_array(*cmd);
 		return (FAILURE);
