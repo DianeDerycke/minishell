@@ -6,13 +6,13 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/01 12:34:11 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 14:35:57 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int			exec_cmd(char ***ms_env, char ***cmd, t_builtin *builtins)
+int			exec_cmd(char ***ms_env, char ***cmd, t_builtin builtins[])
 {
 	int				index;
 	struct stat		f_stat;

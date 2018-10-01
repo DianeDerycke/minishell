@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/26 17:29:22 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 14:39:41 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,12 @@ ssize_t		apply_expansions(char **split_cmd, char **ms_env)
 		if ((start_var = ft_strchr(split_cmd[i], VAL_DOLLAR)))
 		{
 			if (dollar_expansion(split_cmd + i, ms_env, start_var) == FAILURE)
-			{
-				ft_free_array(split_cmd);
 				return (FAILURE);
-			}
 		}
 		else if ((ft_strcmp(split_cmd[i], "~") == SUCCESS) ||
 					ft_strchr(split_cmd[i], VAL_TILDE))
 			if (tilde_expansion(split_cmd + i) == FAILURE)
-			{
-				ft_free_array(split_cmd);
 				return (FAILURE);
-			}
 		i++;
 	}
 	return (SUCCESS);

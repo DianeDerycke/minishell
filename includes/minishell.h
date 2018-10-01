@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:56:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/09/27 16:21:13 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/01 15:13:13 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 
-# define ARRAY_SIZE 7
+# define ARRAY_SIZE 6
 
 typedef struct		s_builtin
 {
