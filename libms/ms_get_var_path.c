@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:14:28 by dideryck          #+#    #+#             */
-/*   Updated: 2018/10/02 12:13:50 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 14:23:17 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ char			*ms_get_var_path(char *var, char **env, int *end)
 	var_name = ms_get_var_name(var, *end);
 	if (ms_find_variable(var_name, env, &i) == SUCCESS)
 	{
+		ft_strdel(&var_name);
 		tmp = ms_get_var_value(env[i]);
 		return (tmp);
 	}
+	ft_strdel(&var_name);
 	return (NULL);
 }

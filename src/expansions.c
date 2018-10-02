@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/02 13:03:08 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 16:05:18 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,27 @@ static void		dollar_expansion(char **split_cmd, char **env, char *arg,
 	st.join = NULL;
 	while (ptr)
 	{
-		if (!(st.sub = (ptr != arg ? ft_strsub(arg, 0, (size_t)(ptr - arg - 1)) :
+		if (!(st.sub = (ptr != arg ? ft_strsub(arg, 0, (size_t)(ptr - arg)) :
 		ft_strdup(""))))
 			ms_malloc_error();
 		if ((st.v_value = ms_get_var_path(ptr + 1, env, &st.index)) != NULL)
 		{
 			if (st.join && (st.join[0]))
+			{
+				ft_strdel(&st.sub);
 				st.sub = ft_strndup(st.join, ft_strlen(st.join) - st.index - 1);
+				ft_strdel(&st.join);
+				st.join = NULL;
+			}
 			if (!(st.join = ft_strjoin_free(st.sub, st.v_value)) ||
-			((!(st.sub = ft_strsub(ptr + 1, st.index, ft_strlen(ptr + st.index)))) ||
-			(!(st.join = ft_strjoin_free(st.join, st.sub)))))
+			!(st.sub = ft_strsub(ptr + 1, st.index, ft_strlen(ptr + st.index)))
+			|| !(st.join = ft_strjoin_free(st.join, st.sub)))
 				ms_malloc_error();
+			ft_strdel(&st.v_value);
 		}
 		ft_strdel(&st.sub);
 		arg = ptr + st.index;
-		ptr = ft_strchr(ptr + st.index, VAL_DOLLAR);
+		ptr = ft_strchr(ptr + st.index + 1, VAL_DOLLAR);
 	}
 	ft_strdel(split_cmd);
 	*split_cmd = st.join;
@@ -75,7 +81,8 @@ ssize_t			apply_expansions(char **split_cmd, char **ms_env)
 	i = 0;
 	while (split_cmd[i])
 	{
-		if ((ptr = ft_strchr(split_cmd[i], VAL_DOLLAR)))
+		if ((ptr = ft_strchr(split_cmd[i], VAL_DOLLAR)) &&
+				ft_strlen(split_cmd[i]) > 1)
 			dollar_expansion(split_cmd + i, ms_env, split_cmd[i], ptr);
 		else if ((ft_strcmp(split_cmd[i], "~") == SUCCESS) ||
 					ft_strchr(split_cmd[i], VAL_TILDE))

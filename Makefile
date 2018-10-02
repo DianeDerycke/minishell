@@ -6,7 +6,7 @@
 #    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/12 12:42:27 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/10/01 14:29:18 by dideryck         ###   ########.fr        #
+#    Updated: 2018/10/02 14:24:38 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ CPPFLAGS = -Iincludes
 LDFLAGS = -Llibft -Llibms
 LDLIBS = -lft -lms
 CC = gcc
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall -g3
 
 all: compile
 
