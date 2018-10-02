@@ -6,13 +6,13 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/02 16:05:18 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 17:04:41 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t			tilde_expansion(char **arg)
+static ssize_t		tilde_expansion(char **arg)
 {
 	char	*tmp;
 
@@ -37,7 +37,30 @@ ssize_t			tilde_expansion(char **arg)
 	return (SUCCESS);
 }
 
-static void		dollar_expansion(char **split_cmd, char **env, char *arg,
+static void			concat_d_expansion(char *ptr, char *arg, t_expansion *st,
+					char **env)
+{
+	if (!(st->sub = (ptr != arg ? ft_strsub(arg, 0, (size_t)(ptr - arg)) :
+	ft_strdup(""))))
+		ms_malloc_error();
+	if ((st->v_value = ms_get_var_path(ptr + 1, env, &st->index)) != NULL)
+	{
+		if (st->join && (st->join[0]))
+		{
+			ft_strdel(&st->sub);
+			st->sub = ft_strndup(st->join, ft_strlen(st->join) - st->index - 1);
+			ft_strdel(&st->join);
+			st->join = NULL;
+		}
+		if (!(st->join = ft_strjoin_free(st->sub, st->v_value)) ||
+		!(st->sub = ft_strsub(ptr + 1, st->index, ft_strlen(ptr + st->index)))
+		|| !(st->join = ft_strjoin_free(st->join, st->sub)))
+			ms_malloc_error();
+		ft_strdel(&st->v_value);
+	}
+}
+
+static void			dollar_expansion(char **split_cmd, char **env, char *arg,
 										char *ptr)
 {
 	t_expansion	st;
@@ -46,24 +69,7 @@ static void		dollar_expansion(char **split_cmd, char **env, char *arg,
 	st.join = NULL;
 	while (ptr)
 	{
-		if (!(st.sub = (ptr != arg ? ft_strsub(arg, 0, (size_t)(ptr - arg)) :
-		ft_strdup(""))))
-			ms_malloc_error();
-		if ((st.v_value = ms_get_var_path(ptr + 1, env, &st.index)) != NULL)
-		{
-			if (st.join && (st.join[0]))
-			{
-				ft_strdel(&st.sub);
-				st.sub = ft_strndup(st.join, ft_strlen(st.join) - st.index - 1);
-				ft_strdel(&st.join);
-				st.join = NULL;
-			}
-			if (!(st.join = ft_strjoin_free(st.sub, st.v_value)) ||
-			!(st.sub = ft_strsub(ptr + 1, st.index, ft_strlen(ptr + st.index)))
-			|| !(st.join = ft_strjoin_free(st.join, st.sub)))
-				ms_malloc_error();
-			ft_strdel(&st.v_value);
-		}
+		concat_d_expansion(ptr, arg, &st, env);
 		ft_strdel(&st.sub);
 		arg = ptr + st.index;
 		ptr = ft_strchr(ptr + st.index + 1, VAL_DOLLAR);
@@ -72,7 +78,7 @@ static void		dollar_expansion(char **split_cmd, char **env, char *arg,
 	*split_cmd = st.join;
 }
 
-ssize_t			apply_expansions(char **split_cmd, char **ms_env)
+ssize_t				apply_expansions(char **split_cmd, char **ms_env)
 {
 	size_t		i;
 	char		*ptr;

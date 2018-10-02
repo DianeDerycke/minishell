@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:56:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/10/02 16:01:13 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 17:18:33 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void				valid_option(char c, t_opt *env_opt);
 **  setenv.c
 */
 ssize_t				ms_setenv(char **split_cmd, char ***ms_env);
-ssize_t				is_valid_set_cmd(char **split_cmd);
 char				**add_variable(char *v_name, char *v_value, char **ms_env);
 char				**set_var_env(char **split_cmd, char **ms_env);
 
@@ -96,7 +95,6 @@ char				**delete_variable(char **ms_env, size_t index);
 ** expansions.c
 */
 ssize_t				apply_expansions(char **split_cmd, char **ms_env);
-ssize_t				tilde_expansion(char **arg);
 
 /*
 ** exec_cmd.c

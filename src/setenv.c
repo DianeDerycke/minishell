@@ -6,13 +6,13 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 19:11:59 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/24 20:01:58 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 17:23:45 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t		is_valid_set_cmd(char **split_cmd)
+static ssize_t		is_valid_set_cmd(char **split_cmd)
 {
 	size_t	i;
 	size_t	j;
@@ -21,14 +21,16 @@ ssize_t		is_valid_set_cmd(char **split_cmd)
 	i = 1;
 	while (split_cmd[i])
 	{
-		if (ft_str_isalnum(split_cmd[i]) == 1)
+		if (i == 1 && ft_strchr(split_cmd[i], VAL_SLASH))
+			return (FAILURE);
+		if (ms_is_env_var_name(split_cmd[i]) == 1)
 			return (FAILURE);
 		i++;
 	}
 	return (SUCCESS);
 }
 
-char		**add_variable(char *v_name, char *v_value, char **ms_env)
+char				**add_variable(char *v_name, char *v_value, char **ms_env)
 {
 	char	**tmp_env;
 	size_t	len_tmp;
@@ -48,7 +50,7 @@ char		**add_variable(char *v_name, char *v_value, char **ms_env)
 	return (tmp_env);
 }
 
-ssize_t		ms_setenv(char **split_cmd, char ***ms_env)
+ssize_t				ms_setenv(char **split_cmd, char ***ms_env)
 {
 	size_t		index;
 	size_t		len_cmd;

@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 03:09:46 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/01 12:05:40 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 17:17:08 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_isascii(int c);
-int					ft_str_isalnum(char *str);
 
 int					ft_atoi(const char *str);
 char				*ft_itoa(long int n);

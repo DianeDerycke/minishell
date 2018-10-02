@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_isalnum.c                                   :+:      :+:    :+:   */
+/*   ms_is_env_var_name.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 20:07:26 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/02 12:11:14 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 17:21:34 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libms.h"
 
-int		ft_str_isalnum(char *str)
+int		ms_is_env_var_name(char *str)
 {
 	int		i;
 

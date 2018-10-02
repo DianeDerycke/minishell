@@ -6,7 +6,7 @@
 #    By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/23 13:11:33 by DERYCKE           #+#    #+#              #
-#    Updated: 2018/10/01 18:51:30 by dideryck         ###   ########.fr        #
+#    Updated: 2018/10/02 17:19:06 by dideryck         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ FILES = ms_clean_input ms_create_variable ms_malloc_error ms_read_input \
 		ms_find_path_variable ms_get_env ms_no_such_file_or_dir ms_get_cwd \
 		ms_edit_pwd_var ms_find_variable ms_edit_var ms_perm_denied \
 		ms_file_exist ms_error_perm_denied ms_undefined_variable ms_too_few_args \
-		ms_get_var_path ms_get_var_name
+		ms_get_var_path ms_get_var_name	ms_is_env_var_name
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 

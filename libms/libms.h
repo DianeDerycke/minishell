@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:09:16 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/01 18:51:10 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 17:23:59 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define C_EQUAL '='
 # define C_TILDE '~'
 # define C_SLASH '/'
+# define VAL_SLASH 47
 # define VAL_BACKSPACE 92
 # define VAL_EQUAL 61
 # define VAL_DASH 45
@@ -67,5 +68,6 @@ ssize_t		ms_perm_denied(char *utility);
 ssize_t		ms_error_perm_denied(char *utility, char *cmd);
 ssize_t		ms_undefined_variable(char *var);
 ssize_t		ms_too_few_args(char *utility);
+int			ms_is_env_var_name(char *str);
 
 #endif
