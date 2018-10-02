@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:56:27 by dideryck          #+#    #+#             */
-/*   Updated: 2018/10/01 20:23:19 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 13:02:01 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ typedef struct		s_opt
 	ssize_t			u;
 	ssize_t			v;
 }					t_opt;
+
+typedef struct 		s_expansion
+{
+	char	*sub;
+	char 	*join;
+	char 	*v_value;
+	int 	index;
+}					t_expansion;
 /*
 ** builtins.c
 */

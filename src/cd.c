@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:44:35 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/01 15:26:01 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 12:15:29 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ ssize_t		ms_cd(char **split_cmd, char ***ms_env)
 	}
 	if (error == FAILURE || edit_oldpwd_var(ms_env, &buf) == FAILURE ||
 			ms_edit_pwd_var(ms_env) == FAILURE)
-	{
-		ft_strdel(&buf);
-		return (FAILURE);
-	}
+		ret = FAILURE;
 	ft_strdel(&buf);
 	return (ret);
 }

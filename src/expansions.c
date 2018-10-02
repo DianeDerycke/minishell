@@ -6,13 +6,13 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 14:18:40 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/01 21:13:24 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 13:03:08 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-ssize_t		tilde_expansion(char **arg)
+ssize_t			tilde_expansion(char **arg)
 {
 	char	*tmp;
 
@@ -40,33 +40,33 @@ ssize_t		tilde_expansion(char **arg)
 static void		dollar_expansion(char **split_cmd, char **env, char *arg,
 										char *ptr)
 {
-	char	*sub;
-	char	*join;
-	char	*v_value;
-	int 	index;
+	t_expansion	st;
 
-	index = 0;
+	st.index = 0;
+	st.join = NULL;
 	while (ptr)
 	{
-		sub = (ptr != arg ? ft_strsub(arg, 0, (size_t)(ptr - arg - 1)) : ft_strdup(""));
-		if (sub == NULL)
+		if (!(st.sub = (ptr != arg ? ft_strsub(arg, 0, (size_t)(ptr - arg - 1)) :
+		ft_strdup(""))))
 			ms_malloc_error();
-		if ((v_value = ms_get_var_path(ptr + 1, env, &index)) != NULL)
+		if ((st.v_value = ms_get_var_path(ptr + 1, env, &st.index)) != NULL)
 		{
-			if (!(join = ft_strjoin_free(sub, v_value)) ||
-			(ptr[index] && ((!(sub = ft_strsub(ptr + 1, index, ft_strlen(ptr + index)))) || 
-			(!(join = ft_strjoin_free(join, sub))))))
+			if (st.join && (st.join[0]))
+				st.sub = ft_strndup(st.join, ft_strlen(st.join) - st.index - 1);
+			if (!(st.join = ft_strjoin_free(st.sub, st.v_value)) ||
+			((!(st.sub = ft_strsub(ptr + 1, st.index, ft_strlen(ptr + st.index)))) ||
+			(!(st.join = ft_strjoin_free(st.join, st.sub)))))
 				ms_malloc_error();
 		}
-		ft_strdel(&sub);
-		arg = ptr + index;
-		ptr = ft_strchr(ptr + index, VAL_DOLLAR);
+		ft_strdel(&st.sub);
+		arg = ptr + st.index;
+		ptr = ft_strchr(ptr + st.index, VAL_DOLLAR);
 	}
 	ft_strdel(split_cmd);
-	*split_cmd = join;
+	*split_cmd = st.join;
 }
 
-ssize_t		apply_expansions(char **split_cmd, char **ms_env)
+ssize_t			apply_expansions(char **split_cmd, char **ms_env)
 {
 	size_t		i;
 	char		*ptr;

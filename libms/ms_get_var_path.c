@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:14:28 by dideryck          #+#    #+#             */
-/*   Updated: 2018/10/01 21:09:24 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/02 12:13:50 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static char		*ms_get_var_value(char *var)
 	return (path);
 }
 
-char		*ms_get_var_path(char *var, char **env, int *end)
+char			*ms_get_var_path(char *var, char **env, int *end)
 {
-	char	*var_name;
-	char	*var_path;
-	char 	*tmp;
-	size_t	i;
+	char		*var_name;
+	char		*var_path;
+	char		*tmp;
+	size_t		i;
 
 	var_name = NULL;
 	var_path = NULL;
