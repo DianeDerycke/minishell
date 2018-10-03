@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 12:16:30 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/09/27 13:32:47 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/03 13:15:59 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static char		*ms_test_each_path(char **path_array, char *cmd)
 	{
 		tmp = ft_strjoin(path_array[i], "/");
 		filename = ft_strjoin_free(tmp, cmd);
-		if (stat(filename, &buf) == 0 && (S_ISREG(buf.st_mode) &&
-				(buf.st_mode & S_IXUSR)))
+		if (stat(filename, &buf) == 0 && (S_ISREG(buf.st_mode)))
 		{
 			ft_free_array(path_array);
 			return (filename);

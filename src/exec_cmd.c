@@ -6,7 +6,7 @@
 /*   By: dideryck <dideryck@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 19:48:29 by DERYCKE           #+#    #+#             */
-/*   Updated: 2018/10/01 14:35:57 by dideryck         ###   ########.fr       */
+/*   Updated: 2018/10/03 14:32:33 by dideryck         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			exec_cmd(char ***ms_env, char ***cmd, t_builtin builtins[])
 	}
 	if ((index = find_builtin((*cmd)[0], builtins, ret)) >= 0)
 		ret = builtins[index].function(*cmd, ms_env);
-	else if ((ret = ms_exec_binary((*cmd)[0], *cmd, *ms_env, *ms_env)) == 1)
+	else if ((ret = ms_exec_binary((*cmd)[0], *cmd, *ms_env, *ms_env)) == -1)
 	{
 		if (ms_file_exist((*cmd)[0]) == FAILURE)
 			ms_command_not_found((*cmd)[0]);
