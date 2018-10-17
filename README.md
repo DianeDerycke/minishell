@@ -40,5 +40,5 @@ It handles expansions such as `~` and `$`
 - Builtin `help`
 - `env -i` option
 
-# Notes
+# Key takeaways
 This project allowed me to understand how basic commands work, the environment and its goals, the process and its creation, the expansions and I could improved the readability of my code.
