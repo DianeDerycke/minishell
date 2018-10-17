@@ -1,4 +1,4 @@
-# minishell
+# Minishell
 
 Minishell is the second project of the Unix branch at 42 school. It is a simplistic shell to make us (students) understand the process creation and synchronization.
 
