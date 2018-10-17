@@ -31,8 +31,10 @@ The Makefile contains the regular rules such as :
 - `make re`
 
 ### About this minishell
-This minishell has implemented these builtins : `cd` `echo` `setenv` `unsetenv` `env` `exit`
-For more informations about the builtins, you can run in the minishell `help`
+This minishell has implemented these builtins : `cd` `echo` `setenv` `unsetenv` `env` `exit`.
+
+For more informations about the builtins, you can run in the minishell `help`.
+
 It did not handle multiple commands and signal management such as Ctrl+C or Ctrl+D.
 
 ### Bonus
