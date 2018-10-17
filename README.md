@@ -35,7 +35,7 @@ It has implemented these builtins : `cd` `echo` `setenv` `unsetenv` `env` `exit`
 
 For more informations about the builtins, you can run in the minishell `help`.
 
-It handles expansions such as `~` and `$`
+It handles expansions such as `~` and `$`.
 
 ### Bonus
 - PATH's right management
