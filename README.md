@@ -33,8 +33,12 @@ The Makefile contains the regular rules such as :
 ### About this minishell
 It has implemented these builtins : `cd` `echo` `setenv` `unsetenv` `env` `exit`.
 For more informations about the builtins, you can run in the minishell `help`.
+It handles expansions such as `~` and `$`
 
 ### Bonus
 - PATH's right management
 - Builtin `help`
 - `env -i` option
+
+# Notes
+This project allowed me to understand how basic commands work, the environment and its goals, the process and its creation, the expansions and I could improved the readability of my code.
