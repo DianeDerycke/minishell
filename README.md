@@ -38,8 +38,6 @@ For more informations about the builtins, you can run in the minishell `help`.
 It did not handle multiple commands and signal management such as Ctrl+C or Ctrl+D.
 
 ### Bonus
-PATH's right management
-
-Builtin `help`
-
-`env -i` option
+- PATH's right management
+- Builtin `help`
+- `env -i` option
